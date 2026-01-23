@@ -1,18 +1,5 @@
 @import 'tailwindcss';
 
-/* Pagefind UI customizations */
-:root {
-  --pagefind-ui-scale: 1;
-  --pagefind-ui-primary: #2563eb;
-  --pagefind-ui-text: #1f2937;
-  --pagefind-ui-background: #ffffff;
-  --pagefind-ui-border: #e5e7eb;
-  --pagefind-ui-tag: #f3f4f6;
-  --pagefind-ui-border-width: 1px;
-  --pagefind-ui-border-radius: 8px;
-  --pagefind-ui-font: system-ui, -apple-system, sans-serif;
-}
-
 /* Module card hover effects */
 .module-card {
   transition: transform 0.2s ease, box-shadow 0.2s ease;

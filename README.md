@@ -2,6 +2,8 @@
 
 A static site catalog that aggregates Nextflow modules and subworkflows from multiple repositories. Built with [Astro](https://astro.build) and deployed to GitHub Pages.
 
+**Live site: [bioimagetools.github.io/nf-module-aggregator](https://bioimagetools.github.io/nf-module-aggregator/)**
+
 ## Features
 
 - Aggregates modules from multiple nf-core-style repositories
@@ -189,9 +191,6 @@ npm run fetch-modules
 # Build the site
 npm run build
 
-# Generate search index
-npx pagefind --site dist
-
 # Deploy the ./dist directory to your hosting provider
 ```
 
@@ -219,10 +218,6 @@ Configure which repositories to fetch modules from:
   ]
 }
 ```
-
-## Search
-
-The site uses [Pagefind](https://pagefind.app/) for client-side search. The search index is generated during the build process and enables fast, full-text search across all module content.
 
 ## License
 

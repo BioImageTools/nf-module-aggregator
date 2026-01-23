@@ -17,8 +17,7 @@ const displayName = org ? `${org}/${name}` : name;
 
 <div
   class="module-list-item px-4 py-3 hover:bg-gray-50 transition-colors"
-  data-pagefind-body
-  data-org={org}
+    data-org={org}
   data-type={type}
   data-searchtext={searchText}
 >
@@ -27,8 +26,7 @@ const displayName = org ? `${org}/${name}` : name;
       <a
         href={`${base}modules/${slug}/`}
         class="font-medium text-gray-900 hover:text-blue-600 transition-colors truncate"
-        data-pagefind-meta="title"
-      >
+             >
         {displayName}
       </a>
       {type && (
@@ -36,7 +34,7 @@ const displayName = org ? `${org}/${name}` : name;
           {type}
         </span>
       )}
-      <span class="hidden sm:block text-gray-400 text-sm truncate" data-pagefind-meta="description">
+      <span class="hidden sm:block text-gray-400 text-sm truncate">
         {description}
       </span>
     </div>
@@ -47,8 +45,7 @@ const displayName = org ? `${org}/${name}` : name;
           {keywords.slice(0, 2).map((keyword) => (
             <span
               class="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-gray-100 text-gray-600"
-              data-pagefind-filter="tag"
-            >
+                          >
               {keyword}
             </span>
           ))}
