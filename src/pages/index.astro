@@ -1,7 +1,6 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import Header from '../components/Header.astro';
-import SearchBar from '../components/SearchBar.astro';
 import ModuleCard from '../components/ModuleCard.astro';
 import ModuleListItem from '../components/ModuleListItem.astro';
 import '../styles/global.css';
@@ -86,15 +85,13 @@ const types = [...new Set(modules.map(m => m.type))].filter(Boolean).sort();
 
   <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
     <!-- Hero Section -->
-    <section class="text-center mb-12">
+    <section class="text-center mb-8">
       <h1 class="text-4xl font-bold text-gray-900 mb-4">
         BioImageTools Nextflow Module Catalog
       </h1>
-      <p class="text-xl text-gray-600 max-w-2xl mx-auto mb-8">
+      <p class="text-xl text-gray-600 max-w-2xl mx-auto">
         Find reusable Nextflow modules and subworkflows for bioimaging workflows.
       </p>
-
-      <SearchBar />
     </section>
 
     <!-- Filters -->
