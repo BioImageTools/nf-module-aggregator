@@ -1,0 +1,388 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Header from '../components/Header.astro';
+import SearchBar from '../components/SearchBar.astro';
+import ModuleCard from '../components/ModuleCard.astro';
+import ModuleListItem from '../components/ModuleListItem.astro';
+import '../styles/global.css';
+
+import modules from '../data/modules.json';
+
+// Extract org from repository URL (e.g., "https://github.com/JaneliaSciComp/nextflow-modules/..." -> "JaneliaSciComp")
+function getOrgFromRepo(repoUrl: string): string {
+  const match = repoUrl.match(/github\.com\/([^\/]+)\//);
+  return match ? match[1] : '';
+}
+
+// Build a comprehensive searchable text from all meta.yml fields
+function buildSearchText(module: any, org: string): string {
+  const parts: string[] = [];
+
+  // Basic fields
+  parts.push(module.name || '');
+  parts.push(module.description || '');
+  parts.push(module.type || '');
+  parts.push(module.source || '');
+  parts.push(module.sourceLabel || '');
+  parts.push(org);
+
+  // Keywords
+  if (module.keywords?.length) {
+    parts.push(...module.keywords);
+  }
+
+  // Tools - names and descriptions
+  if (module.tools?.length) {
+    for (const tool of module.tools) {
+      parts.push(tool.name || '');
+      parts.push(tool.description || '');
+      parts.push(tool.homepage || '');
+    }
+  }
+
+  // Authors and maintainers
+  if (module.authors?.length) {
+    parts.push(...module.authors);
+  }
+  if (module.maintainers?.length) {
+    parts.push(...module.maintainers);
+  }
+
+  // Inputs - names, types, and descriptions
+  if (module.inputs?.length) {
+    for (const input of module.inputs) {
+      parts.push(input.name || '');
+      parts.push(input.type || '');
+      parts.push(input.description || '');
+    }
+  }
+
+  // Outputs - names, types, and descriptions
+  if (module.outputs?.length) {
+    for (const output of module.outputs) {
+      parts.push(output.name || '');
+      parts.push(output.type || '');
+      parts.push(output.description || '');
+    }
+  }
+
+  // Components (for subworkflows)
+  if (module.components?.length) {
+    parts.push(...module.components);
+  }
+
+  return parts.filter(Boolean).join(' ').toLowerCase();
+}
+
+// Get unique organizations
+const organizations = [...new Set(modules.map(m => getOrgFromRepo(m.repository)))].filter(Boolean).sort();
+
+// Get unique types
+const types = [...new Set(modules.map(m => m.type))].filter(Boolean).sort();
+---
+
+<BaseLayout title="BioImageTools Nextflow Module Catalog">
+  <Header />
+
+  <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+    <!-- Hero Section -->
+    <section class="text-center mb-12">
+      <h1 class="text-4xl font-bold text-gray-900 mb-4">
+        BioImageTools Nextflow Module Catalog
+      </h1>
+      <p class="text-xl text-gray-600 max-w-2xl mx-auto mb-8">
+        Find reusable Nextflow modules and subworkflows for bioimaging workflows.
+      </p>
+
+      <SearchBar />
+    </section>
+
+    <!-- Filters -->
+    <section class="mb-8">
+      <div class="bg-white rounded-lg border border-gray-200 p-4">
+        <div class="flex flex-wrap items-center gap-4">
+          <!-- Keyword Search -->
+          <div class="flex-1 min-w-[200px]">
+            <label for="keyword-filter" class="sr-only">Search by keyword</label>
+            <div class="relative">
+              <svg class="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+              </svg>
+              <input
+                type="text"
+                id="keyword-filter"
+                placeholder="Filter by keyword..."
+                class="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg text-sm focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none"
+              />
+            </div>
+          </div>
+
+          <!-- Organization Dropdown -->
+          <div class="min-w-[180px]">
+            <label for="org-filter" class="sr-only">Filter by organization</label>
+            <select
+              id="org-filter"
+              class="w-full px-3 py-2 border border-gray-300 rounded-lg text-sm bg-white focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none"
+            >
+              <option value="">All Organizations</option>
+              {organizations.map(org => (
+                <option value={org}>{org}</option>
+              ))}
+            </select>
+          </div>
+
+          <!-- Type Dropdown -->
+          <div class="min-w-[150px]">
+            <label for="type-filter" class="sr-only">Filter by type</label>
+            <select
+              id="type-filter"
+              class="w-full px-3 py-2 border border-gray-300 rounded-lg text-sm bg-white focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none"
+            >
+              <option value="">All Types</option>
+              {types.map(type => (
+                <option value={type}>{type}</option>
+              ))}
+            </select>
+          </div>
+
+          <!-- Clear Filters -->
+          <button
+            id="clear-filters"
+            class="px-3 py-2 text-sm text-gray-600 hover:text-gray-900 hover:bg-gray-100 rounded-lg transition-colors hidden"
+          >
+            Clear filters
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Module Grid -->
+    <section>
+      <div class="flex items-center justify-between mb-6">
+        <h2 class="text-2xl font-semibold text-gray-900">
+          All Modules
+        </h2>
+        <div class="flex items-center gap-4">
+          <span id="module-count" class="text-gray-500">
+            {modules.length} module{modules.length !== 1 ? 's' : ''} available
+          </span>
+          <!-- View Toggle -->
+          <div class="flex items-center border border-gray-300 rounded-lg overflow-hidden">
+            <button
+              id="card-view-btn"
+              class="view-toggle-btn px-3 py-1.5 text-sm font-medium bg-blue-600 text-white"
+              aria-label="Card view"
+              title="Card view"
+            >
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2V6zM14 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V6zM4 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2v-2zM14 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z" />
+              </svg>
+            </button>
+            <button
+              id="list-view-btn"
+              class="view-toggle-btn px-3 py-1.5 text-sm font-medium bg-white text-gray-600 hover:bg-gray-50"
+              aria-label="List view"
+              title="List view"
+            >
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+              </svg>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card View -->
+      <div id="card-view" class="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+        {modules.map((module) => {
+          const org = getOrgFromRepo(module.repository);
+          const searchText = buildSearchText(module, org);
+          return (
+            <ModuleCard
+              name={module.name}
+              org={org}
+              description={module.description}
+              repository={module.repository}
+              version={module.version}
+              tags={module.keywords}
+              slug={module.slug}
+              type={module.type}
+              searchText={searchText}
+            />
+          );
+        })}
+      </div>
+
+      <!-- List View -->
+      <div id="list-view" class="hidden">
+        <div id="list-view-container" class="bg-white rounded-lg border border-gray-200 divide-y divide-gray-200">
+          {modules.map((module) => {
+            const org = getOrgFromRepo(module.repository);
+            const searchText = buildSearchText(module, org);
+            return (
+              <ModuleListItem
+                name={module.name}
+                org={org}
+                description={module.description}
+                repository={module.repository}
+                slug={module.slug}
+                type={module.type}
+                keywords={module.keywords}
+                searchText={searchText}
+              />
+            );
+          })}
+        </div>
+      </div>
+
+      <!-- No Results Message -->
+      <div id="no-results" class="hidden text-center py-12 text-gray-500">
+        <p>No modules match your filters. Try adjusting your search criteria.</p>
+      </div>
+
+      {modules.length === 0 && (
+        <div class="text-center py-12 text-gray-500">
+          <p>No modules found. Run the fetch-modules script to populate the catalog.</p>
+        </div>
+      )}
+    </section>
+  </main>
+
+  <footer class="border-t border-gray-200 mt-16 py-8 text-center text-gray-500 text-sm">
+    <p>
+      Built with <a href="https://astro.build" class="text-blue-600 hover:underline">Astro</a>.
+      Data updated daily.
+    </p>
+  </footer>
+</BaseLayout>
+
+<script>
+  // View toggle elements
+  const cardViewBtn = document.getElementById('card-view-btn');
+  const listViewBtn = document.getElementById('list-view-btn');
+  const cardView = document.getElementById('card-view');
+  const listView = document.getElementById('list-view');
+
+  // Filter elements
+  const keywordFilter = document.getElementById('keyword-filter') as HTMLInputElement;
+  const orgFilter = document.getElementById('org-filter') as HTMLSelectElement;
+  const typeFilter = document.getElementById('type-filter') as HTMLSelectElement;
+  const clearFiltersBtn = document.getElementById('clear-filters');
+  const moduleCount = document.getElementById('module-count');
+  const noResults = document.getElementById('no-results');
+
+  // Get all module elements
+  const cardItems = cardView?.querySelectorAll('.module-card') || [];
+  const listItems = document.getElementById('list-view-container')?.querySelectorAll('.module-list-item') || [];
+
+  // Load saved view preference
+  const savedView = localStorage.getItem('moduleViewMode') || 'card';
+  if (savedView === 'list') {
+    showListView();
+  }
+
+  // View toggle handlers
+  cardViewBtn?.addEventListener('click', () => {
+    showCardView();
+    localStorage.setItem('moduleViewMode', 'card');
+  });
+
+  listViewBtn?.addEventListener('click', () => {
+    showListView();
+    localStorage.setItem('moduleViewMode', 'list');
+  });
+
+  function showCardView() {
+    cardView?.classList.remove('hidden');
+    listView?.classList.add('hidden');
+    cardViewBtn?.classList.remove('bg-white', 'text-gray-600');
+    cardViewBtn?.classList.add('bg-blue-600', 'text-white');
+    listViewBtn?.classList.remove('bg-blue-600', 'text-white');
+    listViewBtn?.classList.add('bg-white', 'text-gray-600');
+  }
+
+  function showListView() {
+    cardView?.classList.add('hidden');
+    listView?.classList.remove('hidden');
+    listViewBtn?.classList.remove('bg-white', 'text-gray-600');
+    listViewBtn?.classList.add('bg-blue-600', 'text-white');
+    cardViewBtn?.classList.remove('bg-blue-600', 'text-white');
+    cardViewBtn?.classList.add('bg-white', 'text-gray-600');
+  }
+
+  // Filter functionality
+  function applyFilters() {
+    const keyword = keywordFilter?.value.toLowerCase().trim() || '';
+    const org = orgFilter?.value || '';
+    const type = typeFilter?.value || '';
+
+    let visibleCount = 0;
+
+    // Filter card view items
+    cardItems.forEach((item) => {
+      const itemOrg = item.getAttribute('data-org') || '';
+      const itemType = item.getAttribute('data-type') || '';
+      const searchText = item.getAttribute('data-searchtext') || '';
+
+      const matchesKeyword = !keyword || searchText.includes(keyword);
+      const matchesOrg = !org || itemOrg === org;
+      const matchesType = !type || itemType === type;
+
+      if (matchesKeyword && matchesOrg && matchesType) {
+        (item as HTMLElement).classList.remove('hidden');
+        visibleCount++;
+      } else {
+        (item as HTMLElement).classList.add('hidden');
+      }
+    });
+
+    // Filter list view items
+    listItems.forEach((item) => {
+      const itemOrg = item.getAttribute('data-org') || '';
+      const itemType = item.getAttribute('data-type') || '';
+      const searchText = item.getAttribute('data-searchtext') || '';
+
+      const matchesKeyword = !keyword || searchText.includes(keyword);
+      const matchesOrg = !org || itemOrg === org;
+      const matchesType = !type || itemType === type;
+
+      if (matchesKeyword && matchesOrg && matchesType) {
+        (item as HTMLElement).classList.remove('hidden');
+      } else {
+        (item as HTMLElement).classList.add('hidden');
+      }
+    });
+
+    // Update count
+    if (moduleCount) {
+      moduleCount.textContent = `${visibleCount} module${visibleCount !== 1 ? 's' : ''} available`;
+    }
+
+    // Show/hide no results message
+    if (visibleCount === 0) {
+      noResults?.classList.remove('hidden');
+    } else {
+      noResults?.classList.add('hidden');
+    }
+
+    // Show/hide clear button
+    if (keyword || org || type) {
+      clearFiltersBtn?.classList.remove('hidden');
+    } else {
+      clearFiltersBtn?.classList.add('hidden');
+    }
+  }
+
+  function clearFilters() {
+    if (keywordFilter) keywordFilter.value = '';
+    if (orgFilter) orgFilter.value = '';
+    if (typeFilter) typeFilter.value = '';
+    applyFilters();
+  }
+
+  // Event listeners for filters
+  keywordFilter?.addEventListener('input', applyFilters);
+  orgFilter?.addEventListener('change', applyFilters);
+  typeFilter?.addEventListener('change', applyFilters);
+  clearFiltersBtn?.addEventListener('click', clearFilters);
+</script>

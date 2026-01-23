@@ -1,0 +1,2941 @@
+[
+  {
+    "name": "bigstitcher",
+    "slug": "janelia-module-bigstitcher",
+    "description": "Performs 3-D multi-tile and multi-angle alignment using BigStitcher-Spark",
+    "type": "module",
+    "source": "janelia",
+    "sourceLabel": "Janelia",
+    "repository": "https://github.com/JaneliaSciComp/nextflow-modules/tree/main/modules/janelia/bigstitcher/module",
+    "keywords": [
+      "spark",
+      "stitching",
+      "BigStitcher"
+    ],
+    "tools": [
+      {
+        "name": "BigStitcher",
+        "description": "The BigStitcher is a software package that allows simple and efficient alignment of multi-tile and multi-angle image datasets, for example acquired by lightsheet, widefield or confocal microscopes.",
+        "homepage": "https://github.com/JaneliaSciComp/bigstitcher-spark",
+        "licence": "['BSD-3-Clause']"
+      }
+    ],
+    "authors": [
+      "cgoina"
+    ],
+    "maintainers": [
+      "cgoina"
+    ],
+    "inputs": [
+      {
+        "name": "meta",
+        "type": "map",
+        "description": "Groovy map containing: id, input_image_dataset\n"
+      },
+      {
+        "name": "spark",
+        "type": "map",
+        "description": "Map containing spark cluster information"
+      },
+      {
+        "name": "module_class",
+        "type": "string",
+        "description": "Module class name"
+      },
+      {
+        "name": "module_args",
+        "type": "list",
+        "description": "Module specific arguments. These depend on the module class"
+      },
+      {
+        "name": "data_files",
+        "type": "path",
+        "description": "Data files"
+      }
+    ],
+    "outputs": [
+      {
+        "name": "meta",
+        "type": "map",
+        "description": "Groovy map containing: id, input_image_dataset\n"
+      },
+      {
+        "name": "spark",
+        "type": "map",
+        "description": "Tuple spark cluster metadata\n"
+      }
+    ]
+  },
+  {
+    "name": "bigstream_registration",
+    "slug": "janelia-subworkflow-bigstream-registration",
+    "description": "Runs a registration pipeline using Bigstream on a Dask cluster",
+    "type": "subworkflow",
+    "source": "janelia",
+    "sourceLabel": "Janelia",
+    "repository": "https://github.com/JaneliaSciComp/nextflow-modules/tree/main/subworkflows/janelia/bigstream_registration",
+    "keywords": [
+      "registration",
+      "bigstream",
+      "dask"
+    ],
+    "components": [
+      "bigstream_globalalign",
+      "bigstream_localalign",
+      "bigstream_deform",
+      "dask_cluster"
+    ],
+    "authors": []
+  },
+  {
+    "name": "bioformats2raw",
+    "slug": "janelia-module-bioformats2raw",
+    "description": "Convert any Bioformats-compatible image to OME-Zarr format",
+    "type": "module",
+    "source": "janelia",
+    "sourceLabel": "Janelia",
+    "repository": "https://github.com/JaneliaSciComp/nextflow-modules/tree/main/modules/janelia/bioformats2raw",
+    "keywords": [
+      "image formats",
+      "converter",
+      "OME-Zarr"
+    ],
+    "components": [],
+    "authors": [
+      "krokicki"
+    ],
+    "inputs": [
+      {
+        "name": "ch_meta",
+        "type": "tuple",
+        "description": "Channel of tuples containing a meta map, the input image, an \noutput path where the OME-Zarr should be created, and a memo directory\nwhere temporary files will be saved.\nStructure: [ val(meta), path(input_image), val(output_path), val(memo_directory) ]\n"
+      }
+    ],
+    "outputs": [
+      {
+        "name": "params",
+        "type": "tuple",
+        "description": "Same as the input tuple but replaces output paths with the OME-Zarr that \nwas created.\nStructure: [ val(meta), path(input_image), val(zarr_output_path) ]\n"
+      },
+      {
+        "name": "versions",
+        "type": "file",
+        "description": "File containing software versions",
+        "pattern": "versions.yml"
+      }
+    ]
+  },
+  {
+    "name": "cellpose",
+    "slug": "bioimagetools-module-cellpose",
+    "description": "Performs a 3-D segmentation using cellpose distributed on a dask cluster",
+    "type": "module",
+    "source": "bioimagetools",
+    "sourceLabel": "BioImageTools",
+    "repository": "https://github.com/BioImageTools/nextflow-modules/tree/main/modules/bits/cellpose",
+    "keywords": [
+      "dask",
+      "segmentation",
+      "cellpose"
+    ],
+    "tools": [
+      {
+        "name": "cellpose",
+        "description": "A generalist algorithm for cell and nucleus segmentation.",
+        "homepage": "https://github.com/MouseLand/cellpose",
+        "licence": "['BSD-3-Clause']"
+      }
+    ],
+    "authors": [
+      "cgoina"
+    ],
+    "maintainers": [
+      "cgoina"
+    ],
+    "inputs": [
+      {
+        "name": "meta",
+        "type": "map",
+        "description": "Groovy map containing: id, input_image_dataset, output_image_name\n"
+      },
+      {
+        "name": "image",
+        "type": "file",
+        "description": "Path to the image"
+      },
+      {
+        "name": "image_subpath",
+        "type": "string",
+        "description": "Relative path to the image dataset if needed (for N5 or zarr containers)"
+      },
+      {
+        "name": "dask_config",
+        "type": "file",
+        "description": "Optional path to the dask config. If this is not specified pass in as empty list.\n"
+      },
+      {
+        "name": "models_path",
+        "type": "directory",
+        "description": "Optional path to the cellpose models cache directory. If this is not specified pass in as empty list.\n"
+      },
+      {
+        "name": "outputdir",
+        "type": "directory",
+        "description": "Directory location of the output image"
+      },
+      {
+        "name": "output_name",
+        "type": "string",
+        "description": "Name the generated output file(s)."
+      },
+      {
+        "name": "dask_scheduler",
+        "type": "string",
+        "description": "Dask scheduler IP"
+      },
+      {
+        "name": "cellpose_cpus",
+        "type": "integer",
+        "description": "Number of cpus needed to run the main cellpose program"
+      },
+      {
+        "name": "cellpose_mem_in_gb",
+        "type": "string",
+        "description": "Memory needed for the main cellpose program"
+      }
+    ],
+    "outputs": [
+      {
+        "name": "meta",
+        "type": "map",
+        "description": "Groovy map containing: id, input_image_dataset, output_image_name\n"
+      },
+      {
+        "name": "results",
+        "type": "directory",
+        "description": "Tuple containing meta, input image, output dir\n"
+      },
+      {
+        "name": "result_names",
+        "type": "string",
+        "description": "Tuple containing result names and extensions"
+      },
+      {
+        "name": "versions",
+        "type": "file",
+        "description": "File containing software versions",
+        "pattern": "versions.yml"
+      }
+    ]
+  },
+  {
+    "name": "cellpose",
+    "slug": "janelia-module-cellpose",
+    "description": "Performs a 3-D segmentation using cellpose distributed on a dask cluster",
+    "type": "module",
+    "source": "janelia",
+    "sourceLabel": "Janelia",
+    "repository": "https://github.com/JaneliaSciComp/nextflow-modules/tree/main/modules/janelia/cellpose",
+    "keywords": [
+      "dask",
+      "segmentation",
+      "cellpose"
+    ],
+    "tools": [
+      {
+        "name": "cellpose",
+        "description": "A generalist algorithm for cell and nucleus segmentation.",
+        "homepage": "https://github.com/MouseLand/cellpose",
+        "licence": "['BSD-3-Clause']"
+      }
+    ],
+    "authors": [
+      "cgoina"
+    ],
+    "maintainers": [
+      "cgoina"
+    ],
+    "inputs": [
+      {
+        "name": "meta",
+        "type": "map",
+        "description": "Groovy map containing: id, input_image_dataset, output_image_name\n"
+      },
+      {
+        "name": "image",
+        "type": "file",
+        "description": "Path to the image container"
+      },
+      {
+        "name": "image_subpath",
+        "type": "string",
+        "description": "Relative path to the image dataset if needed (for N5 or zarr containers)"
+      },
+      {
+        "name": "models_path",
+        "type": "directory",
+        "description": "Optional path to the cellpose models cache directory. If this is not specified pass in as empty list.\n"
+      },
+      {
+        "name": "model_name",
+        "type": "string",
+        "description": "The name of the cellpose model."
+      },
+      {
+        "name": "output_dir",
+        "type": "directory",
+        "description": "Directory location of the output image container"
+      },
+      {
+        "name": "labels",
+        "type": "string",
+        "description": "Name of the labels container created at the location specified by output_dir"
+      },
+      {
+        "name": "labels_subpath",
+        "type": "string",
+        "description": "Relative labels dataset subpath"
+      },
+      {
+        "name": "working_dir",
+        "type": "directory",
+        "description": "Location of the temporary files created during the segmentation. This must have enough space to hold the temporary labels \nbefore they are reassigned during the merge process\n"
+      },
+      {
+        "name": "dask_scheduler",
+        "type": "string",
+        "description": "Dask scheduler IP"
+      },
+      {
+        "name": "dask_config",
+        "type": "file",
+        "description": "Optional path to the dask config. If this is not specified pass in as empty list.\n"
+      },
+      {
+        "name": "preprocessing_config",
+        "type": "file",
+        "description": "Optional YAML file holding the configuration parameters for various preprocessing operations.\nSo far the only preprocessing available is a gaussian filter but there may be more in the future\n"
+      },
+      {
+        "name": "logging_config",
+        "type": "file",
+        "description": "Optional log config."
+      },
+      {
+        "name": "cellpose_cpus",
+        "type": "integer",
+        "description": "Number of cpus needed to run the main cellpose program"
+      },
+      {
+        "name": "cellpose_mem_in_gb",
+        "type": "string",
+        "description": "Memory needed for the main cellpose program"
+      }
+    ],
+    "outputs": [
+      {
+        "name": "meta",
+        "type": "map",
+        "description": "Groovy map containing: id, input_image_dataset, output_image_name\n"
+      },
+      {
+        "name": "input_image_fullpath",
+        "type": "directory",
+        "description": "Full path to the input image container\n"
+      },
+      {
+        "name": "image_subpath",
+        "type": "string",
+        "description": "Subpath to the input image dataset\n"
+      },
+      {
+        "name": "output_label_images",
+        "type": "string",
+        "description": "One or more image names containing segmentation results. If the output is a zarr or N5 container\nthere's only one output_label_image, but if the output type is a tiff and the segmented image is large\nthere can be multiple tiff files\n"
+      },
+      {
+        "name": "output_labels_subpath",
+        "type": "string",
+        "description": "this is the labels dataset if the output is a zarr or N5 container"
+      },
+      {
+        "name": "versions",
+        "type": "file",
+        "description": "File containing software versions",
+        "pattern": "versions.yml"
+      }
+    ]
+  },
+  {
+    "name": "dask_prepare",
+    "slug": "bioimagetools-module-dask-prepare",
+    "description": "Prepare work directory for running a Dask cluster",
+    "type": "module",
+    "source": "bioimagetools",
+    "sourceLabel": "BioImageTools",
+    "repository": "https://github.com/BioImageTools/nextflow-modules/tree/main/modules/bits/dask/prepare",
+    "keywords": [
+      "dask"
+    ],
+    "tools": [
+      {
+        "name": "dask",
+        "description": "Dask is a flexible library for parallel computing in Python.",
+        "homepage": "https://www.dask.org/",
+        "documentation": "https://docs.dask.org/en/stable/",
+        "licence": [
+          "BSD 3-Clause License"
+        ]
+      }
+    ],
+    "authors": [
+      "cgoina",
+      "krokicki"
+    ],
+    "inputs": [
+      {
+        "name": "meta",
+        "type": "map"
+      },
+      {
+        "name": "dask_work_dir",
+        "type": "path",
+        "description": "Parent directory of the cluster work directory. \nThis is passed only for mapping purposes and it must exist.\n"
+      }
+    ],
+    "outputs": [
+      {
+        "name": "meta",
+        "type": "map"
+      },
+      {
+        "name": "cluster_work_fullpath",
+        "type": "string",
+        "description": "Full path to the cluster work directory\n"
+      }
+    ]
+  },
+  {
+    "name": "dask_start",
+    "slug": "janelia-subworkflow-dask-start",
+    "description": "Creates a Dask cluster and waits for it to be ready",
+    "type": "subworkflow",
+    "source": "janelia",
+    "sourceLabel": "Janelia",
+    "repository": "https://github.com/JaneliaSciComp/nextflow-modules/tree/main/subworkflows/janelia/dask_start",
+    "keywords": [
+      "dask",
+      "infrastructure",
+      "distributed"
+    ],
+    "components": [
+      "dask_cluster"
+    ],
+    "authors": []
+  },
+  {
+    "name": "dask_startcluster",
+    "slug": "bioimagetools-subworkflow-dask-startcluster",
+    "description": "Creates a Dask cluster and waits for it to be ready",
+    "type": "subworkflow",
+    "source": "bioimagetools",
+    "sourceLabel": "BioImageTools",
+    "repository": "https://github.com/BioImageTools/nextflow-modules/tree/main/subworkflows/bits/dask_cluster",
+    "keywords": [
+      "dask",
+      "infrastructure"
+    ],
+    "components": [
+      "dask/prepare",
+      "dask/startscheduler",
+      "dask/clusterinfo",
+      "dask/startworker",
+      "dask/checkworkers"
+    ],
+    "authors": []
+  },
+  {
+    "name": "dask_startcluster",
+    "slug": "bioimagetools-subworkflow-dask-startcluster",
+    "description": "Creates a Dask cluster and waits for it to be ready",
+    "type": "subworkflow",
+    "source": "bioimagetools",
+    "sourceLabel": "BioImageTools",
+    "repository": "https://github.com/BioImageTools/nextflow-modules/tree/main/subworkflows/bits/start_dask",
+    "keywords": [
+      "dask",
+      "infrastructure"
+    ],
+    "components": [
+      "dask_cluster"
+    ],
+    "authors": []
+  },
+  {
+    "name": "dask_startcluster",
+    "slug": "bioimagetools-subworkflow-dask-startcluster",
+    "description": "Creates a Dask cluster and waits for it to be ready",
+    "type": "subworkflow",
+    "source": "bioimagetools",
+    "sourceLabel": "BioImageTools",
+    "repository": "https://github.com/BioImageTools/nextflow-modules/tree/main/subworkflows/bits/stop_dask",
+    "keywords": [
+      "dask",
+      "infrastructure"
+    ],
+    "components": [
+      "dask_cluster"
+    ],
+    "authors": []
+  },
+  {
+    "name": "dask_startmanager",
+    "slug": "bioimagetools-module-dask-startmanager",
+    "description": "Start a Dask scheduler which runs until the terminate module is called",
+    "type": "module",
+    "source": "bioimagetools",
+    "sourceLabel": "BioImageTools",
+    "repository": "https://github.com/BioImageTools/nextflow-modules/tree/main/modules/bits/dask/startmanager",
+    "keywords": [
+      "dask"
+    ],
+    "tools": [
+      {
+        "name": "dask",
+        "description": "Dask is a flexible library for parallel computing in Python.",
+        "homepage": "https://www.dask.org/",
+        "documentation": "https://docs.dask.org/en/stable/",
+        "licence": [
+          "BSD 3-Clause License"
+        ]
+      }
+    ],
+    "authors": [
+      "cgoina",
+      "krokicki"
+    ],
+    "inputs": [
+      {
+        "name": "meta",
+        "type": "map"
+      },
+      {
+        "name": "cluster_work_dir",
+        "type": "path",
+        "description": "The cluster work directory where the scheduler will run\n"
+      }
+    ],
+    "outputs": [
+      {
+        "name": "meta",
+        "type": "map"
+      },
+      {
+        "name": "cluster_work_fullpath",
+        "type": "string",
+        "description": "Full path to the cluster work directory where the scheduler is running\n"
+      },
+      {
+        "name": "versions",
+        "type": "file",
+        "description": "File containing software versions",
+        "pattern": "versions.yml"
+      }
+    ]
+  },
+  {
+    "name": "dask_startworker",
+    "slug": "bioimagetools-module-dask-startworker",
+    "description": "Start a dask worker",
+    "type": "module",
+    "source": "bioimagetools",
+    "sourceLabel": "BioImageTools",
+    "repository": "https://github.com/BioImageTools/nextflow-modules/tree/main/modules/bits/dask/startworker",
+    "keywords": [
+      "dask"
+    ],
+    "tools": [
+      {
+        "name": "dask",
+        "description": "Dask is a flexible library for parallel computing in Python.",
+        "homepage": "https://www.dask.org/",
+        "documentation": "https://docs.dask.org/en/stable/",
+        "licence": [
+          "BSD 3-Clause License"
+        ]
+      }
+    ],
+    "authors": [
+      "cgoina",
+      "krokicki"
+    ],
+    "inputs": [
+      {
+        "name": "meta",
+        "type": "map"
+      },
+      {
+        "name": "scheduler_address",
+        "type": "string",
+        "description": "Scheduler's IP address\n"
+      },
+      {
+        "name": "cluster_work_dir",
+        "type": "path",
+        "description": "The cluster work directory where the scheduler will run\n"
+      },
+      {
+        "name": "worker_id",
+        "type": "string",
+        "description": "Worker's ID\n"
+      },
+      {
+        "name": "data",
+        "type": "path",
+        "description": "Shared path (or list of paths) which should be mounted in the worker for access\n"
+      },
+      {
+        "name": "worker_cores",
+        "type": "int",
+        "description": "Number of cores per worker"
+      },
+      {
+        "name": "worker_mem_in_gb",
+        "type": "int",
+        "description": "Memory in GB to be allocated to each worker"
+      }
+    ],
+    "outputs": [
+      {
+        "name": "meta",
+        "type": "map"
+      },
+      {
+        "name": "cluster_work_fullpath",
+        "type": "string",
+        "description": "Full path to the cluster work directory where the scheduler is running\n"
+      },
+      {
+        "name": "worker_name",
+        "type": "string",
+        "description": "Dask worker name\n"
+      },
+      {
+        "name": "worker_dir",
+        "type": "string",
+        "description": "Dask worker dir\n"
+      },
+      {
+        "name": "versions",
+        "type": "string",
+        "description": "Software versions file\n"
+      }
+    ]
+  },
+  {
+    "name": "dask_stop",
+    "slug": "janelia-subworkflow-dask-stop",
+    "description": "Stops a Dask cluster",
+    "type": "subworkflow",
+    "source": "janelia",
+    "sourceLabel": "Janelia",
+    "repository": "https://github.com/JaneliaSciComp/nextflow-modules/tree/main/subworkflows/janelia/dask_stop",
+    "keywords": [
+      "dask",
+      "infrastructure"
+    ],
+    "components": [
+      "dask_cluster"
+    ],
+    "authors": []
+  },
+  {
+    "name": "dask_terminate",
+    "slug": "bioimagetools-module-dask-terminate",
+    "description": "Terminate a Dask cluster by writing a marker file to the work dir",
+    "type": "module",
+    "source": "bioimagetools",
+    "sourceLabel": "BioImageTools",
+    "repository": "https://github.com/BioImageTools/nextflow-modules/tree/main/modules/bits/dask/terminate",
+    "keywords": [
+      "dask"
+    ],
+    "tools": [
+      {
+        "name": "spark",
+        "description": "Apache Spark is an analytics engine for large-scale data processing",
+        "homepage": "https://spark.apache.org/",
+        "documentation": "https://spark.apache.org/docs/latest/",
+        "licence": [
+          "Apache License 2.0"
+        ]
+      }
+    ],
+    "authors": [
+      "cgoina",
+      "krokicki"
+    ],
+    "inputs": [
+      {
+        "name": "meta",
+        "type": "map"
+      },
+      {
+        "name": "cluster_work_dir",
+        "type": "path",
+        "description": "The cluster work directory.\n"
+      }
+    ],
+    "outputs": [
+      {
+        "name": "meta",
+        "type": "map"
+      },
+      {
+        "name": "cluster_work_fullpath",
+        "type": "string",
+        "description": "Full path to the cluster work directory.\n"
+      }
+    ]
+  },
+  {
+    "name": "dask_waitformanager",
+    "slug": "bioimagetools-module-dask-waitformanager",
+    "description": "Retrieve dask cluster info from the JSON file created by the scheduler",
+    "type": "module",
+    "source": "bioimagetools",
+    "sourceLabel": "BioImageTools",
+    "repository": "https://github.com/BioImageTools/nextflow-modules/tree/main/modules/bits/dask/waitformanager",
+    "keywords": [
+      "dask"
+    ],
+    "tools": [
+      {
+        "name": "dask",
+        "description": "Dask is a flexible library for parallel computing in Python.",
+        "homepage": "https://www.dask.org/",
+        "documentation": "https://docs.dask.org/en/stable/",
+        "licence": [
+          "BSD 3-Clause License"
+        ]
+      }
+    ],
+    "authors": [
+      "cgoina",
+      "krokicki"
+    ],
+    "inputs": [
+      {
+        "name": "meta",
+        "type": "map"
+      },
+      {
+        "name": "cluster_work_dir",
+        "type": "path",
+        "description": "The cluster work directory where the scheduler will run\n"
+      }
+    ],
+    "outputs": [
+      {
+        "name": "meta",
+        "type": "map"
+      },
+      {
+        "name": "cluster_work_fullpath",
+        "type": "string",
+        "description": "Full path to the cluster work directory where the scheduler is running\n"
+      },
+      {
+        "name": "cluster_address",
+        "type": "string",
+        "description": "Dask cluster scheduler's address\n"
+      },
+      {
+        "name": "available_workers",
+        "type": "int",
+        "description": "Number of available workers - this is always 0 here\n"
+      }
+    ]
+  },
+  {
+    "name": "dask_waitforworkers",
+    "slug": "bioimagetools-module-dask-waitforworkers",
+    "description": "Check if a worker is running",
+    "type": "module",
+    "source": "bioimagetools",
+    "sourceLabel": "BioImageTools",
+    "repository": "https://github.com/BioImageTools/nextflow-modules/tree/main/modules/bits/dask/waitforworkers",
+    "keywords": [
+      "dask"
+    ],
+    "tools": [
+      {
+        "name": "dask",
+        "description": "Dask is a flexible library for parallel computing in Python.",
+        "homepage": "https://www.dask.org/",
+        "documentation": "https://docs.dask.org/en/stable/",
+        "licence": [
+          "BSD 3-Clause License"
+        ]
+      }
+    ],
+    "authors": [
+      "cgoina",
+      "krokicki"
+    ],
+    "inputs": [
+      {
+        "name": "meta",
+        "type": "map"
+      },
+      {
+        "name": "scheduler_address",
+        "type": "string",
+        "description": "Scheduler's IP address\n"
+      },
+      {
+        "name": "cluster_work_dir",
+        "type": "path",
+        "description": "The cluster work directory where the scheduler will run\n"
+      },
+      {
+        "name": "total_workers",
+        "type": "int",
+        "description": "Total number of workers in the cluster\n"
+      },
+      {
+        "name": "required_workers",
+        "type": "int",
+        "description": "Number of workers that should be available before the cluster is being used \n"
+      }
+    ],
+    "outputs": [
+      {
+        "name": "meta",
+        "type": "map"
+      },
+      {
+        "name": "scheduler_address",
+        "type": "string",
+        "description": "Scheduler's IP address\n"
+      },
+      {
+        "name": "cluster_work_fullpath",
+        "type": "string",
+        "description": "Full path to the cluster work directory where the scheduler is running\n"
+      },
+      {
+        "name": "available_workers",
+        "type": "int",
+        "description": "Number of workers that are ready\n"
+      },
+      {
+        "name": "versions",
+        "type": "string",
+        "description": "Software versions file\n"
+      }
+    ]
+  },
+  {
+    "name": "imaging_ashlarcompanion",
+    "slug": "sanger-module-imaging-ashlarcompanion",
+    "description": "Alignment by Simultaneous Harmonization of Layer/Adjacency Registration",
+    "type": "module",
+    "source": "sanger",
+    "sourceLabel": "Sanger (cellgeni)",
+    "repository": "https://github.com/cellgeni/nf-modules/tree/main/modules/sanger-cellgeni/imaging/ashlarcompanion",
+    "keywords": [
+      "image_processing",
+      "alignment",
+      "registration"
+    ],
+    "tools": [
+      {
+        "name": "ashlar",
+        "description": "Alignment by Simultaneous Harmonization of Layer/Adjacency Registration",
+        "homepage": "https://labsyspharm.github.io/ashlar/",
+        "documentation": "https://labsyspharm.github.io/ashlar/",
+        "licence": [
+          "MIT"
+        ]
+      }
+    ],
+    "authors": [
+      "RobJY",
+      "jmuhlich",
+      "BioinfoTongLI"
+    ],
+    "maintainers": [
+      "RobJY",
+      "jmuhlich",
+      "BioinfoTongLI"
+    ],
+    "inputs": [
+      {
+        "name": "0"
+      },
+      {
+        "name": "0"
+      },
+      {
+        "name": "0"
+      }
+    ],
+    "outputs": [
+      {
+        "name": "tif"
+      },
+      {
+        "name": "versions"
+      }
+    ]
+  },
+  {
+    "name": "imaging_concatenatewkts",
+    "slug": "sanger-module-imaging-concatenatewkts",
+    "description": "Concatenate multiple WKT files into one in a brutal way",
+    "type": "module",
+    "source": "sanger",
+    "sourceLabel": "Sanger (cellgeni)",
+    "repository": "https://github.com/cellgeni/nf-modules/tree/main/modules/sanger-cellgeni/imaging/concatenatewkts",
+    "keywords": [
+      "wkt",
+      "segmentation",
+      "post-processing"
+    ],
+    "tools": [
+      {
+        "name": "imaging",
+        "description": "Concatenate multiple WKT files into one in a brutal way",
+        "homepage": "",
+        "documentation": "",
+        "licence": "MIT"
+      }
+    ],
+    "authors": [
+      "BioinfoTongLI"
+    ],
+    "maintainers": [
+      "BioinfoTongLI"
+    ],
+    "inputs": [
+      {
+        "name": "0"
+      }
+    ],
+    "outputs": [
+      {
+        "name": "concatenated_peaks"
+      },
+      {
+        "name": "versions"
+      }
+    ]
+  },
+  {
+    "name": "imaging_deepcell",
+    "slug": "sanger-module-imaging-deepcell",
+    "description": "This module runs deepcell on a crop of an image",
+    "type": "module",
+    "source": "sanger",
+    "sourceLabel": "Sanger (cellgeni)",
+    "repository": "https://github.com/cellgeni/nf-modules/tree/main/modules/sanger-cellgeni/imaging/deepcell",
+    "keywords": [
+      "image analysis",
+      "image segmentation",
+      "imaging"
+    ],
+    "tools": [
+      {
+        "name": "imaging",
+        "description": "This module runs deepcell on a crop of an image",
+        "homepage": "",
+        "documentation": ""
+      }
+    ],
+    "authors": [
+      "BioinfoTongLI"
+    ],
+    "maintainers": [
+      "BioinfoTongLI"
+    ],
+    "inputs": [
+      {
+        "name": "0"
+      }
+    ],
+    "outputs": [
+      {
+        "name": "wkts"
+      },
+      {
+        "name": "versions"
+      }
+    ]
+  },
+  {
+    "name": "imaging_extractpeakprofile",
+    "slug": "sanger-module-imaging-extractpeakprofile",
+    "description": "Extract max intensity peak profile from an image stack with a file of peak coordinates",
+    "type": "module",
+    "source": "sanger",
+    "sourceLabel": "Sanger (cellgeni)",
+    "repository": "https://github.com/cellgeni/nf-modules/tree/main/modules/sanger-cellgeni/imaging/extractpeakprofile",
+    "keywords": [
+      "image"
+    ],
+    "tools": [
+      {
+        "name": "imaging",
+        "description": "A bioimage analysis toolset of Tong LI",
+        "homepage": "",
+        "documentation": "",
+        "licence": [
+          "MIT"
+        ]
+      }
+    ],
+    "authors": [
+      "BioinfoTongLI"
+    ],
+    "maintainers": [
+      "BioinfoTongLI"
+    ],
+    "inputs": [
+      {
+        "name": "meta",
+        "type": "map",
+        "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1']`\n"
+      },
+      {
+        "name": "image",
+        "type": "file",
+        "description": "image file",
+        "pattern": "*.{tif/tiff}"
+      },
+      {
+        "name": "peaks",
+        "type": "file",
+        "description": "peak location files",
+        "pattern": "*.{csv/tsv/wkt}"
+      }
+    ],
+    "outputs": [
+      {
+        "name": "meta",
+        "type": "map",
+        "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1']`\n"
+      },
+      {
+        "name": "versions",
+        "type": "file",
+        "description": "File containing software versions",
+        "pattern": "versions.yml"
+      },
+      {
+        "name": "peak_profile",
+        "type": "file",
+        "description": "Peak profile of the entire image stack file",
+        "pattern": "*.npy"
+      },
+      {
+        "name": "peak_locations",
+        "type": "file",
+        "description": "Corresponding peak location file",
+        "pattern": "*.csv"
+      }
+    ]
+  },
+  {
+    "name": "imaging_generatecompanion",
+    "slug": "sanger-module-imaging-generatecompanion",
+    "description": "write your description here",
+    "type": "module",
+    "source": "sanger",
+    "sourceLabel": "Sanger (cellgeni)",
+    "repository": "https://github.com/cellgeni/nf-modules/tree/main/modules/sanger-cellgeni/imaging/generatecompanion",
+    "keywords": [
+      "sort",
+      "example",
+      "genomics"
+    ],
+    "tools": [
+      {
+        "name": "imaging",
+        "description": "",
+        "homepage": "",
+        "documentation": ""
+      }
+    ],
+    "authors": [
+      "BioinfoTongLI"
+    ],
+    "maintainers": [
+      "BioinfoTongLI"
+    ],
+    "inputs": [
+      {
+        "name": "0"
+      }
+    ],
+    "outputs": [
+      {
+        "name": "bam"
+      },
+      {
+        "name": "versions"
+      }
+    ]
+  },
+  {
+    "name": "imaging_generatecompanionfromfiles",
+    "slug": "sanger-module-imaging-generatecompanionfromfiles",
+    "description": "write your description here",
+    "type": "module",
+    "source": "sanger",
+    "sourceLabel": "Sanger (cellgeni)",
+    "repository": "https://github.com/cellgeni/nf-modules/tree/main/modules/sanger-cellgeni/imaging/generatecompanionfromfiles",
+    "keywords": [
+      "sort",
+      "example",
+      "genomics"
+    ],
+    "tools": [
+      {
+        "name": "imaging",
+        "description": "",
+        "homepage": "",
+        "documentation": ""
+      }
+    ],
+    "authors": [
+      "BioinfoTongLI"
+    ],
+    "maintainers": [
+      "BioinfoTongLI"
+    ],
+    "inputs": [
+      {
+        "name": "0"
+      }
+    ]
+  },
+  {
+    "name": "imaging_generatetiles",
+    "slug": "sanger-module-imaging-generatetiles",
+    "description": "a helper script to generate tiles from an 2D image file",
+    "type": "module",
+    "source": "sanger",
+    "sourceLabel": "Sanger (cellgeni)",
+    "repository": "https://github.com/cellgeni/nf-modules/tree/main/modules/sanger-cellgeni/imaging/generatetiles",
+    "keywords": [
+      "image",
+      "tiling",
+      "slicing"
+    ],
+    "tools": [
+      {
+        "name": "imaging",
+        "description": "A simple script to generate tiles from an 2D image file",
+        "homepage": "",
+        "documentation": "",
+        "licence": "MIT"
+      }
+    ],
+    "authors": [
+      "BioinfoTongLI"
+    ],
+    "inputs": [
+      {
+        "name": "0",
+        "type": "map",
+        "description": "Groovy Map containing sample information\ne.g. `[ id:'test' ]`\n"
+      }
+    ],
+    "outputs": [
+      {
+        "name": "0",
+        "type": "map",
+        "description": "Groovy Map containing sample information\ne.g. `[ id:'test' ]`\n"
+      },
+      {
+        "name": "versions",
+        "type": "file",
+        "description": "File containing software versions",
+        "pattern": "versions.yml"
+      }
+    ]
+  },
+  {
+    "name": "imaging_instanseg",
+    "slug": "sanger-module-imaging-instanseg",
+    "description": "A wrapper of InstanSeg segmentation tool",
+    "type": "module",
+    "source": "sanger",
+    "sourceLabel": "Sanger (cellgeni)",
+    "repository": "https://github.com/cellgeni/nf-modules/tree/main/modules/sanger-cellgeni/imaging/instanseg",
+    "keywords": [
+      "image analysis",
+      "segmentation",
+      "instanseg"
+    ],
+    "tools": [
+      {
+        "name": "imaging",
+        "description": "A wrapper of InstanSeg segmentation tool",
+        "homepage": "https://github.com/instanseg/instanseg/tree/main",
+        "documentation": "https://github.com/instanseg/instanseg/tree/main",
+        "licence": "Apache-2.0"
+      }
+    ],
+    "authors": [
+      "BioinfoTongLI"
+    ],
+    "maintainers": [
+      "BioinfoTongLI"
+    ],
+    "inputs": [
+      {
+        "name": "0"
+      }
+    ],
+    "outputs": [
+      {
+        "name": "wkts"
+      },
+      {
+        "name": "versions"
+      }
+    ]
+  },
+  {
+    "name": "imaging_mergeoutlines",
+    "slug": "sanger-module-imaging-mergeoutlines",
+    "description": "A simple python script to merge outlines from multiple overlapping tiles",
+    "type": "module",
+    "source": "sanger",
+    "sourceLabel": "Sanger (cellgeni)",
+    "repository": "https://github.com/cellgeni/nf-modules/tree/main/modules/sanger-cellgeni/imaging/mergeoutlines",
+    "keywords": [
+      "image analysis",
+      "merge polygons",
+      "outlines",
+      "shapely"
+    ],
+    "tools": [
+      {
+        "name": "mergeoutlines",
+        "description": "A simple python script to merge outlines from multiple overlapping tiles",
+        "homepage": "",
+        "documentation": "",
+        "licence": [
+          "MIT"
+        ]
+      }
+    ],
+    "authors": [
+      "BioinfoTongLI"
+    ],
+    "maintainers": [
+      "BioinfoTongLI"
+    ],
+    "inputs": [
+      {
+        "name": "0"
+      }
+    ],
+    "outputs": [
+      {
+        "name": "meta",
+        "type": "map",
+        "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+      },
+      {
+        "name": "{prefix}.wkt",
+        "type": "file",
+        "description": "merged outlines in wkt format",
+        "pattern": "*.wkt"
+      },
+      {
+        "name": "versions"
+      }
+    ]
+  },
+  {
+    "name": "imaging_mergepeaks",
+    "slug": "sanger-module-imaging-mergepeaks",
+    "description": "Merge peaks from multiple peak files (csv)",
+    "type": "module",
+    "source": "sanger",
+    "sourceLabel": "Sanger (cellgeni)",
+    "repository": "https://github.com/cellgeni/nf-modules/tree/main/modules/sanger-cellgeni/imaging/mergepeaks",
+    "keywords": [
+      "peaks",
+      "tiled_analysis",
+      "imaging"
+    ],
+    "tools": [
+      {
+        "name": "imaging",
+        "description": "Merge peaks from multiple peak files (csv)",
+        "homepage": "",
+        "documentation": "",
+        "licence": [
+          "MIT"
+        ]
+      }
+    ],
+    "authors": [
+      "BioinfoTongLI"
+    ],
+    "maintainers": [
+      "BioinfoTongLI"
+    ],
+    "inputs": [
+      {
+        "name": "0"
+      }
+    ],
+    "outputs": [
+      {
+        "name": "merged_peaks"
+      },
+      {
+        "name": "versions"
+      }
+    ]
+  },
+  {
+    "name": "imaging_microaligner",
+    "slug": "sanger-module-imaging-microaligner",
+    "description": "write your description here",
+    "type": "module",
+    "source": "sanger",
+    "sourceLabel": "Sanger (cellgeni)",
+    "repository": "https://github.com/cellgeni/nf-modules/tree/main/modules/sanger-cellgeni/imaging/microaligner",
+    "keywords": [
+      "sort",
+      "example",
+      "genomics"
+    ],
+    "tools": [
+      {
+        "name": "imaging",
+        "description": "",
+        "homepage": "",
+        "documentation": ""
+      }
+    ],
+    "authors": [
+      "BioinfoTongLI"
+    ],
+    "inputs": [
+      {
+        "name": "meta",
+        "type": "map",
+        "description": "Groovy Map containing sample information\ne.g. `[ id:'test', single_end:false ]`\n"
+      },
+      {
+        "name": "bam",
+        "type": "file",
+        "description": "Sorted BAM/CRAM/SAM file",
+        "pattern": "*.{bam,cram,sam}"
+      }
+    ],
+    "outputs": [
+      {
+        "name": "meta",
+        "type": "map",
+        "description": "Groovy Map containing sample information\ne.g. `[ id:'test', single_end:false ]`\n"
+      },
+      {
+        "name": "versions",
+        "type": "file",
+        "description": "File containing software versions",
+        "pattern": "versions.yml"
+      },
+      {
+        "name": "bam",
+        "type": "file",
+        "description": "Sorted BAM/CRAM/SAM file",
+        "pattern": "*.{bam,cram,sam}"
+      }
+    ]
+  },
+  {
+    "name": "imaging_parsemanifest",
+    "slug": "sanger-module-imaging-parsemanifest",
+    "description": "write your description here",
+    "type": "module",
+    "source": "sanger",
+    "sourceLabel": "Sanger (cellgeni)",
+    "repository": "https://github.com/cellgeni/nf-modules/tree/main/modules/sanger-cellgeni/imaging/parsemanifest",
+    "keywords": [
+      "manitest",
+      "ETL",
+      "parser"
+    ],
+    "tools": [
+      {
+        "name": "imaging",
+        "description": "Imaging module for parsing manifest files",
+        "homepage": "https://",
+        "documentation": "https://",
+        "licence": [
+          "MIT"
+        ]
+      }
+    ],
+    "authors": [
+      "prete",
+      "BioinfoTongLI"
+    ],
+    "maintainers": [
+      "prete",
+      "BioinfoTongLI"
+    ],
+    "inputs": [
+      {
+        "name": "0"
+      }
+    ],
+    "outputs": [
+      {
+        "name": "bam"
+      },
+      {
+        "name": "versions"
+      }
+    ]
+  },
+  {
+    "name": "imaging_postcode",
+    "slug": "sanger-module-imaging-postcode",
+    "description": "write your description here",
+    "type": "module",
+    "source": "sanger",
+    "sourceLabel": "Sanger (cellgeni)",
+    "repository": "https://github.com/cellgeni/nf-modules/tree/main/modules/sanger-cellgeni/imaging/postcode",
+    "keywords": [
+      "sort",
+      "example",
+      "genomics"
+    ],
+    "tools": [
+      {
+        "name": "imaging",
+        "description": "Probabilistic image-based spatial transcriptomics decoder",
+        "homepage": "https://github.com/gerstung-lab/postcode",
+        "documentation": "https://github.com/gerstung-lab/postcode",
+        "licence": [
+          "MIT"
+        ]
+      }
+    ],
+    "authors": [
+      "BioinfoTongLI"
+    ],
+    "maintainers": [
+      "BioinfoTongLI"
+    ],
+    "inputs": [
+      {
+        "name": "0"
+      }
+    ],
+    "outputs": [
+      {
+        "name": "decoded_peaks"
+      },
+      {
+        "name": "pickle"
+      },
+      {
+        "name": "versions"
+      }
+    ]
+  },
+  {
+    "name": "imaging_postcodepost",
+    "slug": "sanger-module-imaging-postcodepost",
+    "description": "write your description here",
+    "type": "module",
+    "source": "sanger",
+    "sourceLabel": "Sanger (cellgeni)",
+    "repository": "https://github.com/cellgeni/nf-modules/tree/main/modules/sanger-cellgeni/imaging/postcodepost",
+    "keywords": [
+      "sort",
+      "example",
+      "genomics"
+    ],
+    "tools": [
+      {
+        "name": "imaging",
+        "description": "",
+        "homepage": "",
+        "documentation": ""
+      }
+    ],
+    "authors": [
+      "BioinfoTongLI"
+    ],
+    "maintainers": [
+      "BioinfoTongLI"
+    ],
+    "inputs": [
+      {
+        "name": "0"
+      }
+    ]
+  },
+  {
+    "name": "imaging_postcodeprep",
+    "slug": "sanger-module-imaging-postcodeprep",
+    "description": "Preprocess both profile to be decoded and the corresponding codebook for PoSTCode decoding",
+    "type": "module",
+    "source": "sanger",
+    "sourceLabel": "Sanger (cellgeni)",
+    "repository": "https://github.com/cellgeni/nf-modules/tree/main/modules/sanger-cellgeni/imaging/postcodeprep",
+    "keywords": [
+      "spatial transcriptomics",
+      "decoding",
+      "codebook",
+      "starfish"
+    ],
+    "tools": [
+      {
+        "name": "imaging",
+        "description": "a toolset for bioimage analysis",
+        "homepage": "https://",
+        "documentation": "",
+        "licence": [
+          "MIT"
+        ]
+      }
+    ],
+    "authors": [
+      "BioinfoTongLI"
+    ],
+    "maintainers": [
+      "BioinfoTongLI"
+    ],
+    "inputs": [
+      {
+        "name": "0"
+      }
+    ]
+  },
+  {
+    "name": "imaging_preprocess",
+    "slug": "sanger-module-imaging-preprocess",
+    "description": "write your description here",
+    "type": "module",
+    "source": "sanger",
+    "sourceLabel": "Sanger (cellgeni)",
+    "repository": "https://github.com/cellgeni/nf-modules/tree/main/modules/sanger-cellgeni/imaging/preprocess",
+    "keywords": [
+      "sort",
+      "example",
+      "genomics"
+    ],
+    "tools": [
+      {
+        "name": "imaging",
+        "description": "",
+        "homepage": "",
+        "documentation": ""
+      }
+    ],
+    "authors": [
+      "BioinfoTongLI"
+    ],
+    "maintainers": [
+      "BioinfoTongLI"
+    ],
+    "inputs": [
+      {
+        "name": "0"
+      }
+    ],
+    "outputs": [
+      {
+        "name": "bam"
+      },
+      {
+        "name": "versions"
+      }
+    ]
+  },
+  {
+    "name": "imaging_stardist",
+    "slug": "sanger-module-imaging-stardist",
+    "description": "a wrapper for starDist",
+    "type": "module",
+    "source": "sanger",
+    "sourceLabel": "Sanger (cellgeni)",
+    "repository": "https://github.com/cellgeni/nf-modules/tree/main/modules/sanger-cellgeni/imaging/stardist",
+    "keywords": [
+      "segmentation",
+      "image analysis",
+      "starDist"
+    ],
+    "tools": [
+      {
+        "name": "imaging",
+        "description": "A wrapper for starDist",
+        "homepage": "",
+        "documentation": ""
+      }
+    ],
+    "authors": [
+      "BioinfoTongLI"
+    ],
+    "maintainers": [
+      "BioinfoTongLI"
+    ],
+    "inputs": [
+      {
+        "name": "0"
+      }
+    ],
+    "outputs": [
+      {
+        "name": "outlines"
+      },
+      {
+        "name": "versions"
+      }
+    ]
+  },
+  {
+    "name": "microaligner_registration",
+    "slug": "sanger-subworkflow-microaligner-registration",
+    "description": "Register microscopy images using two-step microaligner",
+    "type": "subworkflow",
+    "source": "sanger",
+    "sourceLabel": "Sanger (cellgeni)",
+    "repository": "https://github.com/cellgeni/nf-modules/tree/main/subworkflows/sanger-cellgeni/microaligner_registration",
+    "keywords": [
+      "linear registration",
+      "non-linear registration",
+      "microaligner"
+    ],
+    "components": [
+      "microaligner"
+    ],
+    "authors": [
+      "BioinfoTongLI"
+    ],
+    "maintainers": [
+      "BioinfoTongLI"
+    ],
+    "inputs": [
+      {
+        "name": "images",
+        "type": "file",
+        "description": "Structure: [ val(meta), path(image) ]\n",
+        "pattern": "*.{tif/tiff}"
+      }
+    ],
+    "outputs": [
+      {
+        "name": "csi",
+        "type": "file",
+        "description": "Reigtstered images in tif format\nStructure: [ val(meta), path(tif) ]\n",
+        "pattern": "*.tif"
+      },
+      {
+        "name": "versions",
+        "type": "file",
+        "description": "File containing software versions\nStructure: [ path(versions.yml) ]\n",
+        "pattern": "versions.yml"
+      }
+    ]
+  },
+  {
+    "name": "ml_xeniumharmonise",
+    "slug": "sanger-module-ml-xeniumharmonise",
+    "description": "A wrapper module for harmonise_xenium.py script",
+    "type": "module",
+    "source": "sanger",
+    "sourceLabel": "Sanger (cellgeni)",
+    "repository": "https://github.com/cellgeni/nf-modules/tree/main/modules/sanger-cellgeni/ml/xeniumharmonise",
+    "keywords": [
+      "spatial-transcriptomics(xenium)",
+      "ml",
+      "he-image"
+    ],
+    "tools": [
+      {
+        "name": "ml",
+        "description": "",
+        "homepage": "",
+        "documentation": ""
+      }
+    ],
+    "authors": [
+      "dn10-sanger"
+    ],
+    "maintainers": [
+      "dn10-sanger"
+    ],
+    "inputs": [
+      {
+        "name": "0"
+      }
+    ],
+    "outputs": [
+      {
+        "name": "meta",
+        "type": "map",
+        "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1', single_end:false ]`\n"
+      },
+      {
+        "name": "output_dir",
+        "type": "directory",
+        "description": "directory for harmonised_xenium outputs."
+      },
+      {
+        "name": "versions",
+        "type": "file",
+        "description": "File containing software versions",
+        "pattern": "versions.yml"
+      }
+    ]
+  },
+  {
+    "name": "nichecompass",
+    "slug": "sanger-subworkflow-nichecompass",
+    "description": "NicheCompass training & analysis",
+    "type": "subworkflow",
+    "source": "sanger",
+    "sourceLabel": "Sanger (cellgeni)",
+    "repository": "https://github.com/cellgeni/nf-modules/tree/main/subworkflows/sanger-cellgeni/nichecompass",
+    "keywords": [
+      "spatial_atlas_building",
+      "niche_identification",
+      "niche_characterisation",
+      "cell-cell_communication_inference",
+      "spatial_reference_mapping",
+      "deep-learning"
+    ],
+    "components": [
+      "spatial/nichecompasstraining",
+      "spatial/nichecompassanalysis"
+    ],
+    "authors": [
+      "ASUQ"
+    ],
+    "maintainers": [
+      "ASUQ"
+    ],
+    "inputs": [
+      {
+        "name": "ch_h5ad",
+        "type": "file",
+        "description": "The input channel containing the H5AD files\nStructure: [ val(meta), path(h5ad) ]\n",
+        "pattern": "*.h5ad"
+      }
+    ],
+    "outputs": [
+      {
+        "name": "nichecompass_dir",
+        "type": "directory",
+        "description": "Channel containing NicheCompass output folder\nStructure: [ val(meta), path(nichecompass_dir) ]\n",
+        "pattern": "nichecompass_*"
+      },
+      {
+        "name": "notebook",
+        "type": "file",
+        "description": "Channel containing NicheCompass output Jupyter notebook\nStructure: [ val(meta), path(notebook) ]\n",
+        "pattern": "*.ipynb"
+      },
+      {
+        "name": "versions",
+        "type": "file",
+        "description": "File containing software versions\nStructure: [ path(versions.yml) ]\n",
+        "pattern": "versions.yml"
+      }
+    ]
+  },
+  {
+    "name": "ometiff_to_n5",
+    "slug": "janelia-module-ometiff-to-n5",
+    "description": "Convert OME-TIFF to N5 on a dask cluster",
+    "type": "module",
+    "source": "janelia",
+    "sourceLabel": "Janelia",
+    "repository": "https://github.com/JaneliaSciComp/nextflow-modules/tree/main/modules/janelia/n5_multiscale",
+    "keywords": [
+      "dask",
+      "OME-TIFF",
+      "N5"
+    ],
+    "tools": [
+      {
+        "name": "ometiff_to_n5",
+        "description": "Convert OME-TIFF to N5",
+        "homepage": "https://github.com/JaneliaSciComp/n5-dask.git",
+        "licence": "['BSD-3-Clause']"
+      }
+    ],
+    "authors": [
+      "cgoina"
+    ],
+    "maintainers": [
+      "cgoina"
+    ],
+    "inputs": [
+      {
+        "name": "meta",
+        "type": "map",
+        "description": "Groovy map containing: id\n"
+      },
+      {
+        "name": "input_path",
+        "type": "file",
+        "description": "Path to the OME-TIFF file"
+      },
+      {
+        "name": "output_path",
+        "type": "directory",
+        "description": "Output directory for N5 container"
+      },
+      {
+        "name": "output_name",
+        "type": "string",
+        "description": "Name of the N5 container."
+      },
+      {
+        "name": "scale_subpath",
+        "type": "string",
+        "description": "Relative path to the scale 0 location."
+      },
+      {
+        "name": "dask_scheduler",
+        "type": "string",
+        "description": "Dask scheduler IP"
+      },
+      {
+        "name": "dask_config",
+        "type": "file",
+        "description": "Optional path to the dask config. If this is not specified pass in as empty list.\n"
+      },
+      {
+        "name": "ncpus",
+        "type": "integer",
+        "description": "Number of cpus needed to run the main ometiff to n5 program"
+      },
+      {
+        "name": "mem_gb",
+        "type": "string",
+        "description": "Memory needed for the main ometiff to n5 program"
+      }
+    ],
+    "outputs": [
+      {
+        "name": "meta",
+        "type": "map",
+        "description": "Groovy map containing: id, input_image_dataset, output_image_name\n"
+      },
+      {
+        "name": "versions",
+        "type": "file",
+        "description": "File containing software versions",
+        "pattern": "versions.yml"
+      }
+    ]
+  },
+  {
+    "name": "ometiff_to_n5",
+    "slug": "janelia-module-ometiff-to-n5",
+    "description": "Convert OME-TIFF to N5 on a dask cluster",
+    "type": "module",
+    "source": "janelia",
+    "sourceLabel": "Janelia",
+    "repository": "https://github.com/JaneliaSciComp/nextflow-modules/tree/main/modules/janelia/ometiff_to_n5",
+    "keywords": [
+      "dask",
+      "OME-TIFF",
+      "N5"
+    ],
+    "tools": [
+      {
+        "name": "ometiff_to_n5",
+        "description": "Convert OME-TIFF to N5",
+        "homepage": "https://github.com/JaneliaSciComp/n5-dask.git",
+        "licence": "['BSD-3-Clause']"
+      }
+    ],
+    "authors": [
+      "cgoina"
+    ],
+    "maintainers": [
+      "cgoina"
+    ],
+    "inputs": [
+      {
+        "name": "meta",
+        "type": "map",
+        "description": "Groovy map containing: id\n"
+      },
+      {
+        "name": "input_path",
+        "type": "file",
+        "description": "Path to the OME-TIFF file"
+      },
+      {
+        "name": "output_path",
+        "type": "directory",
+        "description": "Output directory for N5 container"
+      },
+      {
+        "name": "output_name",
+        "type": "string",
+        "description": "Name of the N5 container."
+      },
+      {
+        "name": "scale_subpath",
+        "type": "string",
+        "description": "Relative path to the scale 0 location."
+      },
+      {
+        "name": "dask_scheduler",
+        "type": "string",
+        "description": "Dask scheduler IP"
+      },
+      {
+        "name": "dask_config",
+        "type": "file",
+        "description": "Optional path to the dask config. If this is not specified pass in as empty list.\n"
+      },
+      {
+        "name": "ncpus",
+        "type": "integer",
+        "description": "Number of cpus needed to run the main ometiff to n5 program"
+      },
+      {
+        "name": "mem_gb",
+        "type": "string",
+        "description": "Memory needed for the main ometiff to n5 program"
+      }
+    ],
+    "outputs": [
+      {
+        "name": "meta",
+        "type": "map",
+        "description": "Groovy map containing: id, input_image_dataset, output_image_name\n"
+      },
+      {
+        "name": "versions",
+        "type": "file",
+        "description": "File containing software versions",
+        "pattern": "versions.yml"
+      }
+    ]
+  },
+  {
+    "name": "postcode_decoding",
+    "slug": "sanger-subworkflow-postcode-decoding",
+    "description": "Sort SAM/BAM/CRAM file",
+    "type": "subworkflow",
+    "source": "sanger",
+    "sourceLabel": "Sanger (cellgeni)",
+    "repository": "https://github.com/cellgeni/nf-modules/tree/main/subworkflows/sanger-cellgeni/postcode_decoding",
+    "keywords": [
+      "spatial transcriptomics",
+      "decoding",
+      "postcode",
+      "probabilistic decoding"
+    ],
+    "components": [
+      "imaging/postcodeprep",
+      "imaging/postcode"
+    ],
+    "authors": [
+      "BioinfoTongLI"
+    ],
+    "maintainers": [
+      "BioinfoTongLI"
+    ],
+    "inputs": [
+      {
+        "name": "ch_profile",
+        "type": "file",
+        "description": "The input channel containing the spot/cell profile files\nStructure: [ val(meta), path(profile) ]\n",
+        "pattern": "*.npy"
+      },
+      {
+        "name": "ch_tabular_codebook",
+        "type": "file",
+        "description": "The codebook in a tabular format\nStructure: [ val(meta), path(tab_codebook) ]\n",
+        "pattern": "*.{csv/tsv/xlsx}"
+      },
+      {
+        "name": "ch_readout_file",
+        "type": "file",
+        "description": "The input channel containing the readout file for MERFISH-like data\nStructure: [ val(meta), path(readout) ]\n",
+        "pattern": "*.tsv"
+      },
+      {
+        "name": "ch_R",
+        "type": "int",
+        "description": "The number of imaging round for the profile\nStructure: [ val(meta), 6 ]\n"
+      },
+      {
+        "name": "ch_loc",
+        "type": "file",
+        "description": "The cell/pixel/spot locatisable tsv file \nStructure: [ val(meta), path(localisation) ]\n",
+        "pattern": "*.{tsv/csv}"
+      }
+    ],
+    "outputs": [
+      {
+        "name": "decoding_result",
+        "type": "file",
+        "description": "Channel containing decoded results\nStructure: [ val(meta), path(csv) ]\n",
+        "pattern": "*.csv"
+      },
+      {
+        "name": "processed_profiles",
+        "type": "file",
+        "description": "Channel containing reformatted profile files\nStructure: [ val(meta), path(profile) ]\n",
+        "pattern": "*.npy"
+      },
+      {
+        "name": "versions",
+        "type": "file",
+        "description": "File containing software versions\nStructure: [ path(versions.yml) ]\n",
+        "pattern": "versions.yml"
+      }
+    ]
+  },
+  {
+    "name": "preprocess_tiles",
+    "slug": "sanger-subworkflow-preprocess-tiles",
+    "description": "Sort SAM/BAM/CRAM file",
+    "type": "subworkflow",
+    "source": "sanger",
+    "sourceLabel": "Sanger (cellgeni)",
+    "repository": "https://github.com/cellgeni/nf-modules/tree/main/subworkflows/sanger-cellgeni/preprocess_tiles",
+    "keywords": [
+      "sort",
+      "bam",
+      "sam",
+      "cram"
+    ],
+    "components": [
+      "samtools/sort",
+      "samtools/index"
+    ],
+    "authors": [
+      "BioinfoTongLI"
+    ],
+    "maintainers": [
+      "BioinfoTongLI"
+    ],
+    "inputs": [
+      {
+        "name": "ch_bam",
+        "type": "file",
+        "description": "The input channel containing the BAM/CRAM/SAM files\nStructure: [ val(meta), path(bam) ]\n",
+        "pattern": "*.{bam/cram/sam}"
+      }
+    ],
+    "outputs": [
+      {
+        "name": "bam",
+        "type": "file",
+        "description": "Channel containing BAM files\nStructure: [ val(meta), path(bam) ]\n",
+        "pattern": "*.bam"
+      },
+      {
+        "name": "bai",
+        "type": "file",
+        "description": "Channel containing indexed BAM (BAI) files\nStructure: [ val(meta), path(bai) ]\n",
+        "pattern": "*.bai"
+      },
+      {
+        "name": "csi",
+        "type": "file",
+        "description": "Channel containing CSI files\nStructure: [ val(meta), path(csi) ]\n",
+        "pattern": "*.csi"
+      },
+      {
+        "name": "versions",
+        "type": "file",
+        "description": "File containing software versions\nStructure: [ path(versions.yml) ]\n",
+        "pattern": "versions.yml"
+      }
+    ]
+  },
+  {
+    "name": "rs_fish",
+    "slug": "janelia-module-rs-fish",
+    "description": "Precise, interactive, fast, and scalable FISH spot detection",
+    "type": "module",
+    "source": "janelia",
+    "sourceLabel": "Janelia",
+    "repository": "https://github.com/JaneliaSciComp/nextflow-modules/tree/main/modules/janelia/rs_fish",
+    "keywords": [
+      "spatial transcriptomics",
+      "spatial genomics",
+      "FISH"
+    ],
+    "components": [],
+    "authors": [
+      "krokicki",
+      "cgoina"
+    ],
+    "inputs": [
+      {
+        "name": "ch_meta",
+        "type": "tuple",
+        "description": "Channel of tuples containing a meta map\nStructure: [ val(meta), path(input_image), val(input_dataset), val(spark) ]\n"
+      }
+    ],
+    "outputs": [
+      {
+        "name": "params",
+        "type": "tuple",
+        "description": "Same as the input tuple\n"
+      },
+      {
+        "name": "csv",
+        "type": "file",
+        "description": "Output CSV file\n"
+      },
+      {
+        "name": "versions",
+        "type": "file",
+        "description": "File containing software versions",
+        "pattern": "versions.yml"
+      }
+    ]
+  },
+  {
+    "name": "spark_cluster",
+    "slug": "bioimagetools-subworkflow-spark-cluster",
+    "description": "Creates a Spark cluster and waits for it to be ready",
+    "type": "subworkflow",
+    "source": "bioimagetools",
+    "sourceLabel": "BioImageTools",
+    "repository": "https://github.com/BioImageTools/nextflow-modules/tree/main/subworkflows/bits/spark_cluster",
+    "keywords": [
+      "spark",
+      "bigdata",
+      "infrastructure"
+    ],
+    "components": [
+      "spark/prepare",
+      "spark/startmanager",
+      "spark/startworker",
+      "spark/waitformanager",
+      "spark/waitforworker"
+    ],
+    "authors": [
+      "krokicki",
+      "cgoina"
+    ],
+    "inputs": [
+      {
+        "name": "spark_work_dir",
+        "description": "Shared work directory for the Spark cluster \nStructure: [ val(spark_work_dir) ]\n"
+      },
+      {
+        "name": "data_dir",
+        "type": "path",
+        "description": "Paths to be mounted in the Spark workers for data access"
+      },
+      {
+        "name": "spark_workers",
+        "type": "integer",
+        "description": "Number of workers in the cluster"
+      },
+      {
+        "name": "spark_worker_cores",
+        "type": "integer",
+        "description": "Number of cores per worker"
+      },
+      {
+        "name": "spark_gb_per_core",
+        "type": "integer",
+        "description": "Number of GB of memory per worker core"
+      }
+    ],
+    "outputs": [
+      {
+        "name": "done",
+        "description": "URI of the Spark cluster and its work directory\nStructure: [ spark_uri, spark_work_dir ]\n"
+      }
+    ]
+  },
+  {
+    "name": "spark_prepare",
+    "slug": "bioimagetools-module-spark-prepare",
+    "description": "Prepare work directory for running a Spark cluster",
+    "type": "module",
+    "source": "bioimagetools",
+    "sourceLabel": "BioImageTools",
+    "repository": "https://github.com/BioImageTools/nextflow-modules/tree/main/modules/bits/spark/prepare",
+    "keywords": [
+      "spark"
+    ],
+    "tools": [
+      {
+        "name": "spark",
+        "description": "Apache Spark is an analytics engine for large-scale data processing",
+        "homepage": "https://spark.apache.org/",
+        "documentation": "https://spark.apache.org/docs/latest/",
+        "licence": [
+          "Apache License 2.0"
+        ]
+      }
+    ],
+    "authors": [
+      "krokicki",
+      "cgoina"
+    ],
+    "inputs": [
+      {
+        "name": "spark_work_dir",
+        "type": "path",
+        "description": "Parent directory where the cluster work directory should be created\n"
+      },
+      {
+        "name": "spark_work_dir_name",
+        "type": "string",
+        "description": "Name of cluster work directory\n"
+      }
+    ],
+    "outputs": [
+      {
+        "name": "cluster_work_fullpath",
+        "type": "string",
+        "description": "Full path to the cluster work directory\n"
+      }
+    ]
+  },
+  {
+    "name": "spark_start",
+    "slug": "bioimagetools-subworkflow-spark-start",
+    "description": "Starts Spark processing either by spinning up a cluster or setting up\nvariables so that processing can run locally as individual jobs\n",
+    "type": "subworkflow",
+    "source": "bioimagetools",
+    "sourceLabel": "BioImageTools",
+    "repository": "https://github.com/BioImageTools/nextflow-modules/tree/main/subworkflows/bits/spark_start",
+    "keywords": [
+      "spark",
+      "bigdata",
+      "infrastructure"
+    ],
+    "components": [],
+    "authors": [
+      "krokicki",
+      "cgoina"
+    ],
+    "inputs": [
+      {
+        "name": "ch_meta",
+        "type": "tuple",
+        "description": "Channel of tuples where the first item is the meta map which \ncontains a \"spark_work_dir\" field.\nStructure: [ val(meta), [ files ] ]\n"
+      },
+      {
+        "name": "data_dir",
+        "type": "path",
+        "description": "Paths to be mounted in the Spark workers for data access"
+      },
+      {
+        "name": "spark_cluster",
+        "type": "boolean",
+        "description": "Whether or not to spin up a Spark cluster"
+      },
+      {
+        "name": "spark_workers",
+        "type": "integer",
+        "description": "Number of workers in the cluster"
+      },
+      {
+        "name": "spark_worker_cores",
+        "type": "integer",
+        "description": "Number of cores per Spark worker"
+      },
+      {
+        "name": "spark_gb_per_core",
+        "type": "integer",
+        "description": "Number of GB of memory per worker core"
+      },
+      {
+        "name": "spark_driver_cores",
+        "type": "integer",
+        "description": "Number of cores for the Spark driver"
+      },
+      {
+        "name": "spark_driver_memory",
+        "type": "string",
+        "description": "Memory specification for the Spark driver"
+      }
+    ],
+    "outputs": [
+      {
+        "name": "spark_context",
+        "type": "tuple",
+        "description": "The tuple from input ch_meta with the spark_context map appended.\nStructure: [ val(meta), [ files ], val(spark_context) ]\n"
+      }
+    ]
+  },
+  {
+    "name": "spark_start",
+    "slug": "janelia-subworkflow-spark-start",
+    "description": "Starts Spark processing either by spinning up a cluster or setting up\nvariables so that processing can run locally as individual jobs\n",
+    "type": "subworkflow",
+    "source": "janelia",
+    "sourceLabel": "Janelia",
+    "repository": "https://github.com/JaneliaSciComp/nextflow-modules/tree/main/subworkflows/janelia/spark_start",
+    "keywords": [
+      "spark",
+      "bigdata",
+      "infrastructure"
+    ],
+    "components": [],
+    "authors": [
+      "krokicki",
+      "cgoina"
+    ],
+    "inputs": [
+      {
+        "name": "ch_meta",
+        "type": "tuple",
+        "description": "Channel of tuples containing a meta map and a list of data paths\nStructure: [ val(meta), [path(data_paths)] ]\n"
+      },
+      {
+        "name": "config",
+        "type": "map",
+        "description": "additional spark configuration"
+      },
+      {
+        "name": "spark_cluster",
+        "type": "boolean",
+        "description": "Whether or not to spin up a Spark cluster"
+      },
+      {
+        "name": "working_dir",
+        "type": "path",
+        "description": "Path shared by workers for logging and jar distribution"
+      },
+      {
+        "name": "spark_workers",
+        "type": "integer",
+        "description": "Number of workers in the cluster"
+      },
+      {
+        "name": "min_workers",
+        "type": "integer",
+        "description": "Minimum number of spark workers that must be available on the spark cluster"
+      },
+      {
+        "name": "spark_worker_cpus",
+        "type": "integer",
+        "description": "Number of CPUs per Spark worker"
+      },
+      {
+        "name": "spark_executor_cpus",
+        "type": "integer",
+        "description": "Number of CPUs for a spark executor"
+      },
+      {
+        "name": "spark_executor_mem_gb",
+        "type": "integer",
+        "description": "Memory resource in GB allocated for a spark executor"
+      },
+      {
+        "name": "spark_executor_overhead_mem_gb",
+        "type": "integer",
+        "description": "Memory overhead for a spark executor"
+      },
+      {
+        "name": "spark_driver_cpus",
+        "type": "integer",
+        "description": "Number of CPUs for the Spark driver"
+      },
+      {
+        "name": "spark_driver_mem_gb",
+        "type": "integer",
+        "description": "Number of GB of memory for the Spark driver"
+      },
+      {
+        "name": "spark_gb_per_core",
+        "type": "integer",
+        "description": "Number of GB of memory per worker core"
+      }
+    ],
+    "outputs": [
+      {
+        "name": "spark_context",
+        "type": "tuple",
+        "description": "The tuple from input ch_meta with the spark_context map appended.\nStructure: [ val(meta), val(spark_context) ]\n"
+      }
+    ]
+  },
+  {
+    "name": "spark_startmanager",
+    "slug": "bioimagetools-module-spark-startmanager",
+    "description": "Start a Spark manager which runs until the terminate module is called",
+    "type": "module",
+    "source": "bioimagetools",
+    "sourceLabel": "BioImageTools",
+    "repository": "https://github.com/BioImageTools/nextflow-modules/tree/main/modules/bits/spark/startmanager",
+    "keywords": [
+      "spark"
+    ],
+    "tools": [
+      {
+        "name": "spark",
+        "description": "Apache Spark is an analytics engine for large-scale data processing",
+        "homepage": "https://spark.apache.org/",
+        "documentation": "https://spark.apache.org/docs/latest/",
+        "licence": [
+          "Apache License 2.0"
+        ]
+      }
+    ],
+    "authors": [
+      "krokicki",
+      "cgoina"
+    ],
+    "inputs": [
+      {
+        "name": "cluster_work_dir",
+        "type": "path",
+        "description": "The cluster work directory where the manager will run\n"
+      }
+    ],
+    "outputs": [
+      {
+        "name": "cluster_work_fullpath",
+        "type": "string",
+        "description": "Full path to the cluster work directory where the manager is running\n"
+      }
+    ]
+  },
+  {
+    "name": "spark_startworker",
+    "slug": "bioimagetools-module-spark-startworker",
+    "description": "Start a Spark worker which runs until the terminate module is called",
+    "type": "module",
+    "source": "bioimagetools",
+    "sourceLabel": "BioImageTools",
+    "repository": "https://github.com/BioImageTools/nextflow-modules/tree/main/modules/bits/spark/startworker",
+    "keywords": [
+      "spark"
+    ],
+    "tools": [
+      {
+        "name": "spark",
+        "description": "Apache Spark is an analytics engine for large-scale data processing",
+        "homepage": "https://spark.apache.org/",
+        "documentation": "https://spark.apache.org/docs/latest/",
+        "licence": [
+          "Apache License 2.0"
+        ]
+      }
+    ],
+    "authors": [
+      "krokicki",
+      "cgoina"
+    ],
+    "inputs": [
+      {
+        "name": "spark_uri",
+        "type": "string",
+        "description": "URI of the Spark manager\n"
+      },
+      {
+        "name": "cluster_work_dir",
+        "type": "path",
+        "description": "The cluster work directory where the manager will run\n"
+      },
+      {
+        "name": "worker_id",
+        "type": "string",
+        "description": "Identifier (usually an index) for the worker.\n"
+      },
+      {
+        "name": "data_dir",
+        "type": "path",
+        "description": "Shared path (or list of paths) which should be mounted into the \nworker process for data access.\n"
+      },
+      {
+        "name": "worker_cores",
+        "type": "path",
+        "description": "Total number of cores to allocate to the worker\n"
+      },
+      {
+        "name": "worker_mem_in_gb",
+        "type": "path",
+        "description": "Total amount of memory to allocate to the worker\n"
+      }
+    ],
+    "outputs": [
+      {
+        "name": "spark_uri",
+        "type": "string",
+        "description": "Full path to the cluster work directory where the manager is running\n"
+      }
+    ]
+  },
+  {
+    "name": "spark_stop",
+    "slug": "bioimagetools-subworkflow-spark-stop",
+    "description": "Stops Spark processing by writing a marker file which terminates the \ncluster processes.\n",
+    "type": "subworkflow",
+    "source": "bioimagetools",
+    "sourceLabel": "BioImageTools",
+    "repository": "https://github.com/BioImageTools/nextflow-modules/tree/main/subworkflows/bits/spark_stop",
+    "keywords": [
+      "spark",
+      "bigdata",
+      "infrastructure"
+    ],
+    "components": [
+      "spark/terminate"
+    ],
+    "authors": [
+      "krokicki",
+      "cgoina"
+    ],
+    "inputs": [
+      {
+        "name": "ch_meta",
+        "type": "tuple",
+        "description": "Channel of tuples where the first item is the meta map, then a \nlist of related files, and finally a spark_context map. Only the \nthird item is used by this subworkflow. \nStructure: [ val(meta), [ files ], val(spark_context) ]\n"
+      }
+    ],
+    "outputs": [
+      {
+        "name": "done",
+        "type": "tuple",
+        "description": "The Spark work directory that was terminated. \n"
+      }
+    ]
+  },
+  {
+    "name": "spark_stop",
+    "slug": "janelia-subworkflow-spark-stop",
+    "description": "Stops Spark processing by writing a marker file which terminates the \ncluster processes.\n",
+    "type": "subworkflow",
+    "source": "janelia",
+    "sourceLabel": "Janelia",
+    "repository": "https://github.com/JaneliaSciComp/nextflow-modules/tree/main/subworkflows/janelia/spark_stop",
+    "keywords": [
+      "spark",
+      "bigdata",
+      "infrastructure"
+    ],
+    "components": [
+      "spark/terminate"
+    ],
+    "authors": [
+      "krokicki",
+      "cgoina"
+    ],
+    "inputs": [
+      {
+        "name": "ch_meta",
+        "type": "tuple",
+        "description": "Channel of tuples where the first item is the meta map, and the second is a \na spark context map.\nStructure: [ val(meta), val(spark) ]\n"
+      }
+    ],
+    "outputs": [
+      {
+        "name": "done",
+        "type": "tuple",
+        "description": "Same as the input tuple.\n"
+      }
+    ]
+  },
+  {
+    "name": "spark_terminate",
+    "slug": "bioimagetools-module-spark-terminate",
+    "description": "Terminate a Spark cluster by writing a marker file to the work dir",
+    "type": "module",
+    "source": "bioimagetools",
+    "sourceLabel": "BioImageTools",
+    "repository": "https://github.com/BioImageTools/nextflow-modules/tree/main/modules/bits/spark/terminate",
+    "keywords": [
+      "spark"
+    ],
+    "tools": [
+      {
+        "name": "spark",
+        "description": "Apache Spark is an analytics engine for large-scale data processing",
+        "homepage": "https://spark.apache.org/",
+        "documentation": "https://spark.apache.org/docs/latest/",
+        "licence": [
+          "Apache License 2.0"
+        ]
+      }
+    ],
+    "authors": [
+      "krokicki",
+      "cgoina"
+    ],
+    "inputs": [
+      {
+        "name": "spark_uri",
+        "type": "string",
+        "description": "URI of the Spark manager\n"
+      },
+      {
+        "name": "cluster_work_dir",
+        "type": "path",
+        "description": "The cluster work directory where the manager will run\n"
+      }
+    ],
+    "outputs": [
+      {
+        "name": "spark_uri",
+        "type": "string",
+        "description": "URI of the Spark manager\n"
+      },
+      {
+        "name": "cluster_work_fullpath",
+        "type": "string",
+        "description": "Full path to the cluster work directory where the manager is running\n"
+      }
+    ]
+  },
+  {
+    "name": "spark_waitformanager",
+    "slug": "bioimagetools-module-spark-waitformanager",
+    "description": "Wait for Spark manager to be ready",
+    "type": "module",
+    "source": "bioimagetools",
+    "sourceLabel": "BioImageTools",
+    "repository": "https://github.com/BioImageTools/nextflow-modules/tree/main/modules/bits/spark/waitformanager",
+    "keywords": [
+      "spark"
+    ],
+    "tools": [
+      {
+        "name": "spark",
+        "description": "Apache Spark is an analytics engine for large-scale data processing",
+        "homepage": "https://spark.apache.org/",
+        "documentation": "https://spark.apache.org/docs/latest/",
+        "licence": [
+          "Apache License 2.0"
+        ]
+      }
+    ],
+    "authors": [
+      "krokicki",
+      "cgoina"
+    ],
+    "inputs": [
+      {
+        "name": "cluster_work_dir",
+        "type": "path",
+        "description": "The cluster work directory where the manager is running\n"
+      }
+    ],
+    "outputs": [
+      {
+        "name": "spark_uri",
+        "type": "string",
+        "description": "URI of the Spark manager\n"
+      },
+      {
+        "name": "cluster_work_fullpath",
+        "type": "string",
+        "description": "Full path to the cluster work directory where the manager is running\n"
+      }
+    ]
+  },
+  {
+    "name": "spark_waitforworker",
+    "slug": "bioimagetools-module-spark-waitforworker",
+    "description": "Wait for a Spark worker to be ready",
+    "type": "module",
+    "source": "bioimagetools",
+    "sourceLabel": "BioImageTools",
+    "repository": "https://github.com/BioImageTools/nextflow-modules/tree/main/modules/bits/spark/waitforworker",
+    "keywords": [
+      "spark"
+    ],
+    "tools": [
+      {
+        "name": "spark",
+        "description": "Apache Spark is an analytics engine for large-scale data processing",
+        "homepage": "https://spark.apache.org/",
+        "documentation": "https://spark.apache.org/docs/latest/",
+        "licence": [
+          "Apache License 2.0"
+        ]
+      }
+    ],
+    "authors": [
+      "krokicki",
+      "cgoina"
+    ],
+    "inputs": [
+      {
+        "name": "spark_uri",
+        "type": "string",
+        "description": "URI of the Spark manager\n"
+      },
+      {
+        "name": "cluster_work_dir",
+        "type": "path",
+        "description": "The cluster work directory where the manager is running\n"
+      },
+      {
+        "name": "worker_id",
+        "type": "string",
+        "description": "Identifier (usually an index) for the worker.\n"
+      }
+    ],
+    "outputs": [
+      {
+        "name": "spark_uri",
+        "type": "string",
+        "description": "URI of the Spark manager\n"
+      },
+      {
+        "name": "cluster_work_fullpath",
+        "type": "string",
+        "description": "Full path to the cluster work directory where the manager is running\n"
+      },
+      {
+        "name": "worker_id",
+        "type": "string",
+        "description": "Identifier (usually an index) for the worker.\n"
+      }
+    ]
+  },
+  {
+    "name": "spatial_nichecompassanalysis",
+    "slug": "sanger-module-spatial-nichecompassanalysis",
+    "description": "Analysis based on the NicheCompass model",
+    "type": "module",
+    "source": "sanger",
+    "sourceLabel": "Sanger (cellgeni)",
+    "repository": "https://github.com/cellgeni/nf-modules/tree/main/modules/sanger-cellgeni/spatial/nichecompassanalysis",
+    "keywords": [
+      "spatial_atlas_building",
+      "niche_identification",
+      "niche_characterisation",
+      "cell-cell_communication_inference",
+      "spatial_reference_mapping",
+      "analysis",
+      "deep-learning"
+    ],
+    "tools": [
+      {
+        "name": "nichecompass",
+        "description": "NicheCompass is a package for end-to-end analysis of spatial multiomics data by the Lotfollahi Lab",
+        "documentation": "https://nichecompass.readthedocs.io/en/latest/",
+        "licence": [
+          "BSD-3-Clause license"
+        ]
+      }
+    ],
+    "authors": [
+      "ASUQ"
+    ],
+    "maintainers": [
+      "ASUQ"
+    ],
+    "inputs": [
+      {
+        "name": "0"
+      }
+    ]
+  },
+  {
+    "name": "spatial_nichecompasstraining",
+    "slug": "sanger-module-spatial-nichecompasstraining",
+    "description": "Train a NicheCompass model on spatial multiomics data.",
+    "type": "module",
+    "source": "sanger",
+    "sourceLabel": "Sanger (cellgeni)",
+    "repository": "https://github.com/cellgeni/nf-modules/tree/main/modules/sanger-cellgeni/spatial/nichecompasstraining",
+    "keywords": [
+      "spatial_atlas_building",
+      "niche_identification",
+      "niche_characterisation",
+      "cell-cell_communication_inference",
+      "spatial_reference_mapping",
+      "model_training",
+      "deep-learning"
+    ],
+    "tools": [
+      {
+        "name": "nichecompass",
+        "description": "NicheCompass is a package for end-to-end analysis of spatial multiomics data by the Lotfollahi Lab",
+        "documentation": "https://nichecompass.readthedocs.io/en/latest/",
+        "licence": [
+          "BSD-3-Clause license"
+        ]
+      }
+    ],
+    "authors": [
+      "ASUQ"
+    ],
+    "maintainers": [
+      "ASUQ"
+    ],
+    "inputs": [
+      {
+        "name": "0"
+      }
+    ],
+    "outputs": [
+      {
+        "name": "0"
+      },
+      {
+        "name": "versions",
+        "type": "file",
+        "description": "File containing software versions",
+        "pattern": "versions.yml"
+      }
+    ]
+  },
+  {
+    "name": "tiled_cellpose",
+    "slug": "sanger-subworkflow-tiled-cellpose",
+    "description": "A tiled version of CellPose to faciliate processing of large images on HPC",
+    "type": "subworkflow",
+    "source": "sanger",
+    "sourceLabel": "Sanger (cellgeni)",
+    "repository": "https://github.com/cellgeni/nf-modules/tree/main/subworkflows/sanger-cellgeni/tiled_segmentation",
+    "keywords": [
+      "cellpose",
+      "segmentation",
+      "instance segmentation",
+      "deep-learning",
+      "large-scale image processing"
+    ],
+    "authors": [
+      "BioinfoTongLI"
+    ],
+    "maintainers": [
+      "BioinfoTongLI"
+    ],
+    "inputs": [
+      {
+        "name": "meta",
+        "type": "map",
+        "description": "Groovy Map containing sample information\ne.g. `[ id:'test' ]`\n"
+      },
+      {
+        "name": "images",
+        "type": "file",
+        "description": "The input channel containing the image files\nStructure: [ val(meta), path(image) ]\n",
+        "pattern": "*.ome.{tif/tiff}"
+      },
+      {
+        "name": "method",
+        "type": "string",
+        "description": "The method to use for segmentation\nOptions: [ 'cellpose', 'stardist', 'instanseg' ]\n"
+      }
+    ],
+    "outputs": [
+      {
+        "name": "wkt",
+        "type": "file",
+        "description": "2D segmentation polygons in wkt format\nStructure: [ val(meta), path(wkt) ]\n",
+        "pattern": "*.wkt"
+      },
+      {
+        "name": "versions",
+        "type": "file",
+        "description": "File containing software versions\nStructure: [ path(versions.yml) ]\n",
+        "pattern": "versions.yml"
+      }
+    ]
+  },
+  {
+    "name": "tiled_spotiflow",
+    "slug": "sanger-subworkflow-tiled-spotiflow",
+    "description": "Sort SAM/BAM/CRAM file",
+    "type": "subworkflow",
+    "source": "sanger",
+    "sourceLabel": "Sanger (cellgeni)",
+    "repository": "https://github.com/cellgeni/nf-modules/tree/main/subworkflows/sanger-cellgeni/tiled_spotiflow",
+    "keywords": [
+      "deep-learning",
+      "peak-calling",
+      "smFISH"
+    ],
+    "components": [
+      "Spotiflow"
+    ],
+    "authors": [
+      "BioinfoTongLI"
+    ],
+    "maintainers": [
+      "BioinfoTongLI"
+    ],
+    "inputs": [
+      {
+        "name": "ch_bam",
+        "type": "file",
+        "description": "The input image files\nStructure: [ val(meta), path(images) ]\n",
+        "pattern": "*.{tif/tiff}"
+      }
+    ],
+    "outputs": [
+      {
+        "name": "spots_in_csv",
+        "type": "file",
+        "description": "CSV file contains the peak locations\nStructure: [ val(meta), path(csv) ]\n",
+        "pattern": "*.csv"
+      },
+      {
+        "name": "versions",
+        "type": "file",
+        "description": "File containing software versions\nStructure: [ path(versions.yml) ]\n",
+        "pattern": "versions.yml"
+      }
+    ]
+  },
+  {
+    "name": "yolo_detect",
+    "slug": "bioimagetools-module-yolo-detect",
+    "description": "write your description here",
+    "type": "module",
+    "source": "bioimagetools",
+    "sourceLabel": "BioImageTools",
+    "repository": "https://github.com/BioImageTools/nextflow-modules/tree/main/modules/bits/yolo/detect",
+    "keywords": [
+      "machine-learning",
+      "yolo",
+      "image-detection",
+      "bounding box",
+      "computer-vision"
+    ],
+    "tools": [
+      {
+        "name": "yolo",
+        "description": "Wrapper of Yolo object detection predict function",
+        "homepage": "https://docs.ultralytics.com/",
+        "documentation": "https://docs.ultralytics.com/quickstart/",
+        "licence": [
+          "AGPL-3.0"
+        ]
+      }
+    ],
+    "authors": [
+      "BioinfoTongLI"
+    ],
+    "maintainers": [
+      "BioinfoTongLI"
+    ],
+    "inputs": [
+      {
+        "name": "0"
+      }
+    ]
+  }
+]

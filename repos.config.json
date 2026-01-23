@@ -1,0 +1,19 @@
+{
+  "repositories": [
+    {
+      "name": "bioimagetools",
+      "label": "BioImageTools",
+      "url": "https://github.com/BioImageTools/nextflow-modules.git"
+    },
+    {
+      "name": "sanger",
+      "label": "Sanger (cellgeni)",
+      "url": "https://github.com/cellgeni/nf-modules.git"
+    },
+    {
+      "name": "janelia",
+      "label": "Janelia",
+      "url": "https://github.com/JaneliaSciComp/nextflow-modules.git"
+    }
+  ]
+}
