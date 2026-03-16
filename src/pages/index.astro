@@ -382,12 +382,31 @@ const types = [...new Set(modules.map(m => m.type))].filter(Boolean).sort();
     } else {
       clearFiltersBtn?.classList.add('hidden');
     }
+
+    // Update URL params
+    const url = new URL(window.location.href);
+    if (keyword) url.searchParams.set('q', keyword);
+    else url.searchParams.delete('q');
+    if (org) url.searchParams.set('org', org);
+    else url.searchParams.delete('org');
+    if (type) url.searchParams.set('type', type);
+    else url.searchParams.delete('type');
+    history.replaceState(null, '', url.toString());
   }
 
   function clearFilters() {
     if (keywordFilter) keywordFilter.value = '';
     if (orgFilter) orgFilter.value = '';
     if (typeFilter) typeFilter.value = '';
+    applyFilters();
+  }
+
+  // Load filters from URL params on page load
+  const params = new URLSearchParams(window.location.search);
+  if (params.get('q') && keywordFilter) keywordFilter.value = params.get('q')!;
+  if (params.get('org') && orgFilter) orgFilter.value = params.get('org')!;
+  if (params.get('type') && typeFilter) typeFilter.value = params.get('type')!;
+  if (params.get('q') || params.get('org') || params.get('type')) {
     applyFilters();
   }
 
