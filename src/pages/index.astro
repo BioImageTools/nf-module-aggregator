@@ -153,6 +153,14 @@ const types = [...new Set(modules.map(m => m.type))].filter(Boolean).sort();
       </div>
     </section>
 
+    <!-- nf-core Note (shown when nf-core org is selected) -->
+    <div id="nfcore-note" class="mb-8 hidden">
+      <div class="bg-green-50 border border-green-200 rounded-lg p-4 text-sm text-green-800">
+        <strong>nf-core modules</strong> shown here are filtered by keywords: <em>microscopy</em>, <em>imaging</em>, <em>image</em>.
+        For the full nf-core module catalog, visit <a href="https://nf-co.re/modules" class="text-green-700 underline hover:text-green-900">nf-co.re/modules</a>.
+      </div>
+    </div>
+
     <!-- Module Grid -->
     <section>
       <div class="flex items-center justify-between mb-6">
@@ -267,6 +275,7 @@ const types = [...new Set(modules.map(m => m.type))].filter(Boolean).sort();
   const clearFiltersBtn = document.getElementById('clear-filters');
   const moduleCount = document.getElementById('module-count');
   const noResults = document.getElementById('no-results');
+  const nfcoreNote = document.getElementById('nfcore-note');
 
   // Get all module elements
   const cardItems = cardView?.querySelectorAll('.module-card') || [];
@@ -360,6 +369,13 @@ const types = [...new Set(modules.map(m => m.type))].filter(Boolean).sort();
       noResults?.classList.remove('hidden');
     } else {
       noResults?.classList.add('hidden');
+    }
+
+    // Show/hide nf-core note
+    if (org === 'nf-core') {
+      nfcoreNote?.classList.remove('hidden');
+    } else {
+      nfcoreNote?.classList.add('hidden');
     }
 
     // Show/hide clear button

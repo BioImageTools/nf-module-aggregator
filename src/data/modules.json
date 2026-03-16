@@ -1,5 +1,80 @@
 [
   {
+    "name": "basicpy",
+    "slug": "nf-core-module-basicpy",
+    "description": "BaSiCPy is a python package for background and shading correction of optical microscopy images. It is developed based on the Matlab version of BaSiC tool with major improvements in the algorithm.",
+    "type": "module",
+    "source": "nf-core",
+    "sourceLabel": "nf-core",
+    "repository": "https://github.com/nf-core/modules/tree/main/modules/nf-core/basicpy",
+    "keywords": [
+      "illumiation_correction",
+      "background_correction",
+      "microscopy",
+      "imaging"
+    ],
+    "tools": [
+      {
+        "name": "basicpy",
+        "description": "BaSiCPy is a python package for background and shading correction of optical microscopy images. It is developed based on the Matlab version of BaSiC tool with major improvements in the algorithm.",
+        "homepage": "https://github.com/peng-lab/BaSiCPy",
+        "documentation": "https://basicpy.readthedocs.io/en/latest/index.html",
+        "licence": [
+          "MIT License"
+        ]
+      }
+    ],
+    "authors": [
+      "FloWuenne"
+    ],
+    "maintainers": [
+      "FloWuenne"
+    ],
+    "inputs": [
+      {
+        "name": "0"
+      }
+    ]
+  },
+  {
+    "name": "bftools_showinf",
+    "slug": "nf-core-module-bftools-showinf",
+    "description": "Extract OME xml data from OME-tif",
+    "type": "module",
+    "source": "nf-core",
+    "sourceLabel": "nf-core",
+    "repository": "https://github.com/nf-core/modules/tree/main/modules/nf-core/bftools/showinf",
+    "keywords": [
+      "metadata",
+      "ome-tif",
+      "ome-tiff",
+      "imaging",
+      "bioinformatics tools"
+    ],
+    "tools": [
+      {
+        "name": "bftools",
+        "description": "Suite of tools to handle several imaging protocols.",
+        "homepage": "https://www.openmicroscopy.org/bio-formats",
+        "documentation": "https://bio-formats.readthedocs.io/en/stable/users/index.html",
+        "licence": [
+          "GNU General Public License v2.0"
+        ]
+      }
+    ],
+    "authors": [
+      "AlexBarbera"
+    ],
+    "maintainers": [
+      "AlexBarbera"
+    ],
+    "inputs": [
+      {
+        "name": "0"
+      }
+    ]
+  },
+  {
     "name": "bigstitcher",
     "slug": "janelia-module-bigstitcher",
     "description": "Performs 3-D multi-tile and multi-angle alignment using BigStitcher-Spark",
@@ -67,6 +142,922 @@
     ]
   },
   {
+    "name": "bigstream_computeinverse",
+    "slug": "janelia-module-bigstream-computeinverse",
+    "description": "Compute the inverse of a local deformation field using Bigstream",
+    "type": "module",
+    "source": "janelia",
+    "sourceLabel": "Janelia",
+    "repository": "https://github.com/JaneliaSciComp/nextflow-modules/tree/main/modules/janelia/bigstream/computeinverse",
+    "keywords": [
+      "bigstream",
+      "inverse",
+      "deformation"
+    ],
+    "tools": [
+      {
+        "name": "bigstream",
+        "description": "Tool for creating an alignment pipeline using different ITK algorithms",
+        "homepage": "https://github.com/JaneliaSciComp/bigstream",
+        "licence": "['BSD-3-Clause']"
+      }
+    ],
+    "components": [],
+    "authors": [
+      "cgoina",
+      "fleishmang"
+    ],
+    "inputs": [
+      {
+        "name": "meta",
+        "type": "map",
+        "description": "Groovy map containing: id\n"
+      },
+      {
+        "name": "deform_dir",
+        "type": "directory",
+        "description": "Location of the displacement vector field"
+      },
+      {
+        "name": "deform_name",
+        "type": "string",
+        "description": "Name of the deformation transform file"
+      },
+      {
+        "name": "deform_subpath",
+        "type": "string",
+        "description": "Displacement vector subpath within the deform container"
+      },
+      {
+        "name": "inv_deform_dir",
+        "type": "directory",
+        "description": "Output directory for the inverse displacement vector field"
+      },
+      {
+        "name": "inv_deform_name",
+        "type": "string",
+        "description": "Name of the inverse deformation transform file"
+      },
+      {
+        "name": "inv_deform_subpath",
+        "type": "string",
+        "description": "Inverse displacement vector subpath"
+      },
+      {
+        "name": "dask_scheduler",
+        "type": "string",
+        "description": "Dask scheduler address"
+      },
+      {
+        "name": "dask_config",
+        "type": "file",
+        "description": "Dask configuration file (optional)"
+      },
+      {
+        "name": "cpus",
+        "type": "integer",
+        "description": "Number of CPUs allocated to the process"
+      },
+      {
+        "name": "mem_gb",
+        "type": "integer",
+        "description": "Memory in GB allocated to the process"
+      }
+    ],
+    "outputs": [
+      {
+        "name": "meta",
+        "type": "map",
+        "description": "Groovy map containing: id\n"
+      },
+      {
+        "name": "full_deform_dir",
+        "type": "string",
+        "description": "Full resolved path to the deformation directory"
+      },
+      {
+        "name": "deform_name",
+        "type": "string",
+        "description": "Name of the deformation transform file"
+      },
+      {
+        "name": "deform_subpath",
+        "type": "string",
+        "description": "Displacement vector subpath"
+      },
+      {
+        "name": "full_inv_deform_dir",
+        "type": "string",
+        "description": "Full resolved path to the inverse deformation directory"
+      },
+      {
+        "name": "inv_deform_name",
+        "type": "string",
+        "description": "Name of the inverse deformation transform file"
+      },
+      {
+        "name": "inv_deform_subpath",
+        "type": "string",
+        "description": "Inverse displacement vector subpath"
+      }
+    ]
+  },
+  {
+    "name": "bigstream_deform",
+    "slug": "janelia-module-bigstream-deform",
+    "description": "Apply local deformation (and optional affine) transforms to warp a moving image onto a fixed image using Bigstream",
+    "type": "module",
+    "source": "janelia",
+    "sourceLabel": "Janelia",
+    "repository": "https://github.com/JaneliaSciComp/nextflow-modules/tree/main/modules/janelia/bigstream/correlationmetric",
+    "keywords": [
+      "bigstream",
+      "deformation",
+      "warping",
+      "registration"
+    ],
+    "tools": [
+      {
+        "name": "bigstream",
+        "description": "Tool for creating an alignment pipeline using different ITK algorithms",
+        "homepage": "https://github.com/JaneliaSciComp/bigstream",
+        "licence": "['BSD-3-Clause']"
+      }
+    ],
+    "components": [],
+    "authors": [
+      "cgoina",
+      "fleishmang"
+    ],
+    "inputs": [
+      {
+        "name": "meta",
+        "type": "map",
+        "description": "Groovy map containing: id\n"
+      },
+      {
+        "name": "fix_image",
+        "type": "file|directory",
+        "description": "Path to the fixed (reference) image (container)"
+      },
+      {
+        "name": "fix_image_subpath",
+        "type": "string",
+        "description": "If the fix image is a zarr container this is the relative path to the dataset"
+      },
+      {
+        "name": "fix_timeindex",
+        "type": "string",
+        "description": "Time index to select from the fix image"
+      },
+      {
+        "name": "fix_channel",
+        "type": "string",
+        "description": "Channel to select from the fix image"
+      },
+      {
+        "name": "fix_spacing",
+        "type": "string",
+        "description": "Voxel spacing for the fix image"
+      },
+      {
+        "name": "mov_image",
+        "type": "file|directory",
+        "description": "Path to the moving image (container)"
+      },
+      {
+        "name": "mov_image_subpath",
+        "type": "string",
+        "description": "If the moving image is a zarr container this is the relative path to the dataset"
+      },
+      {
+        "name": "mov_timeindex",
+        "type": "string",
+        "description": "Time index to select from the moving image"
+      },
+      {
+        "name": "mov_channel",
+        "type": "string",
+        "description": "Channel to select from the moving image"
+      },
+      {
+        "name": "mov_spacing",
+        "type": "string",
+        "description": "Voxel spacing for the moving image"
+      },
+      {
+        "name": "affine_transforms",
+        "type": "file",
+        "description": "One or more affine transformation files (paths to the corresponding affine.mat)"
+      },
+      {
+        "name": "deform_dir",
+        "type": "directory",
+        "description": "Location of the displacement vector field"
+      },
+      {
+        "name": "deform_subpath",
+        "type": "string",
+        "description": "Displacement vector subpath within the deform container"
+      },
+      {
+        "name": "output_dir",
+        "type": "directory",
+        "description": "Output directory for the warped image"
+      },
+      {
+        "name": "output_subpath",
+        "type": "string",
+        "description": "Subpath within the output container"
+      },
+      {
+        "name": "output_timeindex",
+        "type": "string",
+        "description": "Time index for the output image"
+      },
+      {
+        "name": "output_channel",
+        "type": "string",
+        "description": "Channel for the output image"
+      },
+      {
+        "name": "dask_scheduler",
+        "type": "string",
+        "description": "Dask scheduler address"
+      },
+      {
+        "name": "dask_config",
+        "type": "file",
+        "description": "Dask configuration file (optional)"
+      },
+      {
+        "name": "cpus",
+        "type": "integer",
+        "description": "Number of CPUs allocated to the process"
+      },
+      {
+        "name": "mem_gb",
+        "type": "integer",
+        "description": "Memory in GB allocated to the process"
+      }
+    ],
+    "outputs": [
+      {
+        "name": "meta",
+        "type": "map",
+        "description": "Groovy map containing: id\n"
+      },
+      {
+        "name": "fix_fullpath",
+        "type": "string",
+        "description": "Full resolved path to the fix image"
+      },
+      {
+        "name": "fix_image_subpath",
+        "type": "string",
+        "description": "Subpath within the fix image container"
+      },
+      {
+        "name": "mov_fullpath",
+        "type": "string",
+        "description": "Full resolved path to the moving image"
+      },
+      {
+        "name": "mov_image_subpath",
+        "type": "string",
+        "description": "Subpath within the moving image container"
+      },
+      {
+        "name": "output_fullpath",
+        "type": "string",
+        "description": "Full resolved path to the output warped image"
+      },
+      {
+        "name": "output_subpath",
+        "type": "string",
+        "description": "Subpath within the output container"
+      }
+    ]
+  },
+  {
+    "name": "bigstream_deform",
+    "slug": "janelia-module-bigstream-deform",
+    "description": "Apply local deformation (and optional affine) transforms to warp a moving image onto a fixed image using Bigstream",
+    "type": "module",
+    "source": "janelia",
+    "sourceLabel": "Janelia",
+    "repository": "https://github.com/JaneliaSciComp/nextflow-modules/tree/main/modules/janelia/bigstream/deform",
+    "keywords": [
+      "bigstream",
+      "deformation",
+      "warping",
+      "registration"
+    ],
+    "tools": [
+      {
+        "name": "bigstream",
+        "description": "Tool for creating an alignment pipeline using different ITK algorithms",
+        "homepage": "https://github.com/JaneliaSciComp/bigstream",
+        "licence": "['BSD-3-Clause']"
+      }
+    ],
+    "components": [],
+    "authors": [
+      "cgoina",
+      "fleishmang"
+    ],
+    "inputs": [
+      {
+        "name": "meta",
+        "type": "map",
+        "description": "Groovy map containing: id\n"
+      },
+      {
+        "name": "fix_image",
+        "type": "file|directory",
+        "description": "Path to the fixed (reference) image (container)"
+      },
+      {
+        "name": "fix_image_subpath",
+        "type": "string",
+        "description": "If the fix image is a zarr container this is the relative path to the dataset"
+      },
+      {
+        "name": "fix_timeindex",
+        "type": "string",
+        "description": "Time index to select from the fix image"
+      },
+      {
+        "name": "fix_channel",
+        "type": "string",
+        "description": "Channel to select from the fix image"
+      },
+      {
+        "name": "fix_spacing",
+        "type": "string",
+        "description": "Voxel spacing for the fix image"
+      },
+      {
+        "name": "mov_image",
+        "type": "file|directory",
+        "description": "Path to the moving image (container)"
+      },
+      {
+        "name": "mov_image_subpath",
+        "type": "string",
+        "description": "If the moving image is a zarr container this is the relative path to the dataset"
+      },
+      {
+        "name": "mov_timeindex",
+        "type": "string",
+        "description": "Time index to select from the moving image"
+      },
+      {
+        "name": "mov_channel",
+        "type": "string",
+        "description": "Channel to select from the moving image"
+      },
+      {
+        "name": "mov_spacing",
+        "type": "string",
+        "description": "Voxel spacing for the moving image"
+      },
+      {
+        "name": "affine_transforms",
+        "type": "file",
+        "description": "One or more affine transformation files (paths to the corresponding affine.mat)"
+      },
+      {
+        "name": "deform_dir",
+        "type": "directory",
+        "description": "Location of the displacement vector field"
+      },
+      {
+        "name": "deform_subpath",
+        "type": "string",
+        "description": "Displacement vector subpath within the deform container"
+      },
+      {
+        "name": "output_dir",
+        "type": "directory",
+        "description": "Output directory for the warped image"
+      },
+      {
+        "name": "output_subpath",
+        "type": "string",
+        "description": "Subpath within the output container"
+      },
+      {
+        "name": "output_timeindex",
+        "type": "string",
+        "description": "Time index for the output image"
+      },
+      {
+        "name": "output_channel",
+        "type": "string",
+        "description": "Channel for the output image"
+      },
+      {
+        "name": "dask_scheduler",
+        "type": "string",
+        "description": "Dask scheduler address"
+      },
+      {
+        "name": "dask_config",
+        "type": "file",
+        "description": "Dask configuration file (optional)"
+      },
+      {
+        "name": "cpus",
+        "type": "integer",
+        "description": "Number of CPUs allocated to the process"
+      },
+      {
+        "name": "mem_gb",
+        "type": "integer",
+        "description": "Memory in GB allocated to the process"
+      }
+    ],
+    "outputs": [
+      {
+        "name": "meta",
+        "type": "map",
+        "description": "Groovy map containing: id\n"
+      },
+      {
+        "name": "fix_fullpath",
+        "type": "string",
+        "description": "Full resolved path to the fix image"
+      },
+      {
+        "name": "fix_image_subpath",
+        "type": "string",
+        "description": "Subpath within the fix image container"
+      },
+      {
+        "name": "mov_fullpath",
+        "type": "string",
+        "description": "Full resolved path to the moving image"
+      },
+      {
+        "name": "mov_image_subpath",
+        "type": "string",
+        "description": "Subpath within the moving image container"
+      },
+      {
+        "name": "output_fullpath",
+        "type": "string",
+        "description": "Full resolved path to the output warped image"
+      },
+      {
+        "name": "output_subpath",
+        "type": "string",
+        "description": "Subpath within the output container"
+      }
+    ]
+  },
+  {
+    "name": "bigstream_foregroundmask",
+    "slug": "janelia-module-bigstream-foregroundmask",
+    "description": "Generate a foreground mask for a 3-D volume using Bigstream",
+    "type": "module",
+    "source": "janelia",
+    "sourceLabel": "Janelia",
+    "repository": "https://github.com/JaneliaSciComp/nextflow-modules/tree/main/modules/janelia/bigstream/foregroundmask",
+    "keywords": [
+      "bigstream",
+      "foreground-mask",
+      "segmentation"
+    ],
+    "tools": [
+      {
+        "name": "bigstream",
+        "description": "Tool for creating an alignment pipeline using different ITK algorithms",
+        "homepage": "https://github.com/JaneliaSciComp/bigstream",
+        "licence": "['BSD-3-Clause']"
+      }
+    ],
+    "components": [],
+    "authors": [
+      "cgoina",
+      "fleishmang"
+    ],
+    "inputs": [
+      {
+        "name": "meta",
+        "type": "map",
+        "description": "Groovy map containing: id\n"
+      },
+      {
+        "name": "image",
+        "type": "file|directory",
+        "description": "Path to the image (container) for which to generate the foreground mask"
+      },
+      {
+        "name": "image_subpath",
+        "type": "string",
+        "description": "If the image is a zarr container this is the relative path to the dataset"
+      },
+      {
+        "name": "timeindex",
+        "type": "string",
+        "description": "Time index to select from the image"
+      },
+      {
+        "name": "channel",
+        "type": "string",
+        "description": "Channel to select from the image"
+      },
+      {
+        "name": "mask",
+        "type": "file|directory",
+        "description": "Path to the output mask (container)"
+      },
+      {
+        "name": "mask_subpath",
+        "type": "string",
+        "description": "If the output mask is a zarr container this is the relative path to the mask dataset"
+      }
+    ],
+    "outputs": [
+      {
+        "name": "meta",
+        "type": "map",
+        "description": "Groovy map containing: id\n"
+      },
+      {
+        "name": "full_image",
+        "type": "string",
+        "description": "Full resolved path to the input image"
+      },
+      {
+        "name": "image_subpath",
+        "type": "string",
+        "description": "Subpath within the input image container"
+      },
+      {
+        "name": "full_mask",
+        "type": "string",
+        "description": "Full resolved path to the output mask"
+      },
+      {
+        "name": "mask_subpath",
+        "type": "string",
+        "description": "Subpath within the output mask container"
+      }
+    ]
+  },
+  {
+    "name": "bigstream_globalalign",
+    "slug": "janelia-module-bigstream-globalalign",
+    "description": "Global affine alignment of a 3-D volume using Bigstream",
+    "type": "module",
+    "source": "janelia",
+    "sourceLabel": "Janelia",
+    "repository": "https://github.com/JaneliaSciComp/nextflow-modules/tree/main/modules/janelia/bigstream/globalalign",
+    "keywords": [
+      "affine",
+      "registration",
+      "bigstream"
+    ],
+    "tools": [
+      {
+        "name": "bigstream",
+        "description": "Tool for creating an alignment pipeline using different ITK algorithms",
+        "homepage": "https://github.com/JaneliaSciComp/bigstream",
+        "licence": "['BSD-3-Clause']"
+      }
+    ],
+    "components": [],
+    "authors": [
+      "cgoina",
+      "fleishmang"
+    ],
+    "inputs": [
+      {
+        "name": "meta",
+        "type": "map",
+        "description": "Groovy map containing: id\n"
+      },
+      {
+        "name": "fix_image",
+        "type": "file|directory",
+        "description": "Path to the low resolution fix (reference) image (container)"
+      },
+      {
+        "name": "fix_image_subpath",
+        "type": "string",
+        "description": "If the fix image is a zarr container this is the relative path to the low resolution fix dataset"
+      },
+      {
+        "name": "mov_image",
+        "type": "file|directory",
+        "description": "Path to the low resolution moving image (container)"
+      },
+      {
+        "name": "mov_image_subpath",
+        "type": "string",
+        "description": "If the moving image is a zarr container this is the relative path to the moving dataset"
+      },
+      {
+        "name": "fix_mask",
+        "type": "file|directory",
+        "description": "Path to the mask for the low resolution fix image"
+      },
+      {
+        "name": "fix_mask_subpath",
+        "type": "string",
+        "description": "If the fix mask is a zarr container this is the relative path to the mask dataset"
+      },
+      {
+        "name": "mov_mask",
+        "type": "file|directory",
+        "description": "Path to the mask for the low resolution moving image"
+      },
+      {
+        "name": "mov_mask_subpath",
+        "type": "string",
+        "description": "If the moving mask is a zarr container this is the relative path to the mask dataset"
+      },
+      {
+        "name": "steps",
+        "type": "string",
+        "description": "Comma delimmited list of the global alignment steps"
+      },
+      {
+        "name": "output_dir",
+        "type": "directory",
+        "description": "Output directory"
+      },
+      {
+        "name": "transform_name",
+        "type": "string",
+        "description": "Name of the file containing the affine transformation"
+      },
+      {
+        "name": "alignment_name",
+        "type": "string",
+        "description": "Name of the affine transformed moving image"
+      },
+      {
+        "name": "bigstream_config",
+        "type": "file",
+        "description": "bigstream pipeline yaml configuration file"
+      }
+    ]
+  },
+  {
+    "name": "bigstream_localalign",
+    "slug": "janelia-module-bigstream-localalign",
+    "description": "Local deformable alignment of a 3-D volume using Bigstream",
+    "type": "module",
+    "source": "janelia",
+    "sourceLabel": "Janelia",
+    "repository": "https://github.com/JaneliaSciComp/nextflow-modules/tree/main/modules/janelia/bigstream/localalign",
+    "keywords": [
+      "bigstream",
+      "local-alignment",
+      "deformable-registration"
+    ],
+    "tools": [
+      {
+        "name": "bigstream",
+        "description": "Tool for creating an alignment pipeline using different ITK algorithms",
+        "homepage": "https://github.com/JaneliaSciComp/bigstream",
+        "licence": "['BSD-3-Clause']"
+      }
+    ],
+    "components": [],
+    "authors": [
+      "cgoina",
+      "fleishmang"
+    ],
+    "inputs": [
+      {
+        "name": "meta",
+        "type": "map",
+        "description": "Groovy map containing: id\n"
+      },
+      {
+        "name": "fix_image",
+        "type": "file|directory",
+        "description": "Path to the fixed (reference) image (container)"
+      },
+      {
+        "name": "fix_image_subpath",
+        "type": "string",
+        "description": "If the fix image is a zarr container this is the relative path to the dataset"
+      },
+      {
+        "name": "fix_timeindex",
+        "type": "string",
+        "description": "Time index to select from the fix image"
+      },
+      {
+        "name": "fix_channel",
+        "type": "string",
+        "description": "Channel to select from the fix image"
+      },
+      {
+        "name": "mov_image",
+        "type": "file|directory",
+        "description": "Path to the moving image (container)"
+      },
+      {
+        "name": "mov_image_subpath",
+        "type": "string",
+        "description": "If the moving image is a zarr container this is the relative path to the dataset"
+      },
+      {
+        "name": "mov_timeindex",
+        "type": "string",
+        "description": "Time index to select from the moving image"
+      },
+      {
+        "name": "mov_channel",
+        "type": "string",
+        "description": "Channel to select from the moving image"
+      },
+      {
+        "name": "fix_mask",
+        "type": "file|directory",
+        "description": "Path to the mask for the fixed image"
+      },
+      {
+        "name": "fix_mask_subpath",
+        "type": "string",
+        "description": "If the fix mask is a zarr container this is the relative path to the mask dataset"
+      },
+      {
+        "name": "mov_mask",
+        "type": "file|directory",
+        "description": "Path to the mask for the moving image"
+      },
+      {
+        "name": "mov_mask_subpath",
+        "type": "string",
+        "description": "If the moving mask is a zarr container this is the relative path to the mask dataset"
+      },
+      {
+        "name": "affine_transform",
+        "type": "file",
+        "description": "Global affine transformation file"
+      },
+      {
+        "name": "steps",
+        "type": "string",
+        "description": "Comma delimited list of the local alignment steps"
+      },
+      {
+        "name": "transform_dir",
+        "type": "directory",
+        "description": "Output directory for the local transform"
+      },
+      {
+        "name": "transform_name",
+        "type": "string",
+        "description": "Name of the local deformation transform file"
+      },
+      {
+        "name": "transform_subpath",
+        "type": "string",
+        "description": "Subpath for the local deformation transform"
+      },
+      {
+        "name": "inv_transform_name",
+        "type": "string",
+        "description": "Name of the inverse local deformation transform file"
+      },
+      {
+        "name": "inv_transform_subpath",
+        "type": "string",
+        "description": "Subpath for the inverse local deformation transform"
+      },
+      {
+        "name": "align_dir",
+        "type": "directory",
+        "description": "Output directory for the aligned (warped) image"
+      },
+      {
+        "name": "align_name",
+        "type": "string",
+        "description": "Name of the locally aligned image file"
+      },
+      {
+        "name": "align_subpath",
+        "type": "string",
+        "description": "Subpath for the aligned image"
+      },
+      {
+        "name": "align_timeindex",
+        "type": "string",
+        "description": "Time index for the aligned output image"
+      },
+      {
+        "name": "align_channel",
+        "type": "string",
+        "description": "Channel for the aligned output image"
+      },
+      {
+        "name": "bigstream_config",
+        "type": "file",
+        "description": "Bigstream pipeline YAML configuration file"
+      },
+      {
+        "name": "dask_scheduler",
+        "type": "string",
+        "description": "Dask scheduler address"
+      },
+      {
+        "name": "dask_config",
+        "type": "file",
+        "description": "Dask configuration file (optional)"
+      },
+      {
+        "name": "cpus",
+        "type": "integer",
+        "description": "Number of CPUs allocated to the process"
+      },
+      {
+        "name": "mem_gb",
+        "type": "integer",
+        "description": "Memory in GB allocated to the process"
+      }
+    ],
+    "outputs": [
+      {
+        "name": "meta",
+        "type": "map",
+        "description": "Groovy map containing: id\n"
+      },
+      {
+        "name": "full_fix_image",
+        "type": "string",
+        "description": "Full resolved path to the fix image"
+      },
+      {
+        "name": "fix_image_subpath",
+        "type": "string",
+        "description": "Subpath within the fix image container"
+      },
+      {
+        "name": "full_mov_image",
+        "type": "string",
+        "description": "Full resolved path to the moving image"
+      },
+      {
+        "name": "mov_image_subpath",
+        "type": "string",
+        "description": "Subpath within the moving image container"
+      },
+      {
+        "name": "full_affine_transform",
+        "type": "string",
+        "description": "Full resolved path to the affine transform"
+      },
+      {
+        "name": "full_transform_dir",
+        "type": "string",
+        "description": "Full resolved path to the transform directory"
+      },
+      {
+        "name": "transform_name",
+        "type": "string",
+        "description": "Name of the local deformation transform file"
+      },
+      {
+        "name": "transform_subpath",
+        "type": "string",
+        "description": "Subpath for the local deformation transform (defaults to mov_image_subpath if not provided)"
+      },
+      {
+        "name": "inv_transform_name",
+        "type": "string",
+        "description": "Name of the inverse local deformation transform file"
+      },
+      {
+        "name": "inv_transform_subpath",
+        "type": "string",
+        "description": "Subpath for the inverse local deformation transform"
+      },
+      {
+        "name": "full_align_dir",
+        "type": "string",
+        "description": "Full resolved path to the aligned output directory"
+      },
+      {
+        "name": "align_name",
+        "type": "string",
+        "description": "Name of the locally aligned image file"
+      },
+      {
+        "name": "align_subpath",
+        "type": "string",
+        "description": "Subpath for the aligned image"
+      }
+    ]
+  },
+  {
     "name": "bigstream_registration",
     "slug": "janelia-subworkflow-bigstream-registration",
     "description": "Runs a registration pipeline using Bigstream on a Dask cluster",
@@ -80,12 +1071,149 @@
       "dask"
     ],
     "components": [
-      "bigstream_globalalign",
-      "bigstream_localalign",
-      "bigstream_deform",
-      "dask_cluster"
+      "janelia/bigstream/globalalign",
+      "janelia/bigstream/localalign",
+      "janelia/bigstream/deform",
+      "janelia/dask_start",
+      "janelia/dask_stop"
     ],
-    "authors": []
+    "authors": [
+      "krokicki",
+      "cgoina"
+    ],
+    "outputs": [
+      {
+        "name": "global",
+        "type": "tuple",
+        "description": "Global alignment results from BIGSTREAM_GLOBALALIGN.\nStructure: [ val(meta), path(fix_image), val(fix_image_subpath),\n             path(mov_image), val(mov_image_subpath),\n             path(transform_dir), val(transform_name),\n             path(align_dir), val(align_name), val(align_subpath) ]\n"
+      },
+      {
+        "name": "local",
+        "type": "tuple",
+        "description": "Local alignment results from BIGSTREAM_LOCALALIGN.\nStructure: [ val(meta), path(fix_image), val(fix_image_subpath),\n             path(mov_image), val(mov_image_subpath),\n             path(affine_transform),\n             path(transform_dir),\n             val(transform_name), val(transform_subpath),\n             val(inv_transform_name), val(inv_transform_subpath),\n             path(align_dir), val(align_name), val(align_subpath) ]\n"
+      },
+      {
+        "name": "cluster",
+        "type": "tuple",
+        "description": "Cluster termination signal.\nStructure: [ val(meta), val(empty_map) ]\n"
+      }
+    ]
+  },
+  {
+    "name": "bigstream_transformcoords",
+    "slug": "janelia-module-bigstream-transformcoords",
+    "description": "Apply affine and deformation transforms to coordinate sets using Bigstream",
+    "type": "module",
+    "source": "janelia",
+    "sourceLabel": "Janelia",
+    "repository": "https://github.com/JaneliaSciComp/nextflow-modules/tree/main/modules/janelia/bigstream/transformcoords",
+    "keywords": [
+      "bigstream",
+      "coordinates",
+      "transform"
+    ],
+    "tools": [
+      {
+        "name": "bigstream",
+        "description": "Tool for creating an alignment pipeline using different ITK algorithms",
+        "homepage": "https://github.com/JaneliaSciComp/bigstream",
+        "licence": "['BSD-3-Clause']"
+      }
+    ],
+    "components": [],
+    "authors": [
+      "cgoina",
+      "fleishmang"
+    ],
+    "inputs": [
+      {
+        "name": "meta",
+        "type": "map",
+        "description": "Groovy map containing: id\n"
+      },
+      {
+        "name": "input_coords",
+        "type": "file",
+        "description": "Path to the input coordinates file"
+      },
+      {
+        "name": "output_dir",
+        "type": "directory",
+        "description": "Output directory for the warped coordinates"
+      },
+      {
+        "name": "warped_coords_name",
+        "type": "string",
+        "description": "Name of the output warped coordinates file"
+      },
+      {
+        "name": "source_image",
+        "type": "file|directory",
+        "description": "Path to the source image (container) used for coordinate reference"
+      },
+      {
+        "name": "source_image_subpath",
+        "type": "string",
+        "description": "If the source image is a zarr container this is the relative path to the dataset"
+      },
+      {
+        "name": "resolution",
+        "type": "string",
+        "description": "Pixel resolution of the source image"
+      },
+      {
+        "name": "downsampling_factors",
+        "type": "string",
+        "description": "Downsampling factors applied to the source image"
+      },
+      {
+        "name": "affine_transforms",
+        "type": "file",
+        "description": "One or more affine transformation files (optional)"
+      },
+      {
+        "name": "deform_dir",
+        "type": "directory",
+        "description": "Location of the vector displacement field (optional)"
+      },
+      {
+        "name": "deform_subpath",
+        "type": "string",
+        "description": "Displacement vector subpath within the deform container"
+      },
+      {
+        "name": "dask_scheduler",
+        "type": "string",
+        "description": "Dask scheduler address"
+      },
+      {
+        "name": "dask_config",
+        "type": "file",
+        "description": "Dask configuration file (optional)"
+      },
+      {
+        "name": "cpus",
+        "type": "integer",
+        "description": "Number of CPUs allocated to the process"
+      },
+      {
+        "name": "mem_gb",
+        "type": "integer",
+        "description": "Memory in GB allocated to the process"
+      }
+    ],
+    "outputs": [
+      {
+        "name": "results",
+        "type": "tuple",
+        "description": "Tuple containing:\n- meta: Groovy map containing id\n- full_input_coords: Full resolved path to the input coordinates\n- warped_coords: Full path to the output warped coordinates file\n"
+      },
+      {
+        "name": "source",
+        "type": "tuple",
+        "description": "Tuple containing:\n- meta: Groovy map containing id\n- source_fullpath: Full resolved path to the source image\n- source_image_subpath: Subpath within the source image container\n"
+      }
+    ]
   },
   {
     "name": "bioformats2raw",
@@ -122,6 +1250,42 @@
         "type": "file",
         "description": "File containing software versions",
         "pattern": "versions.yml"
+      }
+    ]
+  },
+  {
+    "name": "bioformats2raw",
+    "slug": "nf-core-module-bioformats2raw",
+    "description": "Java application to convert image file formats, including .mrxs, to an intermediate Zarr structure compatible with the OME-NGFF specification.",
+    "type": "module",
+    "source": "nf-core",
+    "sourceLabel": "nf-core",
+    "repository": "https://github.com/nf-core/modules/tree/main/modules/nf-core/bioformats2raw",
+    "keywords": [
+      "zarr",
+      "ome-ngff",
+      "imaging"
+    ],
+    "tools": [
+      {
+        "name": "bioformats2raw",
+        "description": "Java application to convert image file formats, including .mrxs, to an intermediate Zarr structure compatible with the OME-NGFF specification.",
+        "homepage": "https://github.com/glencoesoftware/bioformats2raw",
+        "documentation": "https://github.com/glencoesoftware/bioformats2raw",
+        "licence": [
+          "GPL-2.0"
+        ]
+      }
+    ],
+    "authors": [
+      "CaroAMN"
+    ],
+    "maintainers": [
+      "CaroAMN"
+    ],
+    "inputs": [
+      {
+        "name": "0"
       }
     ]
   },
@@ -230,139 +1394,49 @@
   },
   {
     "name": "cellpose",
-    "slug": "janelia-module-cellpose",
-    "description": "Performs a 3-D segmentation using cellpose distributed on a dask cluster",
+    "slug": "nf-core-module-cellpose",
+    "description": "cellpose segments cells in images using GPU-accelerated deep learning",
     "type": "module",
-    "source": "janelia",
-    "sourceLabel": "Janelia",
-    "repository": "https://github.com/JaneliaSciComp/nextflow-modules/tree/main/modules/janelia/cellpose",
+    "source": "nf-core",
+    "sourceLabel": "nf-core",
+    "repository": "https://github.com/nf-core/modules/tree/main/modules/nf-core/cellpose",
     "keywords": [
-      "dask",
       "segmentation",
-      "cellpose"
+      "image",
+      "cellpose",
+      "gpu",
+      "spatial-transcriptomics"
     ],
     "tools": [
       {
         "name": "cellpose",
-        "description": "A generalist algorithm for cell and nucleus segmentation.",
+        "description": "cellpose is an anatomical segmentation algorithm written in Python 3 by Carsen Stringer and Marius Pachitariu",
         "homepage": "https://github.com/MouseLand/cellpose",
-        "licence": "['BSD-3-Clause']"
+        "documentation": "https://cellpose.readthedocs.io/en/latest/command.html",
+        "licence": [
+          "BSD 3-Clause"
+        ]
       }
     ],
     "authors": [
-      "cgoina"
+      "josenimo",
+      "FloWuenne",
+      "dongzehe"
     ],
     "maintainers": [
-      "cgoina"
+      "josenimo",
+      "FloWuenne",
+      "kbestak"
     ],
     "inputs": [
       {
-        "name": "meta",
-        "type": "map",
-        "description": "Groovy map containing: id, input_image_dataset, output_image_name\n"
+        "name": "0"
       },
       {
-        "name": "image",
+        "name": "model",
         "type": "file",
-        "description": "Path to the image container"
-      },
-      {
-        "name": "image_subpath",
-        "type": "string",
-        "description": "Relative path to the image dataset if needed (for N5 or zarr containers)"
-      },
-      {
-        "name": "models_path",
-        "type": "directory",
-        "description": "Optional path to the cellpose models cache directory. If this is not specified pass in as empty list.\n"
-      },
-      {
-        "name": "model_name",
-        "type": "string",
-        "description": "The name of the cellpose model."
-      },
-      {
-        "name": "output_dir",
-        "type": "directory",
-        "description": "Directory location of the output image container"
-      },
-      {
-        "name": "labels",
-        "type": "string",
-        "description": "Name of the labels container created at the location specified by output_dir"
-      },
-      {
-        "name": "labels_subpath",
-        "type": "string",
-        "description": "Relative labels dataset subpath"
-      },
-      {
-        "name": "working_dir",
-        "type": "directory",
-        "description": "Location of the temporary files created during the segmentation. This must have enough space to hold the temporary labels \nbefore they are reassigned during the merge process\n"
-      },
-      {
-        "name": "dask_scheduler",
-        "type": "string",
-        "description": "Dask scheduler IP"
-      },
-      {
-        "name": "dask_config",
-        "type": "file",
-        "description": "Optional path to the dask config. If this is not specified pass in as empty list.\n"
-      },
-      {
-        "name": "preprocessing_config",
-        "type": "file",
-        "description": "Optional YAML file holding the configuration parameters for various preprocessing operations.\nSo far the only preprocessing available is a gaussian filter but there may be more in the future\n"
-      },
-      {
-        "name": "logging_config",
-        "type": "file",
-        "description": "Optional log config."
-      },
-      {
-        "name": "cellpose_cpus",
-        "type": "integer",
-        "description": "Number of cpus needed to run the main cellpose program"
-      },
-      {
-        "name": "cellpose_mem_in_gb",
-        "type": "string",
-        "description": "Memory needed for the main cellpose program"
-      }
-    ],
-    "outputs": [
-      {
-        "name": "meta",
-        "type": "map",
-        "description": "Groovy map containing: id, input_image_dataset, output_image_name\n"
-      },
-      {
-        "name": "input_image_fullpath",
-        "type": "directory",
-        "description": "Full path to the input image container\n"
-      },
-      {
-        "name": "image_subpath",
-        "type": "string",
-        "description": "Subpath to the input image dataset\n"
-      },
-      {
-        "name": "output_label_images",
-        "type": "string",
-        "description": "One or more image names containing segmentation results. If the output is a zarr or N5 container\nthere's only one output_label_image, but if the output type is a tiff and the segmented image is large\nthere can be multiple tiff files\n"
-      },
-      {
-        "name": "output_labels_subpath",
-        "type": "string",
-        "description": "this is the labels dataset if the output is a zarr or N5 container"
-      },
-      {
-        "name": "versions",
-        "type": "file",
-        "description": "File containing software versions",
-        "pattern": "versions.yml"
+        "description": "Optional custom cellpose model file. When provided, passed as\n--pretrained_model to cellpose. Pass [] (empty list) to use the\ndefault model (cpsam in cellpose 4).\n",
+        "pattern": "*"
       }
     ]
   },
@@ -428,10 +1502,59 @@
       "infrastructure",
       "distributed"
     ],
-    "components": [
-      "dask_cluster"
+    "authors": [
+      "krokicki",
+      "cgoina"
     ],
-    "authors": []
+    "inputs": [
+      {
+        "name": "meta_and_files",
+        "type": "tuple",
+        "description": "Channel containing metadata and files that need to be accessible by the cluster.\nStructure: [ val(meta), path(files)... ]\n"
+      },
+      {
+        "name": "distributed",
+        "type": "boolean",
+        "description": "If true, create a distributed Dask cluster; if false, return empty context"
+      },
+      {
+        "name": "dask_config",
+        "type": "file",
+        "description": "Path to Dask configuration file (optional)"
+      },
+      {
+        "name": "dask_work_path",
+        "type": "directory",
+        "description": "Path to Dask work directory where cluster files will be stored (optional)"
+      },
+      {
+        "name": "total_workers",
+        "type": "integer",
+        "description": "Number of total workers to start in the cluster"
+      },
+      {
+        "name": "required_workers",
+        "type": "integer",
+        "description": "Minimum number of workers required before the cluster is considered ready"
+      },
+      {
+        "name": "dask_worker_cpus",
+        "type": "integer",
+        "description": "Number of CPU cores allocated per worker"
+      },
+      {
+        "name": "dask_worker_mem_gb",
+        "type": "integer",
+        "description": "Memory in GB allocated per worker"
+      }
+    ],
+    "outputs": [
+      {
+        "name": "dask_context",
+        "type": "tuple",
+        "description": "Dask cluster context information. If distributed=true, contains cluster details;\nif distributed=false, contains empty map.\nStructure: [ val(meta), val(dask_info) ]\nWhere dask_info is a map containing:\n  - scheduler_address: Address of the Dask scheduler\n  - cluster_work_dir: Path to the cluster work directory\n  - available_workers: Number of workers that joined the cluster\n"
+      }
+    ]
   },
   {
     "name": "dask_startcluster",
@@ -833,6 +1956,47 @@
         "name": "versions",
         "type": "string",
         "description": "Software versions file\n"
+      }
+    ]
+  },
+  {
+    "name": "deepcell_mesmer",
+    "slug": "nf-core-module-deepcell-mesmer",
+    "description": "Deepcell/mesmer segmentation for whole-cell",
+    "type": "module",
+    "source": "nf-core",
+    "sourceLabel": "nf-core",
+    "repository": "https://github.com/nf-core/modules/tree/main/modules/nf-core/deepcell/mesmer",
+    "keywords": [
+      "imaging",
+      "spatial_omics",
+      "segmentation"
+    ],
+    "tools": [
+      {
+        "name": "mesmer",
+        "description": "Deep cell is a collection of tools to segment imaging data",
+        "homepage": "https://github.com/vanvalenlab/deepcell-tf",
+        "documentation": "https://github.com/vanvalenlab/intro-to-deepcell/tree/master/pretrained_models",
+        "licence": [
+          "APACHE2"
+        ]
+      }
+    ],
+    "authors": [
+      "migueLib",
+      "chiarasch"
+    ],
+    "maintainers": [
+      "migueLib",
+      "chiarasch"
+    ],
+    "inputs": [
+      {
+        "name": "0"
+      },
+      {
+        "name": "0"
       }
     ]
   },
@@ -1608,6 +2772,189 @@
     ]
   },
   {
+    "name": "mcstaging_imc2mc",
+    "slug": "nf-core-module-mcstaging-imc2mc",
+    "description": "Staging module for MCMICRO transforming Imaging Mass Cytometry .txt files to .tif files with OME-XML metadata. Includes optional hot pixel removal.",
+    "type": "module",
+    "source": "nf-core",
+    "sourceLabel": "nf-core",
+    "repository": "https://github.com/nf-core/modules/tree/main/modules/nf-core/mcstaging/imc2mc",
+    "keywords": [
+      "imaging",
+      "ome-tif",
+      "staging",
+      "MCMICRO"
+    ],
+    "tools": [
+      {
+        "name": "mcstaging",
+        "description": "Staging modules for MCMICRO",
+        "homepage": "https://github.com/SchapiroLabor/imc2mc",
+        "documentation": "https://github.com/SchapiroLabor/imc2mc/README.md",
+        "licence": [
+          "GPL-3.0 license"
+        ]
+      }
+    ],
+    "authors": [
+      "MargotCh"
+    ],
+    "maintainers": [
+      "MargotCh"
+    ],
+    "inputs": [
+      {
+        "name": "0"
+      }
+    ]
+  },
+  {
+    "name": "mcstaging_macsima2mc",
+    "slug": "nf-core-module-mcstaging-macsima2mc",
+    "description": "Staging module for MCMICRO transforming MACSima data sets for being registered with ASHLAR in MCMICRO.",
+    "type": "module",
+    "source": "nf-core",
+    "sourceLabel": "nf-core",
+    "repository": "https://github.com/nf-core/modules/tree/main/modules/nf-core/mcstaging/macsima2mc",
+    "keywords": [
+      "imaging",
+      "ome-tif",
+      "mcmicro",
+      "staging",
+      "spatial-omics",
+      "macsima"
+    ],
+    "tools": [
+      {
+        "name": "mcstaging",
+        "description": "Staging modules for MCMICRO",
+        "homepage": "https://github.com/SchapiroLabor/macsima2mc",
+        "documentation": "https://github.com/SchapiroLabor/macsima2mc/README.md",
+        "licence": [
+          "BSD-3-Clause"
+        ]
+      }
+    ],
+    "authors": [
+      "EfraMP"
+    ],
+    "maintainers": [
+      "EfraMP",
+      "VictorDidier"
+    ],
+    "inputs": [
+      {
+        "name": "0"
+      }
+    ]
+  },
+  {
+    "name": "mcstaging_phenoimager2mc",
+    "slug": "nf-core-module-mcstaging-phenoimager2mc",
+    "description": "Staging module for MCMICRO transforming PhenoImager .tif files into stacked and normalized ome-tif files per cycle, compatible as ASHLAR input.",
+    "type": "module",
+    "source": "nf-core",
+    "sourceLabel": "nf-core",
+    "repository": "https://github.com/nf-core/modules/tree/main/modules/nf-core/mcstaging/phenoimager2mc",
+    "keywords": [
+      "imaging",
+      "registration",
+      "ome-tif",
+      "Staging",
+      "MCMICRO"
+    ],
+    "tools": [
+      {
+        "name": "mcstaging",
+        "description": "Staging modules for MCMICRO",
+        "homepage": "https://github.com/SchapiroLabor/phenoimager2mc",
+        "documentation": "https://github.com/SchapiroLabor/phenoimager2mc/README.md",
+        "licence": [
+          "GPL-2.0 license"
+        ]
+      }
+    ],
+    "authors": [
+      "chiarasch"
+    ],
+    "maintainers": [
+      "chiarasch"
+    ],
+    "inputs": [
+      {
+        "name": "0"
+      }
+    ]
+  },
+  {
+    "name": "metaspace_converter",
+    "slug": "nf-core-module-metaspace-converter",
+    "description": "Export METASPACE datasets to AnnData and SpatialData objects",
+    "type": "module",
+    "source": "nf-core",
+    "sourceLabel": "nf-core",
+    "repository": "https://github.com/nf-core/modules/tree/main/modules/nf-core/metaspace/converter",
+    "keywords": [
+      "anndata",
+      "spatialdata",
+      "metabolomics",
+      "mass spectrometry",
+      "imaging"
+    ],
+    "tools": [
+      {
+        "name": "metaspace_converter",
+        "description": "Python package to download and convert datasets from the METASPACE knowledge base to common formats for single-cell and spatial omics analysis",
+        "homepage": "https://metaspace2020.github.io/metaspace-converter/",
+        "documentation": "https://metaspace2020.github.io/metaspace-converter/",
+        "licence": [
+          "Apache 2.0 license"
+        ]
+      }
+    ],
+    "authors": [
+      "bisho2122"
+    ],
+    "maintainers": [
+      "bisho2122"
+    ],
+    "inputs": [
+      {
+        "name": "ds_id",
+        "type": "string",
+        "description": "METASPACE dataset identifier to retrieve and convert to AnnData and SpatialData formats."
+      },
+      {
+        "name": "database_name_",
+        "type": "string",
+        "description": "Name of the metabolite annotation database to use (e.g., HMDB)"
+      },
+      {
+        "name": "database_version_",
+        "type": "string",
+        "description": "Version of the annotation database to use (e.g., v4)"
+      },
+      {
+        "name": "fdr_",
+        "type": "string",
+        "description": "False Discovery Rate threshold for filtering metabolite annotations.",
+        "pattern": "^(0(\\.[0-9]+)?|1(\\.0+)?)$"
+      },
+      {
+        "name": "use_tic_",
+        "type": "string",
+        "description": "Controls whether intensity values are scaled by the total ion count per pixel.\n",
+        "pattern": "^(true|false)$"
+      },
+      {
+        "name": "metadata_as_obs_",
+        "type": "string",
+        "description": "Whether to store metadata in the obs dataframe instead of uns.\n",
+        "pattern": "^(true|false)$"
+      }
+    ]
+  },
+  {
     "name": "microaligner_registration",
     "slug": "sanger-subworkflow-microaligner-registration",
     "description": "Register microscopy images using two-step microaligner",
@@ -1649,6 +2996,80 @@
         "type": "file",
         "description": "File containing software versions\nStructure: [ path(versions.yml) ]\n",
         "pattern": "versions.yml"
+      }
+    ]
+  },
+  {
+    "name": "MINDAGAP_DUPLICATEFINDER",
+    "slug": "nf-core-module-mindagap-duplicatefinder",
+    "description": "marks duplicate spots along gridline edges.",
+    "type": "module",
+    "source": "nf-core",
+    "sourceLabel": "nf-core",
+    "repository": "https://github.com/nf-core/modules/tree/main/modules/nf-core/mindagap/duplicatefinder",
+    "keywords": [
+      "imaging",
+      "resolve_bioscience",
+      "spatial_transcriptomics"
+    ],
+    "tools": [
+      {
+        "name": "mindagap",
+        "description": "Takes a single panorama image and fills the empty grid lines with neighbour-weighted values.",
+        "homepage": "https://github.com/ViriatoII/MindaGap/blob/main/README.md",
+        "documentation": "https://github.com/ViriatoII/MindaGap/blob/main/README.md",
+        "licence": [
+          "BSD 3-clause License"
+        ]
+      }
+    ],
+    "authors": [
+      "FloWuenne"
+    ],
+    "maintainers": [
+      "FloWuenne"
+    ],
+    "inputs": [
+      {
+        "name": "0"
+      }
+    ]
+  },
+  {
+    "name": "mindagap_mindagap",
+    "slug": "nf-core-module-mindagap-mindagap",
+    "description": "Takes a single panorama image and fills the empty grid lines with neighbour-weighted values.",
+    "type": "module",
+    "source": "nf-core",
+    "sourceLabel": "nf-core",
+    "repository": "https://github.com/nf-core/modules/tree/main/modules/nf-core/mindagap/mindagap",
+    "keywords": [
+      "imaging",
+      "resolve_bioscience",
+      "spatial_transcriptomics"
+    ],
+    "tools": [
+      {
+        "name": "mindagap",
+        "description": "Mindagap is a collection of tools to process multiplexed FISH data, such as produced by Resolve Biosciences Molecular Cartography.",
+        "homepage": "https://github.com/ViriatoII/MindaGap",
+        "documentation": "https://github.com/ViriatoII/MindaGap/blob/main/README.md",
+        "licence": [
+          "BSD-3-Clause license"
+        ]
+      }
+    ],
+    "authors": [
+      "ViriatoII",
+      "flowuenne"
+    ],
+    "maintainers": [
+      "ViriatoII",
+      "flowuenne"
+    ],
+    "inputs": [
+      {
+        "name": "0"
       }
     ]
   },
@@ -1700,6 +3121,43 @@
         "type": "file",
         "description": "File containing software versions",
         "pattern": "versions.yml"
+      }
+    ]
+  },
+  {
+    "name": "molkartgarage_clahe",
+    "slug": "nf-core-module-molkartgarage-clahe",
+    "description": "Contrast-limited adjusted histogram equalization (CLAHE) on single-channel tif images.",
+    "type": "module",
+    "source": "nf-core",
+    "sourceLabel": "nf-core",
+    "repository": "https://github.com/nf-core/modules/tree/main/modules/nf-core/molkartgarage/clahe",
+    "keywords": [
+      "clahe",
+      "image_processing",
+      "imaging",
+      "correction"
+    ],
+    "tools": [
+      {
+        "name": "molkartgarage",
+        "description": "One-stop-shop for scripts and tools for processing data for molkart and spatial omics pipelines.",
+        "homepage": "https://github.com/SchapiroLabor/molkart-local/tree/main",
+        "documentation": "https://github.com/SchapiroLabor/molkart-local/tree/main",
+        "licence": [
+          "MIT"
+        ]
+      }
+    ],
+    "authors": [
+      "kbestak"
+    ],
+    "maintainers": [
+      "kbestak"
+    ],
+    "inputs": [
+      {
+        "name": "0"
       }
     ]
   },
@@ -1935,6 +3393,96 @@
     ]
   },
   {
+    "name": "omezarrtools_multiscale",
+    "slug": "janelia-module-omezarrtools-multiscale",
+    "description": "Generates a multiscale pyramid for an OME-Zarr container",
+    "type": "module",
+    "source": "janelia",
+    "sourceLabel": "Janelia",
+    "repository": "https://github.com/JaneliaSciComp/nextflow-modules/tree/main/modules/janelia/omezarrtools/multiscale",
+    "keywords": [
+      "dask",
+      "image formats",
+      "OME-Zarr",
+      "multiscale",
+      "pyramid"
+    ],
+    "tools": [
+      {
+        "name": "zarr-tools",
+        "description": "Tools for working with Zarr and OME-Zarr arrays.",
+        "homepage": "https://github.com/JaneliaSciComp/zarr-tools"
+      }
+    ],
+    "components": [],
+    "authors": [
+      "cgoina"
+    ],
+    "maintainers": [
+      "cgoina"
+    ],
+    "inputs": [
+      {
+        "name": "meta",
+        "type": "map",
+        "description": "Groovy map containing sample metadata. Must include an 'id' field.\n"
+      },
+      {
+        "name": "data_container",
+        "type": "directory",
+        "description": "Path to the OME-Zarr container for which to generate the multiscale pyramid"
+      },
+      {
+        "name": "dataset_subpath",
+        "type": "string",
+        "description": "Relative path to the dataset within the container (for N5 or Zarr containers).\nPass as empty string if the dataset is at the root of the container.\n"
+      },
+      {
+        "name": "dask_scheduler",
+        "type": "string",
+        "description": "Dask scheduler IP address. If not using a distributed cluster, pass as empty string.\n"
+      },
+      {
+        "name": "dask_config",
+        "type": "file",
+        "description": "Optional path to a dask configuration file. If not specified, pass as empty list ([]).\n"
+      },
+      {
+        "name": "cpus",
+        "type": "integer",
+        "description": "Number of CPUs to allocate for the process"
+      },
+      {
+        "name": "mem_gb",
+        "type": "integer",
+        "description": "Amount of memory in GB to allocate for the process"
+      }
+    ],
+    "outputs": [
+      {
+        "name": "meta",
+        "type": "map",
+        "description": "Groovy map containing sample metadata. Must include an 'id' field.\n"
+      },
+      {
+        "name": "full_data_container_path",
+        "type": "string",
+        "description": "Resolved full path to the OME-Zarr container\n"
+      },
+      {
+        "name": "dataset_subpath",
+        "type": "string",
+        "description": "Relative path to the dataset within the container\n"
+      },
+      {
+        "name": "versions",
+        "type": "file",
+        "description": "File containing software versions",
+        "pattern": "versions.yml"
+      }
+    ]
+  },
+  {
     "name": "postcode_decoding",
     "slug": "sanger-subworkflow-postcode-decoding",
     "description": "Sort SAM/BAM/CRAM file",
@@ -2070,46 +3618,384 @@
     ]
   },
   {
-    "name": "rs_fish",
-    "slug": "janelia-module-rs-fish",
-    "description": "Precise, interactive, fast, and scalable FISH spot detection",
+    "name": "pretextsnapshot",
+    "slug": "nf-core-module-pretextsnapshot",
+    "description": "A module to generate images from Pretext contact maps.",
+    "type": "module",
+    "source": "nf-core",
+    "sourceLabel": "nf-core",
+    "repository": "https://github.com/nf-core/modules/tree/main/modules/nf-core/pretextsnapshot",
+    "keywords": [
+      "pretext",
+      "image",
+      "hic",
+      "png",
+      "jpg",
+      "bmp",
+      "contact maps"
+    ],
+    "tools": [
+      {
+        "name": "pretextsnapshot",
+        "description": "Commandline image generator for Pretext Hi-C genome contact maps.",
+        "homepage": "https://github.com/wtsi-hpag/PretextSnapshot",
+        "licence": [
+          "https://github.com/wtsi-hpag/PretextSnapshot/blob/master/LICENSE"
+        ]
+      }
+    ],
+    "authors": [
+      "epaule"
+    ],
+    "maintainers": [
+      "epaule",
+      "DLBPointon"
+    ],
+    "inputs": [
+      {
+        "name": "0"
+      }
+    ]
+  },
+  {
+    "name": "raw2ometiff",
+    "slug": "nf-core-module-raw2ometiff",
+    "description": "write your description here",
+    "type": "module",
+    "source": "nf-core",
+    "sourceLabel": "nf-core",
+    "repository": "https://github.com/nf-core/modules/tree/main/modules/nf-core/raw2ometiff",
+    "keywords": [
+      "ome",
+      "tiff",
+      "imaging"
+    ],
+    "tools": [
+      {
+        "name": "raw2ometiff",
+        "description": "Java application to convert a directory of tiles to an OME-TIFF pyramid.",
+        "homepage": "https://github.com/glencoesoftware/raw2ometiff",
+        "documentation": "https://github.com/glencoesoftware/raw2ometiff",
+        "licence": [
+          "GPL-2.0"
+        ]
+      }
+    ],
+    "authors": [
+      "CaroAMN"
+    ],
+    "maintainers": [
+      "CaroAMN"
+    ],
+    "inputs": [
+      {
+        "name": "0"
+      }
+    ]
+  },
+  {
+    "name": "segtools_distributed_cellpose",
+    "slug": "janelia-module-segtools-distributed-cellpose",
+    "description": "Performs a 3-D segmentation using cellpose distributed on a dask cluster",
     "type": "module",
     "source": "janelia",
     "sourceLabel": "Janelia",
-    "repository": "https://github.com/JaneliaSciComp/nextflow-modules/tree/main/modules/janelia/rs_fish",
+    "repository": "https://github.com/JaneliaSciComp/nextflow-modules/tree/main/modules/janelia/segtools/distributed/cellpose",
     "keywords": [
-      "spatial transcriptomics",
-      "spatial genomics",
-      "FISH"
+      "dask",
+      "segmentation",
+      "cellpose"
     ],
-    "components": [],
+    "tools": [
+      {
+        "name": "cellpose",
+        "description": "A generalist algorithm for cell and nucleus segmentation.",
+        "homepage": "https://github.com/MouseLand/cellpose",
+        "licence": "['BSD-3-Clause']"
+      }
+    ],
     "authors": [
-      "krokicki",
+      "cgoina"
+    ],
+    "maintainers": [
       "cgoina"
     ],
     "inputs": [
       {
-        "name": "ch_meta",
-        "type": "tuple",
-        "description": "Channel of tuples containing a meta map\nStructure: [ val(meta), path(input_image), val(input_dataset), val(spark) ]\n"
+        "name": "meta",
+        "type": "map",
+        "description": "Groovy map containing: id, input_image_dataset, output_image_name\n"
+      },
+      {
+        "name": "image",
+        "type": "file",
+        "description": "Path to the image container"
+      },
+      {
+        "name": "image_subpath",
+        "type": "string",
+        "description": "Relative path to the image dataset if needed (for N5 or zarr containers)"
+      },
+      {
+        "name": "models_path",
+        "type": "directory",
+        "description": "Optional path to the cellpose models cache directory. If this is not specified pass in as empty list.\n"
+      },
+      {
+        "name": "model_name",
+        "type": "string",
+        "description": "The name of the cellpose model."
+      },
+      {
+        "name": "output_dir",
+        "type": "directory",
+        "description": "Directory location of the output image container"
+      },
+      {
+        "name": "labels",
+        "type": "string",
+        "description": "Name of the labels container created at the location specified by output_dir"
+      },
+      {
+        "name": "labels_subpath",
+        "type": "string",
+        "description": "Relative labels dataset subpath"
+      },
+      {
+        "name": "working_dir",
+        "type": "directory",
+        "description": "Location of the temporary files created during the segmentation. This must have enough space to hold the temporary labels \nbefore they are reassigned during the merge process\n"
+      },
+      {
+        "name": "dask_scheduler",
+        "type": "string",
+        "description": "Dask scheduler IP"
+      },
+      {
+        "name": "dask_config",
+        "type": "file",
+        "description": "Optional path to the dask config. If this is not specified pass in as empty list.\n"
+      },
+      {
+        "name": "preprocessing_config",
+        "type": "file",
+        "description": "Optional YAML file holding the configuration parameters for various preprocessing operations.\nSo far the only preprocessing available is a gaussian filter but there may be more in the future\n"
+      },
+      {
+        "name": "logging_config",
+        "type": "file",
+        "description": "Optional log config."
+      },
+      {
+        "name": "cellpose_cpus",
+        "type": "integer",
+        "description": "Number of cpus needed to run the main cellpose program"
+      },
+      {
+        "name": "cellpose_mem_in_gb",
+        "type": "string",
+        "description": "Memory needed for the main cellpose program"
       }
     ],
     "outputs": [
       {
-        "name": "params",
-        "type": "tuple",
-        "description": "Same as the input tuple\n"
+        "name": "meta",
+        "type": "map",
+        "description": "Groovy map containing: id, input_image_dataset, output_image_name\n"
       },
       {
-        "name": "csv",
-        "type": "file",
-        "description": "Output CSV file\n"
+        "name": "input_image_fullpath",
+        "type": "directory",
+        "description": "Full path to the input image container\n"
+      },
+      {
+        "name": "image_subpath",
+        "type": "string",
+        "description": "Subpath to the input image dataset\n"
+      },
+      {
+        "name": "output_label_images",
+        "type": "string",
+        "description": "One or more image names containing segmentation results. If the output is a zarr or N5 container\nthere's only one output_label_image, but if the output type is a tiff and the segmented image is large\nthere can be multiple tiff files\n"
+      },
+      {
+        "name": "output_labels_subpath",
+        "type": "string",
+        "description": "this is the labels dataset if the output is a zarr or N5 container"
       },
       {
         "name": "versions",
         "type": "file",
         "description": "File containing software versions",
         "pattern": "versions.yml"
+      }
+    ]
+  },
+  {
+    "name": "segtools_distributed_mergelabels",
+    "slug": "janelia-module-segtools-distributed-mergelabels",
+    "description": "Merge labels across block boundaries after a 3-D distributed segmentation",
+    "type": "module",
+    "source": "janelia",
+    "sourceLabel": "Janelia",
+    "repository": "https://github.com/JaneliaSciComp/nextflow-modules/tree/main/modules/janelia/segtools/distributed/mergelabels",
+    "keywords": [
+      "dask",
+      "segmentation",
+      "cellpose"
+    ],
+    "tools": [
+      {
+        "name": "cellpose",
+        "description": "A generalist algorithm for cell and nucleus segmentation.",
+        "homepage": "https://github.com/MouseLand/cellpose",
+        "licence": "['BSD-3-Clause']"
+      }
+    ],
+    "authors": [
+      "cgoina"
+    ],
+    "maintainers": [
+      "cgoina"
+    ],
+    "inputs": [
+      {
+        "name": "meta",
+        "type": "map",
+        "description": "Groovy map containing: id, input_image_dataset, output_image_name\n"
+      },
+      {
+        "name": "input_labels",
+        "type": "file",
+        "description": "Path to the input labels container"
+      },
+      {
+        "name": "input_subpath",
+        "type": "string",
+        "description": "Relative path to the image dataset if needed (for N5 or zarr containers)"
+      },
+      {
+        "name": "output_labels",
+        "type": "file",
+        "description": "Path to the output labels container"
+      },
+      {
+        "name": "output_subpath",
+        "type": "string",
+        "description": "Relative path to the image dataset if needed (for N5 or zarr containers)"
+      },
+      {
+        "name": "working_dir",
+        "type": "directory",
+        "description": "Location of the temporary files created during the segmentation. This must have enough space to hold the temporary labels\nbefore they are reassigned during the merge process\n"
+      },
+      {
+        "name": "dask_scheduler",
+        "type": "string",
+        "description": "Dask scheduler IP"
+      },
+      {
+        "name": "dask_config",
+        "type": "file",
+        "description": "Optional path to the dask config. If this is not specified pass in as empty list.\n"
+      },
+      {
+        "name": "logging_config",
+        "type": "file",
+        "description": "Optional log config."
+      },
+      {
+        "name": "cpus",
+        "type": "integer",
+        "description": "Number of cpus needed to run the main cellpose program"
+      },
+      {
+        "name": "mem_in_gb",
+        "type": "integer",
+        "description": "Memory needed for the main cellpose program"
+      }
+    ],
+    "outputs": [
+      {
+        "name": "meta",
+        "type": "map",
+        "description": "Groovy map containing: id, input_image_dataset, output_image_name\n"
+      },
+      {
+        "name": "input_labels_fullpath",
+        "type": "string",
+        "description": "Full path to the input labels container\n"
+      },
+      {
+        "name": "input_subpath",
+        "type": "string",
+        "description": "Subpath to the input labels dataset\n"
+      },
+      {
+        "name": "output_labels_fullpath",
+        "type": "string",
+        "description": "Fullpath to the merged labels container\n"
+      },
+      {
+        "name": "output_subpath",
+        "type": "string",
+        "description": "merged labels subpath"
+      },
+      {
+        "name": "versions",
+        "type": "file",
+        "description": "File containing software versions",
+        "pattern": "versions.yml"
+      }
+    ]
+  },
+  {
+    "name": "spaceranger_count",
+    "slug": "nf-core-module-spaceranger-count",
+    "description": "Module to use the 10x Space Ranger pipeline to process 10x spatial transcriptomics data",
+    "type": "module",
+    "source": "nf-core",
+    "sourceLabel": "nf-core",
+    "repository": "https://github.com/nf-core/modules/tree/main/modules/nf-core/spaceranger/count",
+    "keywords": [
+      "align",
+      "count",
+      "spatial",
+      "spaceranger",
+      "imaging"
+    ],
+    "tools": [
+      {
+        "name": "spaceranger",
+        "description": "Visium Spatial Gene Expression is a next-generation molecular profiling solution for classifying tissue\nbased on total mRNA. Space Ranger is a set of analysis pipelines that process Visium Spatial Gene Expression\ndata with brightfield and fluorescence microscope images. Space Ranger allows users to map the whole\ntranscriptome in formalin fixed paraffin embedded (FFPE) and fresh frozen tissues to discover novel\ninsights into normal development, disease pathology, and clinical translational research. Space Ranger provides\npipelines for end to end analysis of Visium Spatial Gene Expression experiments.\n",
+        "homepage": "https://support.10xgenomics.com/spatial-gene-expression/software/pipelines/latest/what-is-space-ranger",
+        "documentation": "https://support.10xgenomics.com/spatial-gene-expression/software/pipelines/latest/what-is-space-ranger",
+        "licence": [
+          "10x Genomics EULA"
+        ]
+      }
+    ],
+    "authors": [
+      "grst"
+    ],
+    "maintainers": [
+      "grst",
+      "fasterius"
+    ],
+    "inputs": [
+      {
+        "name": "0"
+      },
+      {
+        "name": "reference",
+        "type": "directory",
+        "description": "Folder containing all the reference indices needed by Space Ranger"
+      },
+      {
+        "name": "probeset",
+        "type": "file",
+        "description": "OPTIONAL - Probe set specification.",
+        "pattern": "*.csv"
       }
     ]
   },
@@ -2802,6 +4688,332 @@
     ]
   },
   {
+    "name": "spotiflow",
+    "slug": "nf-core-module-spotiflow",
+    "description": "Spotiflow, accurate and efficient spot detection with stereographic flow.",
+    "type": "module",
+    "source": "nf-core",
+    "sourceLabel": "nf-core",
+    "repository": "https://github.com/nf-core/modules/tree/main/modules/nf-core/spotiflow",
+    "keywords": [
+      "imaging",
+      "image",
+      "microscopy",
+      "transcriptomics",
+      "spatial",
+      "spot",
+      "detection"
+    ],
+    "tools": [
+      {
+        "name": "spotiflow",
+        "description": "Spotiflow allows for accurate and efficient spot detection with stereographic flow",
+        "homepage": "https://weigertlab.github.io/spotiflow/",
+        "documentation": "https://weigertlab.github.io/spotiflow/",
+        "licence": [
+          "BSD-3"
+        ]
+      }
+    ],
+    "authors": [
+      "migueLib"
+    ],
+    "maintainers": [
+      "migueLib"
+    ],
+    "inputs": [
+      {
+        "name": "0"
+      }
+    ]
+  },
+  {
+    "name": "spots_fishspots",
+    "slug": "janelia-module-spots-fishspots",
+    "description": "Detects FISH spots in an OME-Zarr image using the easifish spot extraction pipeline",
+    "type": "module",
+    "source": "janelia",
+    "sourceLabel": "Janelia",
+    "repository": "https://github.com/JaneliaSciComp/nextflow-modules/tree/main/modules/janelia/spots/fishspots",
+    "keywords": [
+      "dask",
+      "FISH",
+      "spot detection",
+      "OME-Zarr"
+    ],
+    "tools": [
+      {
+        "name": "easifish-spots-utils",
+        "description": "Spot extraction tools for the EASI-FISH (Expansion-Assisted Iterative fluorescence in situ hybridization) pipeline.",
+        "homepage": "https://github.com/JaneliaSciComp/easifish-spots-utils"
+      }
+    ],
+    "components": [],
+    "authors": [
+      "cgoina",
+      "fleishmang"
+    ],
+    "maintainers": [
+      "cgoina"
+    ],
+    "inputs": [
+      {
+        "name": "meta",
+        "type": "map",
+        "description": "Groovy map containing sample metadata. Must include an 'id' field.\n"
+      },
+      {
+        "name": "input_path",
+        "type": "directory",
+        "description": "Path to the OME-Zarr image container"
+      },
+      {
+        "name": "input_dataset",
+        "type": "string",
+        "description": "Dataset subpath within the image container"
+      },
+      {
+        "name": "spots_output_dir",
+        "type": "directory",
+        "description": "Path to the directory where spot detection results will be written"
+      },
+      {
+        "name": "spots_result_name",
+        "type": "string",
+        "description": "Name of the output CSV file containing detected spot coordinates.\nIf not specified, defaults to '<meta.id>-points.csv'.\n"
+      },
+      {
+        "name": "dask_scheduler",
+        "type": "string",
+        "description": "Dask scheduler IP address. If not using a distributed cluster, pass as empty string.\n"
+      },
+      {
+        "name": "dask_config",
+        "type": "file",
+        "description": "Optional path to a dask configuration file. If not specified, pass as empty list ([]).\n"
+      },
+      {
+        "name": "fishspots_config",
+        "type": "file",
+        "description": "Optional YAML configuration file for the fishspots spot extraction parameters\n(thresholds, scales, etc.). If not specified, defaults are used.\n"
+      },
+      {
+        "name": "cpus",
+        "type": "integer",
+        "description": "Number of CPUs to allocate for the process"
+      },
+      {
+        "name": "mem_gb",
+        "type": "integer",
+        "description": "Amount of memory in GB to allocate for the process"
+      }
+    ],
+    "outputs": [
+      {
+        "name": "meta",
+        "type": "map",
+        "description": "Groovy map containing sample metadata. Must include an 'id' field.\n"
+      },
+      {
+        "name": "INPUT_IMG",
+        "type": "string",
+        "description": "Resolved full path to the input image container"
+      },
+      {
+        "name": "input_dataset",
+        "type": "string",
+        "description": "Dataset subpath within the image container"
+      },
+      {
+        "name": "spots_output_dir",
+        "type": "directory",
+        "description": "Path to the directory containing spot detection results"
+      },
+      {
+        "name": "spots_result_name",
+        "type": "string",
+        "description": "Name of the output CSV file"
+      },
+      {
+        "name": "dask_scheduler",
+        "type": "string",
+        "description": "Dask scheduler IP address (passed through for downstream processes)"
+      },
+      {
+        "name": "full_output_filename",
+        "type": "string",
+        "description": "Resolved full path to the output CSV file containing detected spot coordinates"
+      },
+      {
+        "name": "versions",
+        "type": "file",
+        "description": "File containing software versions",
+        "pattern": "versions.yml"
+      }
+    ]
+  },
+  {
+    "name": "spots_rsfish",
+    "slug": "janelia-module-spots-rsfish",
+    "description": "Precise, interactive, fast, and scalable FISH spot detection",
+    "type": "module",
+    "source": "janelia",
+    "sourceLabel": "Janelia",
+    "repository": "https://github.com/JaneliaSciComp/nextflow-modules/tree/main/modules/janelia/spots/rsfish",
+    "keywords": [
+      "spatial transcriptomics",
+      "spatial genomics",
+      "FISH",
+      "Spark"
+    ],
+    "components": [],
+    "authors": [
+      "krokicki",
+      "cgoina"
+    ],
+    "inputs": [
+      {
+        "name": "ch_meta",
+        "type": "tuple",
+        "description": "Channel of tuples containing a meta map\nStructure: [ val(meta), path(input_image), val(input_dataset), val(spark) ]\n"
+      }
+    ],
+    "outputs": [
+      {
+        "name": "params",
+        "type": "tuple",
+        "description": "Same as the input tuple\n"
+      },
+      {
+        "name": "csv",
+        "type": "file",
+        "description": "Output CSV file\n"
+      },
+      {
+        "name": "versions",
+        "type": "file",
+        "description": "File containing software versions",
+        "pattern": "versions.yml"
+      }
+    ]
+  },
+  {
+    "name": "stardist",
+    "slug": "nf-core-module-stardist",
+    "description": "Cell and nuclear segmentation with star-convex shapes",
+    "type": "module",
+    "source": "nf-core",
+    "sourceLabel": "nf-core",
+    "repository": "https://github.com/nf-core/modules/tree/main/modules/nf-core/stardist",
+    "keywords": [
+      "stardist",
+      "segmentation",
+      "image",
+      "gpu",
+      "spatial-transcriptomics"
+    ],
+    "tools": [
+      {
+        "name": "stardist",
+        "description": "Stardist is an cell segmentation tool developed in Python by Martin Weigert and Uwe Schmidt",
+        "homepage": "https://stardist.net/",
+        "documentation": "https://stardist.net/faq/",
+        "licence": [
+          "BSD 3-Clause"
+        ]
+      }
+    ],
+    "authors": [
+      "migueLib",
+      "dongzehe"
+    ],
+    "maintainers": [
+      "migueLib"
+    ],
+    "inputs": [
+      {
+        "name": "0"
+      },
+      {
+        "name": "0"
+      }
+    ]
+  },
+  {
+    "name": "tiff_segmentation_vpt",
+    "slug": "nf-core-subworkflow-tiff-segmentation-vpt",
+    "description": "Perform segmentation of MERSCOPE TIFF images using the vizgen-postprocessing tool",
+    "type": "subworkflow",
+    "source": "nf-core",
+    "sourceLabel": "nf-core",
+    "repository": "https://github.com/nf-core/modules/tree/main/subworkflows/nf-core/tiff_segmentation_vpt",
+    "keywords": [
+      "segmentation",
+      "imaging",
+      "merscope",
+      "vizgen",
+      "tiff",
+      "spatial"
+    ],
+    "components": [
+      "vizgenpostprocessing/preparesegmentation",
+      "vizgenpostprocessing/runsegmentationontile",
+      "vizgenpostprocessing/compiletilesegmentation"
+    ],
+    "authors": [
+      "mcmero"
+    ],
+    "maintainers": [
+      "mcmero"
+    ],
+    "inputs": [
+      {
+        "name": "ch_input",
+        "type": "channel",
+        "description": "The input channel containing image directory and transformation file\nStructure: [ val(meta), path(image_dir), path(micron_to_mosaic_pixel_transform.csv) ]\n",
+        "pattern": "*"
+      },
+      {
+        "name": "ch_algorithm_json",
+        "type": "channel",
+        "description": "Channel containing algorithm configuration file\nStructure: [ path(algorithm.json) ]\n",
+        "pattern": "*.json"
+      },
+      {
+        "name": "ch_images_regex",
+        "type": "channel",
+        "description": "Channel containing regex pattern for image matching\nStructure: [ val(regex) ]\n",
+        "pattern": "*"
+      },
+      {
+        "name": "ch_custom_weights",
+        "type": "channel",
+        "description": "Channel containing custom weights for segmentation\nStructure: [ path(custom_weights) ]\n",
+        "pattern": "*"
+      }
+    ],
+    "outputs": [
+      {
+        "name": "micron_space_segmentation",
+        "type": "file",
+        "description": "Channel containing micron space segmentation results\nStructure: [ val(meta), path(parquet) ]\n",
+        "pattern": "*.parquet"
+      },
+      {
+        "name": "mosaic_space_segmentation",
+        "type": "file",
+        "description": "Channel containing mosaic space segmentation results\nStructure: [ val(meta), path(parquet) ]\n",
+        "pattern": "*.parquet"
+      },
+      {
+        "name": "versions",
+        "type": "file",
+        "description": "File containing software versions\nStructure: [ path(versions.yml) ]\n",
+        "pattern": "versions.yml"
+      }
+    ]
+  },
+  {
     "name": "tiled_cellpose",
     "slug": "sanger-subworkflow-tiled-cellpose",
     "description": "A tiled version of CellPose to faciliate processing of large images on HPC",
@@ -2897,6 +5109,196 @@
         "type": "file",
         "description": "File containing software versions\nStructure: [ path(versions.yml) ]\n",
         "pattern": "versions.yml"
+      }
+    ]
+  },
+  {
+    "name": "vizgenpostprocessing_compiletilesegmentation",
+    "slug": "nf-core-module-vizgenpostprocessing-compiletilesegmentation",
+    "description": "The module compiles segmentation tiles using Vizgen's post-processing tool.",
+    "type": "module",
+    "source": "nf-core",
+    "sourceLabel": "nf-core",
+    "repository": "https://github.com/nf-core/modules/tree/main/modules/nf-core/vizgenpostprocessing/compiletilesegmentation",
+    "keywords": [
+      "vpt",
+      "vizgen",
+      "segmentation",
+      "microscopy",
+      "spatial transcriptomics"
+    ],
+    "tools": [
+      {
+        "name": "vizgenpostprocessing",
+        "description": "Vizgen's post-processing tool",
+        "homepage": "https://github.com/Vizgen/vizgen-postprocessing",
+        "documentation": "https://vizgen.github.io/vizgen-postprocessing",
+        "licence": [
+          "Apache-2.0"
+        ]
+      }
+    ],
+    "authors": [
+      "mcmero"
+    ],
+    "maintainers": [
+      "mcmero"
+    ],
+    "inputs": [
+      {
+        "name": "0"
+      },
+      {
+        "name": "algorithm_json",
+        "type": "file",
+        "description": "JSON file containing the algorithm parameters.",
+        "pattern": "*.json"
+      },
+      {
+        "name": "segmentation_tiles",
+        "type": "file",
+        "description": "Parquet files containing the segmentation results for tiles to compile.\n",
+        "pattern": "*.parquet"
+      }
+    ]
+  },
+  {
+    "name": "vizgenpostprocessing_preparesegmentation",
+    "slug": "nf-core-module-vizgenpostprocessing-preparesegmentation",
+    "description": "The module prepares the specification JSON file for Vizgen's post-processing tool\ncell segmentation workflow.\n",
+    "type": "module",
+    "source": "nf-core",
+    "sourceLabel": "nf-core",
+    "repository": "https://github.com/nf-core/modules/tree/main/modules/nf-core/vizgenpostprocessing/preparesegmentation",
+    "keywords": [
+      "vpt",
+      "vizgen",
+      "segmentation",
+      "microscopy",
+      "spatial transcriptomics"
+    ],
+    "tools": [
+      {
+        "name": "vizgenpostprocessing",
+        "description": "Vizgen's post-processing tool",
+        "homepage": "https://github.com/Vizgen/vizgen-postprocessing",
+        "documentation": "https://vizgen.github.io/vizgen-postprocessing",
+        "licence": [
+          "Apache-2.0"
+        ]
+      }
+    ],
+    "authors": [
+      "mcmero"
+    ],
+    "maintainers": [
+      "mcmero"
+    ],
+    "inputs": [
+      {
+        "name": "0"
+      },
+      {
+        "name": "algorithm_json",
+        "type": "file",
+        "description": "JSON file containing the algorithm specification",
+        "pattern": "*.json"
+      },
+      {
+        "name": "images_regex",
+        "type": "string",
+        "description": "Can either be blank to match files by MERSCOPE convention, or a\npython formatting string specifying the file name (e.g.,\nimage_{stain}_z{z}.tif), or a regular expression matching the tiff\nfiles to be used (e.g., mosaic_(?P<stain>[\\w|-]+)_z(?P<z>[0-9]+).tif)\n"
+      }
+    ]
+  },
+  {
+    "name": "vizgenpostprocessing_runsegmentationontile",
+    "slug": "nf-core-module-vizgenpostprocessing-runsegmentationontile",
+    "description": "The module runs the segmentation algorithm on a specific tile using Vizgen's\npost-processing tool.\n",
+    "type": "module",
+    "source": "nf-core",
+    "sourceLabel": "nf-core",
+    "repository": "https://github.com/nf-core/modules/tree/main/modules/nf-core/vizgenpostprocessing/runsegmentationontile",
+    "keywords": [
+      "vpt",
+      "vizgen",
+      "segmentation",
+      "microscopy",
+      "spatial transcriptomics"
+    ],
+    "tools": [
+      {
+        "name": "vizgenpostprocessing",
+        "description": "Vizgen's post-processing tool",
+        "homepage": "https://github.com/Vizgen/vizgen-postprocessing",
+        "documentation": "https://vizgen.github.io/vizgen-postprocessing",
+        "licence": [
+          "Apache-2.0"
+        ]
+      }
+    ],
+    "authors": [
+      "mcmero"
+    ],
+    "maintainers": [
+      "mcmero"
+    ],
+    "inputs": [
+      {
+        "name": "0"
+      },
+      {
+        "name": "algorithm_json",
+        "type": "file",
+        "description": "JSON file containing the algorithm parameters.",
+        "pattern": "*.json"
+      },
+      {
+        "name": "custom_weights",
+        "type": "directory",
+        "description": "Directory containing custom weights for the segmentation algorithm.\nMust be defined in the algorithm JSON file under \"custom_weights\"\nas directory name only (not full path).\n"
+      }
+    ]
+  },
+  {
+    "name": "xeniumranger_import_segmentation",
+    "slug": "nf-core-module-xeniumranger-import-segmentation",
+    "description": "The xeniumranger import-segmentation module runs `xeniumranger import-segmentation`\nto recompute Xenium Onboard Analysis outputs using external segmentation results.\nIt supports two execution modes mirroring the Xenium Ranger CLI: an image-based\nmode that accepts nuclei and/or cell masks (TIFF/NPY) or GeoJSON polygons together\nwith optional coordinate transforms and unit definitions, and a transcript-based\nmode that ingests Baysor-style transcript assignment CSV files plus visualization\npolygons. Use the image-based inputs when providing label masks or polygons, or\nswitch to the transcript-based inputs when supplying transcript-level assignments\nso the appropriate command-line arguments are passed to Xenium Ranger.\n",
+    "type": "module",
+    "source": "nf-core",
+    "sourceLabel": "nf-core",
+    "repository": "https://github.com/nf-core/modules/tree/main/modules/nf-core/xeniumranger/import-segmentation",
+    "keywords": [
+      "spatial",
+      "segmentation",
+      "import segmentation",
+      "nuclear segmentation",
+      "cell segmentation",
+      "xeniumranger",
+      "imaging"
+    ],
+    "tools": [
+      {
+        "name": "xeniumranger",
+        "description": "Xenium Ranger is a set of analysis pipelines that process Xenium In Situ Gene Expression data to relabel, resegment, or import new segmentation results from community-developed tools. Xenium Ranger provides flexible off-instrument reanalysis of Xenium In Situ data. Relabel transcripts, resegment cells with the latest 10x segmentation algorithms, or import your own segmentation data to assign transcripts to cells.\n",
+        "homepage": "https://www.10xgenomics.com/support/software/xenium-ranger/latest",
+        "documentation": "https://www.10xgenomics.com/support/software/xenium-ranger/latest/getting-started",
+        "licence": [
+          "10x Genomics EULA"
+        ]
+      }
+    ],
+    "authors": [
+      "khersameesh24",
+      "dongzehe"
+    ],
+    "maintainers": [
+      "khersameesh24",
+      "dongzehe"
+    ],
+    "inputs": [
+      {
+        "name": "0"
       }
     ]
   },

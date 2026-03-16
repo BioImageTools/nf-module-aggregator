@@ -189,6 +189,18 @@ function parseMetaFile(metaPath, repo, type) {
 }
 
 /**
+ * Check if a module matches the keyword filter configured for a repository.
+ * If no keywordFilter is configured, all modules pass.
+ */
+function matchesKeywordFilter(module, repo) {
+  if (!repo.keywordFilter || !Array.isArray(repo.keywordFilter)) {
+    return true;
+  }
+  const keywords = (module.keywords || []).map(k => k.toLowerCase());
+  return repo.keywordFilter.some(filter => keywords.includes(filter.toLowerCase()));
+}
+
+/**
  * Process a repository and extract all modules/subworkflows
  */
 function processRepository(repo) {
@@ -202,7 +214,7 @@ function processRepository(repo) {
 
   for (const metaPath of moduleMetaFiles) {
     const module = parseMetaFile(metaPath, repo, 'module');
-    if (module) {
+    if (module && matchesKeywordFilter(module, repo)) {
       modules.push(module);
     }
   }
@@ -214,7 +226,7 @@ function processRepository(repo) {
 
   for (const metaPath of subworkflowMetaFiles) {
     const subworkflow = parseMetaFile(metaPath, repo, 'subworkflow');
-    if (subworkflow) {
+    if (subworkflow && matchesKeywordFilter(subworkflow, repo)) {
       modules.push(subworkflow);
     }
   }
