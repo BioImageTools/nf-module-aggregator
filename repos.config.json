@@ -7,7 +7,7 @@
     },
     {
       "name": "sanger",
-      "label": "Sanger (cellgeni)",
+      "label": "Sanger",
       "url": "https://github.com/cellgeni/nf-modules.git"
     },
     {

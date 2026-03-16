@@ -2006,7 +2006,7 @@
     "description": "Alignment by Simultaneous Harmonization of Layer/Adjacency Registration",
     "type": "module",
     "source": "sanger",
-    "sourceLabel": "Sanger (cellgeni)",
+    "sourceLabel": "Sanger",
     "repository": "https://github.com/cellgeni/nf-modules/tree/main/modules/sanger-cellgeni/imaging/ashlarcompanion",
     "keywords": [
       "image_processing",
@@ -2060,7 +2060,7 @@
     "description": "Concatenate multiple WKT files into one in a brutal way",
     "type": "module",
     "source": "sanger",
-    "sourceLabel": "Sanger (cellgeni)",
+    "sourceLabel": "Sanger",
     "repository": "https://github.com/cellgeni/nf-modules/tree/main/modules/sanger-cellgeni/imaging/concatenatewkts",
     "keywords": [
       "wkt",
@@ -2102,7 +2102,7 @@
     "description": "This module runs deepcell on a crop of an image",
     "type": "module",
     "source": "sanger",
-    "sourceLabel": "Sanger (cellgeni)",
+    "sourceLabel": "Sanger",
     "repository": "https://github.com/cellgeni/nf-modules/tree/main/modules/sanger-cellgeni/imaging/deepcell",
     "keywords": [
       "image analysis",
@@ -2143,7 +2143,7 @@
     "description": "Extract max intensity peak profile from an image stack with a file of peak coordinates",
     "type": "module",
     "source": "sanger",
-    "sourceLabel": "Sanger (cellgeni)",
+    "sourceLabel": "Sanger",
     "repository": "https://github.com/cellgeni/nf-modules/tree/main/modules/sanger-cellgeni/imaging/extractpeakprofile",
     "keywords": [
       "image"
@@ -2216,7 +2216,7 @@
     "description": "write your description here",
     "type": "module",
     "source": "sanger",
-    "sourceLabel": "Sanger (cellgeni)",
+    "sourceLabel": "Sanger",
     "repository": "https://github.com/cellgeni/nf-modules/tree/main/modules/sanger-cellgeni/imaging/generatecompanion",
     "keywords": [
       "sort",
@@ -2257,7 +2257,7 @@
     "description": "write your description here",
     "type": "module",
     "source": "sanger",
-    "sourceLabel": "Sanger (cellgeni)",
+    "sourceLabel": "Sanger",
     "repository": "https://github.com/cellgeni/nf-modules/tree/main/modules/sanger-cellgeni/imaging/generatecompanionfromfiles",
     "keywords": [
       "sort",
@@ -2290,7 +2290,7 @@
     "description": "a helper script to generate tiles from an 2D image file",
     "type": "module",
     "source": "sanger",
-    "sourceLabel": "Sanger (cellgeni)",
+    "sourceLabel": "Sanger",
     "repository": "https://github.com/cellgeni/nf-modules/tree/main/modules/sanger-cellgeni/imaging/generatetiles",
     "keywords": [
       "image",
@@ -2336,7 +2336,7 @@
     "description": "A wrapper of InstanSeg segmentation tool",
     "type": "module",
     "source": "sanger",
-    "sourceLabel": "Sanger (cellgeni)",
+    "sourceLabel": "Sanger",
     "repository": "https://github.com/cellgeni/nf-modules/tree/main/modules/sanger-cellgeni/imaging/instanseg",
     "keywords": [
       "image analysis",
@@ -2378,7 +2378,7 @@
     "description": "A simple python script to merge outlines from multiple overlapping tiles",
     "type": "module",
     "source": "sanger",
-    "sourceLabel": "Sanger (cellgeni)",
+    "sourceLabel": "Sanger",
     "repository": "https://github.com/cellgeni/nf-modules/tree/main/modules/sanger-cellgeni/imaging/mergeoutlines",
     "keywords": [
       "image analysis",
@@ -2431,7 +2431,7 @@
     "description": "Merge peaks from multiple peak files (csv)",
     "type": "module",
     "source": "sanger",
-    "sourceLabel": "Sanger (cellgeni)",
+    "sourceLabel": "Sanger",
     "repository": "https://github.com/cellgeni/nf-modules/tree/main/modules/sanger-cellgeni/imaging/mergepeaks",
     "keywords": [
       "peaks",
@@ -2475,7 +2475,7 @@
     "description": "write your description here",
     "type": "module",
     "source": "sanger",
-    "sourceLabel": "Sanger (cellgeni)",
+    "sourceLabel": "Sanger",
     "repository": "https://github.com/cellgeni/nf-modules/tree/main/modules/sanger-cellgeni/imaging/microaligner",
     "keywords": [
       "sort",
@@ -2532,7 +2532,7 @@
     "description": "write your description here",
     "type": "module",
     "source": "sanger",
-    "sourceLabel": "Sanger (cellgeni)",
+    "sourceLabel": "Sanger",
     "repository": "https://github.com/cellgeni/nf-modules/tree/main/modules/sanger-cellgeni/imaging/parsemanifest",
     "keywords": [
       "manitest",
@@ -2578,7 +2578,7 @@
     "description": "write your description here",
     "type": "module",
     "source": "sanger",
-    "sourceLabel": "Sanger (cellgeni)",
+    "sourceLabel": "Sanger",
     "repository": "https://github.com/cellgeni/nf-modules/tree/main/modules/sanger-cellgeni/imaging/postcode",
     "keywords": [
       "sort",
@@ -2625,7 +2625,7 @@
     "description": "write your description here",
     "type": "module",
     "source": "sanger",
-    "sourceLabel": "Sanger (cellgeni)",
+    "sourceLabel": "Sanger",
     "repository": "https://github.com/cellgeni/nf-modules/tree/main/modules/sanger-cellgeni/imaging/postcodepost",
     "keywords": [
       "sort",
@@ -2658,7 +2658,7 @@
     "description": "Preprocess both profile to be decoded and the corresponding codebook for PoSTCode decoding",
     "type": "module",
     "source": "sanger",
-    "sourceLabel": "Sanger (cellgeni)",
+    "sourceLabel": "Sanger",
     "repository": "https://github.com/cellgeni/nf-modules/tree/main/modules/sanger-cellgeni/imaging/postcodeprep",
     "keywords": [
       "spatial transcriptomics",
@@ -2695,7 +2695,7 @@
     "description": "write your description here",
     "type": "module",
     "source": "sanger",
-    "sourceLabel": "Sanger (cellgeni)",
+    "sourceLabel": "Sanger",
     "repository": "https://github.com/cellgeni/nf-modules/tree/main/modules/sanger-cellgeni/imaging/preprocess",
     "keywords": [
       "sort",
@@ -2736,7 +2736,7 @@
     "description": "a wrapper for starDist",
     "type": "module",
     "source": "sanger",
-    "sourceLabel": "Sanger (cellgeni)",
+    "sourceLabel": "Sanger",
     "repository": "https://github.com/cellgeni/nf-modules/tree/main/modules/sanger-cellgeni/imaging/stardist",
     "keywords": [
       "segmentation",
@@ -2960,7 +2960,7 @@
     "description": "Register microscopy images using two-step microaligner",
     "type": "subworkflow",
     "source": "sanger",
-    "sourceLabel": "Sanger (cellgeni)",
+    "sourceLabel": "Sanger",
     "repository": "https://github.com/cellgeni/nf-modules/tree/main/subworkflows/sanger-cellgeni/microaligner_registration",
     "keywords": [
       "linear registration",
@@ -3079,7 +3079,7 @@
     "description": "A wrapper module for harmonise_xenium.py script",
     "type": "module",
     "source": "sanger",
-    "sourceLabel": "Sanger (cellgeni)",
+    "sourceLabel": "Sanger",
     "repository": "https://github.com/cellgeni/nf-modules/tree/main/modules/sanger-cellgeni/ml/xeniumharmonise",
     "keywords": [
       "spatial-transcriptomics(xenium)",
@@ -3167,7 +3167,7 @@
     "description": "NicheCompass training & analysis",
     "type": "subworkflow",
     "source": "sanger",
-    "sourceLabel": "Sanger (cellgeni)",
+    "sourceLabel": "Sanger",
     "repository": "https://github.com/cellgeni/nf-modules/tree/main/subworkflows/sanger-cellgeni/nichecompass",
     "keywords": [
       "spatial_atlas_building",
@@ -3488,7 +3488,7 @@
     "description": "Sort SAM/BAM/CRAM file",
     "type": "subworkflow",
     "source": "sanger",
-    "sourceLabel": "Sanger (cellgeni)",
+    "sourceLabel": "Sanger",
     "repository": "https://github.com/cellgeni/nf-modules/tree/main/subworkflows/sanger-cellgeni/postcode_decoding",
     "keywords": [
       "spatial transcriptomics",
@@ -3564,7 +3564,7 @@
     "description": "Sort SAM/BAM/CRAM file",
     "type": "subworkflow",
     "source": "sanger",
-    "sourceLabel": "Sanger (cellgeni)",
+    "sourceLabel": "Sanger",
     "repository": "https://github.com/cellgeni/nf-modules/tree/main/subworkflows/sanger-cellgeni/preprocess_tiles",
     "keywords": [
       "sort",
@@ -4604,7 +4604,7 @@
     "description": "Analysis based on the NicheCompass model",
     "type": "module",
     "source": "sanger",
-    "sourceLabel": "Sanger (cellgeni)",
+    "sourceLabel": "Sanger",
     "repository": "https://github.com/cellgeni/nf-modules/tree/main/modules/sanger-cellgeni/spatial/nichecompassanalysis",
     "keywords": [
       "spatial_atlas_building",
@@ -4643,7 +4643,7 @@
     "description": "Train a NicheCompass model on spatial multiomics data.",
     "type": "module",
     "source": "sanger",
-    "sourceLabel": "Sanger (cellgeni)",
+    "sourceLabel": "Sanger",
     "repository": "https://github.com/cellgeni/nf-modules/tree/main/modules/sanger-cellgeni/spatial/nichecompasstraining",
     "keywords": [
       "spatial_atlas_building",
@@ -5019,7 +5019,7 @@
     "description": "A tiled version of CellPose to faciliate processing of large images on HPC",
     "type": "subworkflow",
     "source": "sanger",
-    "sourceLabel": "Sanger (cellgeni)",
+    "sourceLabel": "Sanger",
     "repository": "https://github.com/cellgeni/nf-modules/tree/main/subworkflows/sanger-cellgeni/tiled_segmentation",
     "keywords": [
       "cellpose",
@@ -5073,7 +5073,7 @@
     "description": "Sort SAM/BAM/CRAM file",
     "type": "subworkflow",
     "source": "sanger",
-    "sourceLabel": "Sanger (cellgeni)",
+    "sourceLabel": "Sanger",
     "repository": "https://github.com/cellgeni/nf-modules/tree/main/subworkflows/sanger-cellgeni/tiled_spotiflow",
     "keywords": [
       "deep-learning",

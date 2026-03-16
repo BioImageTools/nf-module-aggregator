@@ -73,8 +73,8 @@ function buildSearchText(module: any, org: string): string {
   return parts.filter(Boolean).join(' ').toLowerCase();
 }
 
-// Get unique organizations
-const organizations = [...new Set(modules.map(m => getOrgFromRepo(m.repository)))].filter(Boolean).sort();
+// Get unique organizations (using sourceLabel from repos.config.json)
+const organizations = [...new Set(modules.map(m => m.sourceLabel))].filter(Boolean).sort();
 
 // Get unique types
 const types = [...new Set(modules.map(m => m.type))].filter(Boolean).sort();
@@ -200,12 +200,11 @@ const types = [...new Set(modules.map(m => m.type))].filter(Boolean).sort();
       <!-- Card View -->
       <div id="card-view" class="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
         {modules.map((module) => {
-          const org = getOrgFromRepo(module.repository);
-          const searchText = buildSearchText(module, org);
+          const searchText = buildSearchText(module, module.sourceLabel);
           return (
             <ModuleCard
               name={module.name}
-              org={org}
+              org={module.sourceLabel}
               description={module.description}
               repository={module.repository}
               version={module.version}
@@ -222,12 +221,11 @@ const types = [...new Set(modules.map(m => m.type))].filter(Boolean).sort();
       <div id="list-view" class="hidden">
         <div id="list-view-container" class="bg-white rounded-lg border border-gray-200 divide-y divide-gray-200">
           {modules.map((module) => {
-            const org = getOrgFromRepo(module.repository);
-            const searchText = buildSearchText(module, org);
+            const searchText = buildSearchText(module, module.sourceLabel);
             return (
               <ModuleListItem
                 name={module.name}
-                org={org}
+                org={module.sourceLabel}
                 description={module.description}
                 repository={module.repository}
                 slug={module.slug}
