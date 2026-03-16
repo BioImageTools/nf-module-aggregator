@@ -30,3 +30,6 @@ npm-debug.log*
 
 # Cloned repositories
 repos/
+
+# Generated module data
+src/data/modules.json
