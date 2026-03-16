@@ -6,7 +6,7 @@
     "type": "module",
     "source": "nf-core",
     "sourceLabel": "nf-core",
-    "repository": "https://github.com/nf-core/modules/tree/main/modules/nf-core/basicpy",
+    "repository": "https://github.com/nf-core/modules/tree/master/modules/nf-core/basicpy",
     "keywords": [
       "illumiation_correction",
       "background_correction",
@@ -43,7 +43,7 @@
     "type": "module",
     "source": "nf-core",
     "sourceLabel": "nf-core",
-    "repository": "https://github.com/nf-core/modules/tree/main/modules/nf-core/bftools/showinf",
+    "repository": "https://github.com/nf-core/modules/tree/master/modules/nf-core/bftools/showinf",
     "keywords": [
       "metadata",
       "ome-tif",
@@ -1260,7 +1260,7 @@
     "type": "module",
     "source": "nf-core",
     "sourceLabel": "nf-core",
-    "repository": "https://github.com/nf-core/modules/tree/main/modules/nf-core/bioformats2raw",
+    "repository": "https://github.com/nf-core/modules/tree/master/modules/nf-core/bioformats2raw",
     "keywords": [
       "zarr",
       "ome-ngff",
@@ -1399,7 +1399,7 @@
     "type": "module",
     "source": "nf-core",
     "sourceLabel": "nf-core",
-    "repository": "https://github.com/nf-core/modules/tree/main/modules/nf-core/cellpose",
+    "repository": "https://github.com/nf-core/modules/tree/master/modules/nf-core/cellpose",
     "keywords": [
       "segmentation",
       "image",
@@ -1966,7 +1966,7 @@
     "type": "module",
     "source": "nf-core",
     "sourceLabel": "nf-core",
-    "repository": "https://github.com/nf-core/modules/tree/main/modules/nf-core/deepcell/mesmer",
+    "repository": "https://github.com/nf-core/modules/tree/master/modules/nf-core/deepcell/mesmer",
     "keywords": [
       "imaging",
       "spatial_omics",
@@ -2778,7 +2778,7 @@
     "type": "module",
     "source": "nf-core",
     "sourceLabel": "nf-core",
-    "repository": "https://github.com/nf-core/modules/tree/main/modules/nf-core/mcstaging/imc2mc",
+    "repository": "https://github.com/nf-core/modules/tree/master/modules/nf-core/mcstaging/imc2mc",
     "keywords": [
       "imaging",
       "ome-tif",
@@ -2815,7 +2815,7 @@
     "type": "module",
     "source": "nf-core",
     "sourceLabel": "nf-core",
-    "repository": "https://github.com/nf-core/modules/tree/main/modules/nf-core/mcstaging/macsima2mc",
+    "repository": "https://github.com/nf-core/modules/tree/master/modules/nf-core/mcstaging/macsima2mc",
     "keywords": [
       "imaging",
       "ome-tif",
@@ -2855,7 +2855,7 @@
     "type": "module",
     "source": "nf-core",
     "sourceLabel": "nf-core",
-    "repository": "https://github.com/nf-core/modules/tree/main/modules/nf-core/mcstaging/phenoimager2mc",
+    "repository": "https://github.com/nf-core/modules/tree/master/modules/nf-core/mcstaging/phenoimager2mc",
     "keywords": [
       "imaging",
       "registration",
@@ -2893,7 +2893,7 @@
     "type": "module",
     "source": "nf-core",
     "sourceLabel": "nf-core",
-    "repository": "https://github.com/nf-core/modules/tree/main/modules/nf-core/metaspace/converter",
+    "repository": "https://github.com/nf-core/modules/tree/master/modules/nf-core/metaspace/converter",
     "keywords": [
       "anndata",
       "spatialdata",
@@ -3006,7 +3006,7 @@
     "type": "module",
     "source": "nf-core",
     "sourceLabel": "nf-core",
-    "repository": "https://github.com/nf-core/modules/tree/main/modules/nf-core/mindagap/duplicatefinder",
+    "repository": "https://github.com/nf-core/modules/tree/master/modules/nf-core/mindagap/duplicatefinder",
     "keywords": [
       "imaging",
       "resolve_bioscience",
@@ -3042,7 +3042,7 @@
     "type": "module",
     "source": "nf-core",
     "sourceLabel": "nf-core",
-    "repository": "https://github.com/nf-core/modules/tree/main/modules/nf-core/mindagap/mindagap",
+    "repository": "https://github.com/nf-core/modules/tree/master/modules/nf-core/mindagap/mindagap",
     "keywords": [
       "imaging",
       "resolve_bioscience",
@@ -3131,7 +3131,7 @@
     "type": "module",
     "source": "nf-core",
     "sourceLabel": "nf-core",
-    "repository": "https://github.com/nf-core/modules/tree/main/modules/nf-core/molkartgarage/clahe",
+    "repository": "https://github.com/nf-core/modules/tree/master/modules/nf-core/molkartgarage/clahe",
     "keywords": [
       "clahe",
       "image_processing",
@@ -3624,7 +3624,7 @@
     "type": "module",
     "source": "nf-core",
     "sourceLabel": "nf-core",
-    "repository": "https://github.com/nf-core/modules/tree/main/modules/nf-core/pretextsnapshot",
+    "repository": "https://github.com/nf-core/modules/tree/master/modules/nf-core/pretextsnapshot",
     "keywords": [
       "pretext",
       "image",
@@ -3664,7 +3664,7 @@
     "type": "module",
     "source": "nf-core",
     "sourceLabel": "nf-core",
-    "repository": "https://github.com/nf-core/modules/tree/main/modules/nf-core/raw2ometiff",
+    "repository": "https://github.com/nf-core/modules/tree/master/modules/nf-core/raw2ometiff",
     "keywords": [
       "ome",
       "tiff",
@@ -3956,7 +3956,7 @@
     "type": "module",
     "source": "nf-core",
     "sourceLabel": "nf-core",
-    "repository": "https://github.com/nf-core/modules/tree/main/modules/nf-core/spaceranger/count",
+    "repository": "https://github.com/nf-core/modules/tree/master/modules/nf-core/spaceranger/count",
     "keywords": [
       "align",
       "count",
@@ -4694,7 +4694,7 @@
     "type": "module",
     "source": "nf-core",
     "sourceLabel": "nf-core",
-    "repository": "https://github.com/nf-core/modules/tree/main/modules/nf-core/spotiflow",
+    "repository": "https://github.com/nf-core/modules/tree/master/modules/nf-core/spotiflow",
     "keywords": [
       "imaging",
       "image",
@@ -4904,7 +4904,7 @@
     "type": "module",
     "source": "nf-core",
     "sourceLabel": "nf-core",
-    "repository": "https://github.com/nf-core/modules/tree/main/modules/nf-core/stardist",
+    "repository": "https://github.com/nf-core/modules/tree/master/modules/nf-core/stardist",
     "keywords": [
       "stardist",
       "segmentation",
@@ -4946,7 +4946,7 @@
     "type": "subworkflow",
     "source": "nf-core",
     "sourceLabel": "nf-core",
-    "repository": "https://github.com/nf-core/modules/tree/main/subworkflows/nf-core/tiff_segmentation_vpt",
+    "repository": "https://github.com/nf-core/modules/tree/master/subworkflows/nf-core/tiff_segmentation_vpt",
     "keywords": [
       "segmentation",
       "imaging",
@@ -5119,7 +5119,7 @@
     "type": "module",
     "source": "nf-core",
     "sourceLabel": "nf-core",
-    "repository": "https://github.com/nf-core/modules/tree/main/modules/nf-core/vizgenpostprocessing/compiletilesegmentation",
+    "repository": "https://github.com/nf-core/modules/tree/master/modules/nf-core/vizgenpostprocessing/compiletilesegmentation",
     "keywords": [
       "vpt",
       "vizgen",
@@ -5169,7 +5169,7 @@
     "type": "module",
     "source": "nf-core",
     "sourceLabel": "nf-core",
-    "repository": "https://github.com/nf-core/modules/tree/main/modules/nf-core/vizgenpostprocessing/preparesegmentation",
+    "repository": "https://github.com/nf-core/modules/tree/master/modules/nf-core/vizgenpostprocessing/preparesegmentation",
     "keywords": [
       "vpt",
       "vizgen",
@@ -5218,7 +5218,7 @@
     "type": "module",
     "source": "nf-core",
     "sourceLabel": "nf-core",
-    "repository": "https://github.com/nf-core/modules/tree/main/modules/nf-core/vizgenpostprocessing/runsegmentationontile",
+    "repository": "https://github.com/nf-core/modules/tree/master/modules/nf-core/vizgenpostprocessing/runsegmentationontile",
     "keywords": [
       "vpt",
       "vizgen",
@@ -5267,7 +5267,7 @@
     "type": "module",
     "source": "nf-core",
     "sourceLabel": "nf-core",
-    "repository": "https://github.com/nf-core/modules/tree/main/modules/nf-core/xeniumranger/import-segmentation",
+    "repository": "https://github.com/nf-core/modules/tree/master/modules/nf-core/xeniumranger/import-segmentation",
     "keywords": [
       "spatial",
       "segmentation",

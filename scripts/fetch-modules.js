@@ -56,7 +56,19 @@ function cloneOrUpdateRepo(repo) {
     execSync(`git clone --depth 1 "${repo.url}" "${repoPath}"`, { stdio: 'pipe' });
   }
 
-  return repoPath;
+  // Detect default branch name
+  let defaultBranch = 'main';
+  try {
+    const ref = execSync('git symbolic-ref refs/remotes/origin/HEAD', {
+      cwd: repoPath,
+      stdio: 'pipe',
+    }).toString().trim();
+    defaultBranch = ref.replace('refs/remotes/origin/', '');
+  } catch {
+    // fallback to 'main'
+  }
+
+  return { repoPath, defaultBranch };
 }
 
 /**
@@ -85,7 +97,7 @@ function findMetaFiles(dir, files = []) {
 /**
  * Parse a meta.yml file and extract module information
  */
-function parseMetaFile(metaPath, repo, type) {
+function parseMetaFile(metaPath, repo, type, defaultBranch) {
   try {
     const content = readFileSync(metaPath, 'utf-8');
     const meta = parseYaml(content);
@@ -104,7 +116,7 @@ function parseMetaFile(metaPath, repo, type) {
 
     // Build GitHub URL to the module directory
     const repoBaseUrl = repo.url.replace(/\.git$/, '');
-    const repository = `${repoBaseUrl}/tree/main/${relativePath}`;
+    const repository = `${repoBaseUrl}/tree/${defaultBranch}/${relativePath}`;
 
     // Process tools (may be array of objects with tool name as key)
     let tools = [];
@@ -203,7 +215,7 @@ function matchesKeywordFilter(module, repo) {
 /**
  * Process a repository and extract all modules/subworkflows
  */
-function processRepository(repo) {
+function processRepository(repo, defaultBranch) {
   const repoPath = join(REPOS_DIR, repo.name);
   const modules = [];
 
@@ -213,7 +225,7 @@ function processRepository(repo) {
   console.log(`  Found ${moduleMetaFiles.length} modules`);
 
   for (const metaPath of moduleMetaFiles) {
-    const module = parseMetaFile(metaPath, repo, 'module');
+    const module = parseMetaFile(metaPath, repo, 'module', defaultBranch);
     if (module && matchesKeywordFilter(module, repo)) {
       modules.push(module);
     }
@@ -225,7 +237,7 @@ function processRepository(repo) {
   console.log(`  Found ${subworkflowMetaFiles.length} subworkflows`);
 
   for (const metaPath of subworkflowMetaFiles) {
-    const subworkflow = parseMetaFile(metaPath, repo, 'subworkflow');
+    const subworkflow = parseMetaFile(metaPath, repo, 'subworkflow', defaultBranch);
     if (subworkflow && matchesKeywordFilter(subworkflow, repo)) {
       modules.push(subworkflow);
     }
@@ -251,8 +263,8 @@ async function main() {
     console.log(`Processing ${repo.label} (${repo.name}):`);
 
     try {
-      cloneOrUpdateRepo(repo);
-      const modules = processRepository(repo);
+      const { defaultBranch } = cloneOrUpdateRepo(repo);
+      const modules = processRepository(repo, defaultBranch);
       allModules.push(...modules);
       console.log(`  Total: ${modules.length} items\n`);
     } catch (error) {
