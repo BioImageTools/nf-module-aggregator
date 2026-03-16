@@ -1,5 +1,7 @@
 # Nextflow Module Aggregator
 
+[![Deploy to GitHub Pages](https://github.com/BioImageTools/nf-module-aggregator/actions/workflows/deploy.yml/badge.svg)](https://github.com/BioImageTools/nf-module-aggregator/actions/workflows/deploy.yml)
+
 A static site catalog that aggregates Nextflow modules and subworkflows from multiple repositories. Built with [Astro](https://astro.build) and deployed to GitHub Pages.
 
 **Live site: [bioimagetools.github.io/nf-module-aggregator](https://bioimagetools.github.io/nf-module-aggregator/)**
