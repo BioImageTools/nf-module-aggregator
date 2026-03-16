@@ -3,10 +3,12 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
 import Header from '../../components/Header.astro';
 import '../../styles/global.css';
 
-import modules from '../../data/modules.json';
+import data from '../../data/modules.json';
+
+const modules = data.modules;
 
 export function getStaticPaths() {
-  return modules.map((module) => ({
+  return data.modules.map((module) => ({
     params: { slug: module.slug },
     props: { module },
   }));

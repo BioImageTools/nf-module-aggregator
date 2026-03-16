@@ -5,7 +5,8 @@ import ModuleCard from '../components/ModuleCard.astro';
 import ModuleListItem from '../components/ModuleListItem.astro';
 import '../styles/global.css';
 
-import modules from '../data/modules.json';
+import data from '../data/modules.json';
+const modules = data.modules;
 
 // Extract org from repository URL (e.g., "https://github.com/JaneliaSciComp/nextflow-modules/..." -> "JaneliaSciComp")
 function getOrgFromRepo(repoUrl: string): string {
@@ -255,6 +256,7 @@ const types = [...new Set(modules.map(m => m.type))].filter(Boolean).sort();
     <p>
       Built with <a href="https://astro.build" class="text-blue-600 hover:underline">Astro</a>.
       Data updated daily.
+      {data.lastUpdated && ` Last fetched: ${new Date(data.lastUpdated).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric', hour: '2-digit', minute: '2-digit', timeZoneName: 'short' })}.`}
     </p>
   </footer>
 </BaseLayout>

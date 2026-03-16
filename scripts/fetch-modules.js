@@ -279,7 +279,7 @@ async function main() {
   mkdirSync(dirname(OUTPUT_PATH), { recursive: true });
 
   // Write modules to JSON file
-  writeFileSync(OUTPUT_PATH, JSON.stringify(allModules, null, 2));
+  writeFileSync(OUTPUT_PATH, JSON.stringify({ lastUpdated: new Date().toISOString(), modules: allModules }, null, 2));
 
   console.log(`\nWrote ${allModules.length} modules to ${OUTPUT_PATH}`);
 
