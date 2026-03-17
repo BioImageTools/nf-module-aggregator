@@ -5,6 +5,9 @@ on:
     - cron: '0 5,17 * * *'
   workflow_dispatch:
 
+permissions:
+  actions: write
+
 jobs:
   trigger-deploy:
     runs-on: ubuntu-latest
